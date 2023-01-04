@@ -1,0 +1,33 @@
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgb(203, 203, 203);
+  padding: 0 3rem;
+
+  #right{
+    display: flex;
+    align-items: center;
+
+    div{
+        margin-left: 20px;
+    }
+  }
+
+  #profile_container {
+    width: 38px;
+  }
+  #write_blog{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+   border: 2px solid rgb(203, 203, 203); 
+   padding: 7px 20px;
+   border-radius: 20px;
+
+   h5{
+    margin: 0 0 0 5px;
+    
+   }
+  }
+}
