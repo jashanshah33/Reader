@@ -1,0 +1,15 @@
+#home {
+  padding: 7vh 5vw 0 5vw;
+  display: flex;
+  min-height: 93vh;
+
+  main {
+    width: 70%;
+    border-right: 2px solid rgb(203, 203, 203);
+  }
+  aside {
+    width: 30%;
+  }
+}
+
+@import './mainArtical'

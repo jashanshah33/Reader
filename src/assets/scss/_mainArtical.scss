@@ -1,0 +1,51 @@
+#Main_Artical_full_container{
+ padding: 3vh 5vw 0 0;
+}
+#Main_Artical_header{
+    display: flex;
+align-items: center;
+justify-content: space-between;
+width: 100%;
+}
+#search_container{
+background-color: white;
+width: 11vw;
+border: 2px solid rgb(177, 176, 176);
+padding: 4px 10px;
+border-radius: 15px;
+display: flex;
+align-items: center;
+.search_icon{
+    color:rgb(152, 152, 152) ;
+}
+    input{
+        border: none;
+        min-width: 0;
+        margin-left: 5px;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
+#topics{
+display: flex;
+align-items: center;
+width: 70%;
+p{
+    color: grey;
+
+}
+ul{
+    display: flex;
+    list-style: none;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+li{
+    border-radius: 20px;
+    padding: 5px 15px;
+    background-color:rgb(222, 221, 221) ;
+}
+}
