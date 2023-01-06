@@ -71,7 +71,7 @@ export const Navbar = () => {
               <li>Design </li>
               <li>Product </li>
               <li>SoftWare Enginnering </li>
-              <li>Custonmer Success </li>
+              <li>Customer Success </li>
               <li>LeaderShip </li>
               <li>Management </li>
             </ul>

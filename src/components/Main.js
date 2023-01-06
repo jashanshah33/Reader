@@ -1,15 +1,15 @@
 import React from "react";
-import Main_Artical from "./Main_Artical";
-import Main_Aside from './Main_Aside'
+import MainArtical from "./MainArtical";
+import MainAside from './MainAside'
 
 export const Main = () => {
   return (
     <section id="home">
-      <main>
-        <Main_Artical />
+      <main className="blog_main_cont">
+        <MainArtical />
       </main>
       <aside>
-        <Main_Aside/>
+        <MainAside/>
       </aside>
     </section>
   );
