@@ -50,17 +50,17 @@ export const Navbar = () => {
           <div>
             <ul>
               <li>
-                <span>Home</span> <FontAwesomeIcon icon={faHouse} size="la" />
+                <span>Home</span> <FontAwesomeIcon icon={faHouse} size="lg" />
               </li>
               <li>
                 {" "}
                 <span>Profile</span>{" "}
-                <FontAwesomeIcon icon={faUser} size="la" />
+                <FontAwesomeIcon icon={faUser} size="lg" />
               </li>
               <li>
                 {" "}
                 <span>Contact</span>{" "}
-                <FontAwesomeIcon icon={faContactBook} size="la" />
+                <FontAwesomeIcon icon={faContactBook} size="lg" />
               </li>
             </ul>
           </div>

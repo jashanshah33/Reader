@@ -1,13 +1,18 @@
-import { Main } from "../components/Main";
-import {Navbar} from '../components/Navbar'
-
+import  MainArtical  from "../components/MainArtical";
+import MainAside from "../components/MainAside";
 
 function Home() {
   return (
     <main>
-<Navbar/>
-<Main/>
-</main>
+      <section id="home">
+        <main className="blog_main_cont">
+          <MainArtical />
+        </main>
+        <aside>
+          <MainAside />
+        </aside>
+      </section>
+    </main>
   );
 }
 

@@ -1,0 +1,169 @@
+.login_Register {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+  // height: 100vh;
+  transform-style: preserve-3d;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%;
+    width: 50%;
+h2{
+  margin: 0;
+}
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      margin-top: 3px;
+      height: 18px;
+      padding: 5px;
+      border-radius: 5px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+  }
+  button {
+    padding: 10px 5px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    background-color: rgb(71, 71, 239);
+    transition: all 0.4s;
+    &:hover {
+      transform: translateZ(10px);
+      background-color: rgb(194, 194, 194);
+      color: black;
+    }
+  }
+}
+
+.login {
+  background-color: orange;
+  height: 80%;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.155);
+  transform: translateX(200px);
+  // transform: perspective(200px) translate3d(100px, 0px, -30px);
+  // opacity: 0.5;
+}
+.register {
+  background-color: orange;
+  height: 80%;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  transform: perspective(100px) translate3d(-200px, 0px, -30px);
+  opacity: 0.5;
+  form{
+    height: 70%;
+  }
+}
+.rotate_Login_X {
+  animation-name: roateLoginX;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.rotate_Register_X {
+  animation-name: roateRegisterX;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.rotate_Login_Y {
+  animation-name: roateLoginY;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.rotate_Register_Y {
+  animation-name: roateRegisterY;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+@keyframes roateLoginY {
+  0% {
+    opacity: 0.5;
+    transform: perspective(100px) translate3d(200px, 0px, -30px) ;
+  
+  }
+  50% {
+    transform: perspective(100px) translate3d(-50px, 0px, -30px) ;
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    transform: translate3d(200px, 0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes roateRegisterY {
+  0% {
+    opacity: 1;
+    transform: translate3d(-200px, 0px, 0px);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+    z-index: 10;
+ 
+  }
+  50% {
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    transform: translate3d(50px, 0px, 0px) perspective(100px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: perspective(100px) translate3d(-200px, 0px, -30px);
+    opacity: 0.5;
+  }
+}
+@keyframes roateLoginX {
+  0% {
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    transform: translate3d(200px, 0px, 0px);
+    opacity: 1;
+  }
+  50% {
+    transform: perspective(100px) translate3d(-50px, 0px, -30px) ;
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.5;
+    transform: perspective(100px) translate3d(200px, 0px, -30px) ;
+  }
+}
+
+@keyframes roateRegisterX {
+  0% {
+    transform: perspective(100px) translate3d(-200px, 0px, -30px);
+    opacity: 0.5;
+  }
+  50% {
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    transform: translate3d(50px, 0px, 0px) perspective(100px);
+    opacity: 1;
+    z-index: 10;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-200px, 0px, 0px);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
+}

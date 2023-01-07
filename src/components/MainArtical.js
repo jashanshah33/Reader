@@ -6,7 +6,7 @@ const MainArtical = () => {
     <section id="Main_blog_full_container">
       <header id="Main_blog_header">
         <div id="search_container">
-          <FontAwesomeIcon className="search_icon" icon={faSearch} size="la" />
+          <FontAwesomeIcon className="search_icon" icon={faSearch} size="lg" />
           <input placeholder="Search" />
         </div>
         <div id="topics">
