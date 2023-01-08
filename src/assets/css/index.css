@@ -387,6 +387,18 @@ code {
   height: 50%;
   width: 50%;
 }
+@media only screen and (max-width: 600px) {
+  .login_Register form {
+    min-height: 60%;
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .login_Register form {
+    min-height: 60%;
+    width: 90%;
+  }
+}
 .login_Register form h2 {
   margin: 0;
 }
@@ -427,7 +439,37 @@ code {
   justify-content: center;
   border-radius: 20px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.155);
-  transform: translateX(200px);
+  transform: translateX(12vw);
+}
+@media only screen and (max-width: 1200px) {
+  .login {
+    height: 80%;
+    width: 45%;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .login {
+    height: 80%;
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .login {
+    height: 80%;
+    width: 55%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .login {
+    height: 60%;
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .login {
+    height: 60%;
+    width: 100%;
+  }
 }
 
 .register {
@@ -438,11 +480,46 @@ code {
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  transform: perspective(100px) translate3d(-200px, 0px, -30px);
+  transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
   opacity: 0.5;
+}
+@media only screen and (max-width: 1200px) {
+  .register {
+    height: 80%;
+    width: 45%;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .register {
+    height: 80%;
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .register {
+    height: 80%;
+    width: 55%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .register {
+    height: 60%;
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .register {
+    height: 60%;
+    width: 100%;
+  }
 }
 .register form {
   height: 70%;
+}
+@media only screen and (max-width: 768px) {
+  .register form {
+    height: 80%;
+  }
 }
 
 .rotate_Login_X {
@@ -472,64 +549,64 @@ code {
 @keyframes roateLoginY {
   0% {
     opacity: 0.5;
-    transform: perspective(100px) translate3d(200px, 0px, -30px);
+    transform: perspective(100px) translate3d(12vw, 0px, -4vh);
   }
   50% {
-    transform: perspective(100px) translate3d(-50px, 0px, -30px);
+    transform: perspective(100px) translate3d(-3vw, 0px, -4vh);
     opacity: 1;
   }
   100% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(200px, 0px, 0px);
+    transform: translate3d(12vw, 0px, 0px);
     opacity: 1;
   }
 }
 @keyframes roateRegisterY {
   0% {
     opacity: 1;
-    transform: translate3d(-200px, 0px, 0px);
+    transform: translate3d(-15vw, 0px, 0px);
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
     z-index: 10;
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(50px, 0px, 0px) perspective(100px);
+    transform: translate3d(3vw, 0px, 0px) perspective(100px);
     opacity: 0.5;
   }
   100% {
-    transform: perspective(100px) translate3d(-200px, 0px, -30px);
+    transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
     opacity: 0.5;
   }
 }
 @keyframes roateLoginX {
   0% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(200px, 0px, 0px);
+    transform: translate3d(12vw, 0px, 0px);
     opacity: 1;
   }
   50% {
-    transform: perspective(100px) translate3d(-50px, 0px, -30px);
+    transform: perspective(100px) translate3d(-3vw, 0px, -4vh);
     opacity: 0.5;
   }
   100% {
     opacity: 0.5;
-    transform: perspective(100px) translate3d(200px, 0px, -30px);
+    transform: perspective(100px) translate3d(12vw, 0px, -4vh);
   }
 }
 @keyframes roateRegisterX {
   0% {
-    transform: perspective(100px) translate3d(-200px, 0px, -30px);
+    transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
     opacity: 0.5;
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(50px, 0px, 0px) perspective(100px);
+    transform: translate3d(3vw, 0px, 0px) perspective(100px);
     opacity: 1;
     z-index: 10;
   }
   100% {
     opacity: 1;
-    transform: translate3d(-200px, 0px, 0px);
+    transform: translate3d(-15vw, 0px, 0px);
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
     z-index: 10;
   }

@@ -13,6 +13,14 @@
     justify-content: space-around;
     height: 50%;
     width: 50%;
+    @media only screen and (max-width: 600px) {
+      min-height: 60%;
+      width: 80%;
+    }
+    @media only screen and (max-width: 400px) {
+      min-height: 60%;
+      width: 90%;
+    }
 h2{
   margin: 0;
 }
@@ -52,12 +60,37 @@ h2{
   background-color: orange;
   height: 80%;
   width: 35%;
+  @media only screen and (max-width: 1200px) {
+    height: 80%;
+    width: 45%;
+  }
+
+  @media only screen and (max-width: 992px) {
+    height: 80%;
+    width: 50%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    height: 80%;
+    width: 55%;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    height: 60%;
+    width: 60%;
+  }
+  @media only screen and (max-width: 400px) {
+    height: 60%;
+    width: 100%;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.155);
-  transform: translateX(200px);
+  transform: translateX(12vw);
   // transform: perspective(200px) translate3d(100px, 0px, -30px);
   // opacity: 0.5;
 }
@@ -65,15 +98,45 @@ h2{
   background-color: orange;
   height: 80%;
   width: 35%;
+  @media only screen and (max-width: 1200px) {
+    height: 80%;
+    width: 45%;
+  }
+
+  @media only screen and (max-width: 992px) {
+    height: 80%;
+    width: 50%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    height: 80%;
+    width: 55%;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    height: 60%;
+    width: 60%;
+  }
+  @media only screen and (max-width: 400px) {
+    height: 60%;
+    width: 100%;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  transform: perspective(100px) translate3d(-200px, 0px, -30px);
+  transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
   opacity: 0.5;
+
+
   form{
     height: 70%;
+    @media only screen and (max-width: 768px) {
+      height: 80%;
+    }
   }
+
 }
 .rotate_Login_X {
   animation-name: roateLoginX;
@@ -101,16 +164,16 @@ h2{
 @keyframes roateLoginY {
   0% {
     opacity: 0.5;
-    transform: perspective(100px) translate3d(200px, 0px, -30px) ;
+    transform: perspective(100px) translate3d(12vw, 0px, -4vh) ;
   
   }
   50% {
-    transform: perspective(100px) translate3d(-50px, 0px, -30px) ;
+    transform: perspective(100px) translate3d(-3vw, 0px, -4vh) ;
     opacity: 1;
   }
   100% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(200px, 0px, 0px);
+    transform: translate3d(12vw, 0px, 0px);
     opacity: 1;
   }
 }
@@ -118,51 +181,51 @@ h2{
 @keyframes roateRegisterY {
   0% {
     opacity: 1;
-    transform: translate3d(-200px, 0px, 0px);
+    transform: translate3d(-15vw, 0px, 0px);
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
     z-index: 10;
  
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(50px, 0px, 0px) perspective(100px);
+    transform: translate3d(3vw, 0px, 0px) perspective(100px);
     opacity: 0.5;
   }
   100% {
-    transform: perspective(100px) translate3d(-200px, 0px, -30px);
+    transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
     opacity: 0.5;
   }
 }
 @keyframes roateLoginX {
   0% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(200px, 0px, 0px);
+    transform: translate3d(12vw, 0px, 0px);
     opacity: 1;
   }
   50% {
-    transform: perspective(100px) translate3d(-50px, 0px, -30px) ;
+    transform: perspective(100px) translate3d(-3vw, 0px, -4vh) ;
     opacity: 0.5;
   }
   100% {
     opacity: 0.5;
-    transform: perspective(100px) translate3d(200px, 0px, -30px) ;
+    transform: perspective(100px) translate3d(12vw, 0px, -4vh) ;
   }
 }
 
 @keyframes roateRegisterX {
   0% {
-    transform: perspective(100px) translate3d(-200px, 0px, -30px);
+    transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
     opacity: 0.5;
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(50px, 0px, 0px) perspective(100px);
+    transform: translate3d(3vw, 0px, 0px) perspective(100px);
     opacity: 1;
     z-index: 10;
   }
   100% {
     opacity: 1;
-    transform: translate3d(-200px, 0px, 0px);
+    transform: translate3d(-15vw, 0px, 0px);
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
     z-index: 10;
   }
