@@ -380,6 +380,14 @@ code {
   height: calc(100vh - 60px);
   transform-style: preserve-3d;
 }
+.login_Register .navigantion_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_Register .navigantion_btn * {
+  margin: 0 10px;
+}
 .login_Register form {
   display: flex;
   flex-direction: column;
@@ -428,6 +436,10 @@ code {
   transform: translateZ(10px);
   background-color: rgb(194, 194, 194);
   color: black;
+}
+.login_Register .login_btn,
+.login_Register .register_btn {
+  padding: 13px 0;
 }
 
 .login {
@@ -520,6 +532,23 @@ code {
   .register form {
     height: 80%;
   }
+}
+.register #register_password {
+  position: relative;
+}
+.register #register_password p {
+  display: none;
+  position: absolute;
+  bottom: -35px;
+  color: rgb(10, 197, 10);
+}
+@media only screen and (max-width: 600px) {
+  .register #register_password p {
+    bottom: -28px;
+  }
+}
+.register #register_password input:focus + p {
+  display: block;
 }
 
 .rotate_Login_X {
