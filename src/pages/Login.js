@@ -47,7 +47,7 @@ const Login = () => {
   };
 
   const register = async (e) => {
-    function inputValueNull() {
+    function registerInputValueNull() {
       name.valueNull();
       email.valueNull();
       password.valueNull();
@@ -67,13 +67,27 @@ const Login = () => {
 
     if (response.success) {
       console.log({ "*******response": response });
-      inputValueNull();
+      registerInputValueNull();
     }
 
-    inputValueNull();
-
+    registerInputValueNull();
   };
 
+  const login = async (e) => {
+    e.preventDefault();
+
+    function loginInputValueNull() {
+      loginEmail.valueNull();
+      loginPassword.valueNull();
+    }
+    const response = await auth.login(loginEmail.value, loginPassword.value);
+
+    if (response) {
+      console.log(response);
+      loginInputValueNull();
+    }
+    loginInputValueNull();
+  };
   return (
     <div className="login_Register">
       <div className={emailClasses}>
@@ -103,7 +117,7 @@ const Login = () => {
           </div>
 
           <div></div>
-          <button className="login_btn" type="submit">
+          <button onClick={login} className="login_btn" type="submit">
             Login
           </button>
           <button

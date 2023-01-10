@@ -51,3 +51,10 @@ export const register = (name, email, password) => {
     body: { name, email, password },
   });
 };
+
+export const createSession = (email, password) => {
+  return custonFetch(API_URLS.login(), {
+    method: "post",
+    body: { email, password },
+  });
+};
