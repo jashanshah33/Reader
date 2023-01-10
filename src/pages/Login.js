@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  faRightLong,
-  faLeftLong
-} from "@fortawesome/free-solid-svg-icons";
+import { faRightLong, faLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../hooks";
 
 const useFormInfo = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -14,9 +12,14 @@ const useFormInfo = (initialValue) => {
     setValue(e.target.value);
   }
 
+  function valueNull() {
+    setValue("");
+  }
+
   return {
     value,
     onChange: change,
+    valueNull: valueNull,
   };
 };
 
@@ -32,6 +35,8 @@ const Login = () => {
   const password = useFormInfo("");
   const confirmPassword = useFormInfo("");
 
+  const auth = useAuth();
+
   const handelLogin = () => {
     setRegisterClasses("register rotate_Register_Y");
     setEmailClasses("login rotate_Login_Y");
@@ -42,6 +47,12 @@ const Login = () => {
   };
 
   const register = async (e) => {
+    function inputValueNull() {
+      name.valueNull();
+      email.valueNull();
+      password.valueNull();
+      confirmPassword.valueNull();
+    }
     e.preventDefault();
 
     if (password.value.length < 8) {
@@ -52,23 +63,14 @@ const Login = () => {
       return console.log("Password and confirm password is't matched");
     }
 
-      await axios
-        .post(`http://localhost:8000/api/v1/user/createUser`, {
-          name: name.value,
-          email: email.value,
-          password: password.value,
-        })
-        .then((response) => {
-          if (response.data) {
-            console.log(response.data);
-            setRegisterClasses("register rotate_Register_Y");
-            setEmailClasses("login rotate_Login_Y");
-          }
-        })
-        .catch((error) => {
-          // handle error
-          console.log(error);
-        });
+    const response = await auth.signup(name.value, email.value, password.value);
+
+    if (response.success) {
+      console.log({ "*******response": response });
+      inputValueNull();
+    }
+
+    inputValueNull();
 
   };
 
@@ -81,7 +83,13 @@ const Login = () => {
           </div>
           <div>
             <label htmlFor="email">Email*</label>
-            <input id="email" required placeholder="Email" {...loginEmail} />
+            <input
+              id="email"
+              required
+              placeholder="Email"
+              value={loginEmail.value}
+              onChange={loginEmail.onChange}
+            />
           </div>
           <div>
             <label htmlFor="password">Password*</label>
@@ -89,7 +97,8 @@ const Login = () => {
               id="password"
               required
               placeholder="Password"
-              {...loginPassword}
+              value={loginPassword.value}
+              onChange={loginPassword.onChange}
             />
           </div>
 
@@ -97,14 +106,13 @@ const Login = () => {
           <button className="login_btn" type="submit">
             Login
           </button>
-          <button 
+          <button
             onClick={handelRegister}
             className="navigantion_btn"
             type="button"
           >
             Register
-            <FontAwesomeIcon  icon={faRightLong} size="xl" />
-
+            <FontAwesomeIcon icon={faRightLong} size="xl" />
           </button>
         </form>
       </div>
@@ -118,11 +126,23 @@ const Login = () => {
 
           <div>
             <label htmlFor="name">Name*</label>
-            <input id="name" required placeholder="Name" {...name} />
+            <input
+              id="name"
+              required
+              placeholder="Name"
+              value={name.value}
+              onChange={name.onChange}
+            />
           </div>
           <div>
             <label htmlFor="email">Email*</label>
-            <input id="email" required placeholder="Email" {...email} />
+            <input
+              id="email"
+              required
+              placeholder="Email"
+              value={email.value}
+              onChange={email.onChange}
+            />
           </div>
           <div id="register_password">
             <label htmlFor="password">Password*</label>
@@ -130,7 +150,8 @@ const Login = () => {
               id="password"
               required
               placeholder="Password"
-              {...password}
+              value={password.value}
+              onChange={password.onChange}
             />
             <p>* At least 8 Characters *</p>
           </div>
@@ -140,7 +161,8 @@ const Login = () => {
               id="confirmPassword"
               required
               placeholder="Confirm Password"
-              {...confirmPassword}
+              value={confirmPassword.value}
+              onChange={confirmPassword.onChange}
             />
           </div>
 
@@ -148,9 +170,12 @@ const Login = () => {
           <button onClick={register} className="register_btn" type="submit">
             Register
           </button>
-          <button onClick={handelLogin} className="navigantion_btn" type="button">
-          <FontAwesomeIcon  icon={faLeftLong} size="xl" />
-
+          <button
+            onClick={handelLogin}
+            className="navigantion_btn"
+            type="button"
+          >
+            <FontAwesomeIcon icon={faLeftLong} size="xl" />
             Login
           </button>
         </form>
