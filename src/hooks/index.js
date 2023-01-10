@@ -5,6 +5,7 @@ import {
   setItemInLocalStorage,
   LOCALSTORAGE_TOKEN_KEY,
   getItemFromLocalStorage,
+  removeItemFromLocalStorage,
 } from "../utils";
 import jwt from "jwt-decode";
 
@@ -19,7 +20,7 @@ export const useProvideAuth = () => {
 
   useEffect(() => {
     const getuser = () => {
-      const userToken =  getItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+      const userToken = getItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
 
       if (userToken) {
         const user = jwt(userToken);
@@ -49,7 +50,7 @@ export const useProvideAuth = () => {
 
     if (response.success) {
       console.log(response.data.token);
-      await setItemInLocalStorage(
+     await setItemInLocalStorage(
         LOCALSTORAGE_TOKEN_KEY,
         response.data.token ? response.data.token : null
       );
@@ -66,9 +67,15 @@ export const useProvideAuth = () => {
     }
   };
 
+  const logout = () => {
+    setUser(null);
+    removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+  };
+
   return {
     user,
     signup,
     login,
+    logout,
   };
 };

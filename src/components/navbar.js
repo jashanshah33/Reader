@@ -7,13 +7,15 @@ import {
   faXmark,
   faHouse,
   faUser,
-  faContactBook
+  faContactBook,
+  faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useAuth } from "../hooks";
 
 export const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
-  // let sideBarClass = ["sidebar"];
+  const auth = useAuth();
 
   const handelDropown = (e) => {
     e.stopPropagation();
@@ -28,6 +30,9 @@ export const Navbar = () => {
     setDropdown(false);
   });
 
+  const handelLogout = () => {
+    auth.logout();
+  };
   return (
     <nav id="navbar">
       <section id="left">
@@ -39,44 +44,52 @@ export const Navbar = () => {
         id="sidebar"
         className={dropdown ? "open" : "close"}
       >
-        <div id="cross_icon">
-          <FontAwesomeIcon
-            onClick={handelDropownClose}
-            icon={faXmark}
-            size="xl"
-          />
-        </div>
-        <main id="all_list">
-          <div>
-            <ul>
-              <li>
-                <span>Home</span> <FontAwesomeIcon icon={faHouse} size="lg" />
-              </li>
-              <li>
-                {" "}
-                <span>Profile</span>{" "}
-                <FontAwesomeIcon icon={faUser} size="lg" />
-              </li>
-              <li>
-                {" "}
-                <span>Contact</span>{" "}
-                <FontAwesomeIcon icon={faContactBook} size="lg" />
-              </li>
-            </ul>
+        <main>
+          <div id="cross_icon">
+            <FontAwesomeIcon
+              onClick={handelDropownClose}
+              icon={faXmark}
+              size="xl"
+            />
           </div>
-          <div>
-            <h3>Blog Catagories</h3>
-            <ul>
-              <li>View all </li>
-              <li>Design </li>
-              <li>Product </li>
-              <li>SoftWare Enginnering </li>
-              <li>Customer Success </li>
-              <li>LeaderShip </li>
-              <li>Management </li>
-            </ul>
+          <div id="all_list">
+            <div>
+              <ul>
+                <li>
+                  <span>Home</span> <FontAwesomeIcon icon={faHouse} size="lg" />
+                </li>
+                <li>
+                  {" "}
+                  <span>Profile</span>{" "}
+                  <FontAwesomeIcon icon={faUser} size="lg" />
+                </li>
+                <li>
+                  {" "}
+                  <span>Contact</span>{" "}
+                  <FontAwesomeIcon icon={faContactBook} size="lg" />
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Blog Catagories</h3>
+              <ul>
+                <li>View all </li>
+                <li>Design </li>
+                <li>Product </li>
+                <li>SoftWare Enginnering </li>
+                <li>Customer Success </li>
+                <li>LeaderShip </li>
+                <li>Management </li>
+              </ul>
+            </div>
           </div>
         </main>
+        <footer>
+          <button onClick={handelLogout} id="logout_btn">
+            <FontAwesomeIcon icon={faPowerOff} size="xl" />
+            <p>Logout</p>
+          </button>
+        </footer>
       </aside>
       {/* ) : null} */}
 

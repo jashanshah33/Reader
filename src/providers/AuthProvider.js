@@ -4,7 +4,8 @@ import { useProvideAuth } from "../hooks";
 const initialState = {
   user: null,
   signup: () => {},
-  login: () => {}
+  login: () => {},
+  logout: () => {}
 };
 
 export const AuthContext = createContext(initialState);
