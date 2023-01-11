@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useAuth } from "../hooks";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -55,19 +56,26 @@ export const Navbar = () => {
           <div id="all_list">
             <div>
               <ul>
-                <li>
-                  <span>Home</span> <FontAwesomeIcon icon={faHouse} size="lg" />
-                </li>
-                <li>
-                  {" "}
-                  <span>Profile</span>{" "}
-                  <FontAwesomeIcon icon={faUser} size="lg" />
-                </li>
-                <li>
-                  {" "}
-                  <span>Contact</span>{" "}
-                  <FontAwesomeIcon icon={faContactBook} size="lg" />
-                </li>
+                <Link to="/">
+                  <li>
+                    <span>Home</span>{" "}
+                    <FontAwesomeIcon icon={faHouse} size="lg" />
+                  </li>
+                </Link>
+                <Link to="/profile">
+                  <li>
+                    {" "}
+                    <span> Profile</span>{" "}
+                    <FontAwesomeIcon icon={faUser} size="lg" />
+                  </li>
+                </Link>
+                <Link to="/contact">
+                  <li>
+                    {" "}
+                    <span>Contact</span>{" "}
+                    <FontAwesomeIcon icon={faContactBook} size="lg" />
+                  </li>
+                </Link>
               </ul>
             </div>
             <div>
@@ -87,29 +95,51 @@ export const Navbar = () => {
         <footer>
           <button onClick={handelLogout} id="logout_btn">
             <FontAwesomeIcon icon={faPowerOff} size="xl" />
-            <p>Logout</p>
+            {auth.user ? (
+              <p>Logout</p>
+            ) : (
+              <Link to={"/login"}>
+                <p>Login</p>
+              </Link>
+            )}
           </button>
         </footer>
       </aside>
       {/* ) : null} */}
 
       <section id="middle">
-        <h3>Reader</h3>
+        <h3>
+          <Link to="/">Reader</Link>
+        </h3>
       </section>
+
       <section id="right">
-        <FontAwesomeIcon icon={faBell} size="xl" />
-        <div id="profile_container">
-          <img
-            alt="Profile"
-            src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
-            width="100%"
-            height="100%"
-          />
-        </div>
-        <div id="write_blog">
-          <FontAwesomeIcon icon={faPenToSquare} size="sm" />
-          <h5>Write</h5>
-        </div>
+        {auth.user ? (
+          <>
+            <FontAwesomeIcon icon={faBell} size="xl" />
+            <div id="profile_container">
+              <img
+                alt="Profile"
+                src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
+                width="100%"
+                height="100%"
+              />
+            </div>
+            <div id="write_blog">
+              <FontAwesomeIcon icon={faPenToSquare} size="sm" />
+              <h5>Write</h5>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="login_btn">
+              <Link to="/login">Login</Link>
+            </div>
+            <div className="register_btn">
+              <Link to="/register">Register</Link>
+            </div>
+          </>
+        )}
       </section>
     </nav>
   );

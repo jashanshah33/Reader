@@ -16,6 +16,11 @@
   @media only screen and (max-width: 600px) {
     padding: 0 1rem;
   }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
   #left {
     cursor: pointer;
   }
@@ -35,6 +40,25 @@
 
     div {
       margin-left: 20px;
+    }
+    .login_btn, .register_btn{
+      box-sizing: border-box;
+      color: rgb(255, 255, 255);
+      font-size: 1.2rem;
+      // border: 2px solid black;
+      border-radius: 7px;
+      background-color: rgb(39, 39, 184);
+      padding: 2px 12px 5px 12px;
+      transition: all 0.4s;
+
+      &:hover{
+        background-color: grey;
+        color: black;
+      }
+    }
+    .register_btn{
+      background-color: rgb(184, 70, 39);
+
     }
   }
 
@@ -86,6 +110,7 @@
       padding: 0;
       width: 100%;
     }
+    
     li {
       padding: 3px 20px;
       display: flex;

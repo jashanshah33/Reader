@@ -37,6 +37,10 @@ code {
     padding: 0 1rem;
   }
 }
+#navbar a {
+  text-decoration: none;
+  color: inherit;
+}
 #navbar #left {
   cursor: pointer;
 }
@@ -55,6 +59,22 @@ code {
 }
 #navbar #right div {
   margin-left: 20px;
+}
+#navbar #right .login_btn, #navbar #right .register_btn {
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  border-radius: 7px;
+  background-color: rgb(39, 39, 184);
+  padding: 2px 12px 5px 12px;
+  transition: all 0.4s;
+}
+#navbar #right .login_btn:hover, #navbar #right .register_btn:hover {
+  background-color: grey;
+  color: black;
+}
+#navbar #right .register_btn {
+  background-color: rgb(184, 70, 39);
 }
 #navbar #profile_container {
   width: 38px;
@@ -289,13 +309,12 @@ code {
 .single_blog_fullContainer .blog_user_name h4 {
   margin: 0;
 }
-.single_blog_fullContainer .blog_user_name h1 {
-  margin: 0 5px 0 0;
-  padding: 0 0 0 0.3rem;
+.single_blog_fullContainer .blog_user_name b {
   color: black;
+  font-size: 1.2rem;
 }
 .single_blog_fullContainer .blog_user_name p {
-  margin: 0 0 5px 0;
+  margin: 0 0 8px 0;
   display: flex;
   align-items: center;
   font-size: 0.75rem;
@@ -406,6 +425,7 @@ code {
   justify-content: center;
   height: calc(100vh - 60px);
   transform-style: preserve-3d;
+  overflow: hidden;
 }
 .login_Register .navigantion_btn {
   display: flex;
@@ -473,12 +493,11 @@ code {
   background-color: orange;
   height: 80%;
   width: 35%;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.155);
-  transform: translateX(12vw);
 }
 @media only screen and (max-width: 1200px) {
   .login {
@@ -501,13 +520,14 @@ code {
 @media only screen and (max-width: 600px) {
   .login {
     height: 60%;
-    width: 60%;
+    width: 70%;
   }
 }
 @media only screen and (max-width: 400px) {
   .login {
     height: 60%;
-    width: 100%;
+    width: 80%;
+    margin-right: 50px;
   }
 }
 
@@ -515,12 +535,11 @@ code {
   background-color: orange;
   height: 80%;
   width: 35%;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
-  opacity: 0.5;
 }
 @media only screen and (max-width: 1200px) {
   .register {
@@ -549,7 +568,8 @@ code {
 @media only screen and (max-width: 400px) {
   .register {
     height: 60%;
-    width: 100%;
+    width: 80%;
+    margin-left: 50px;
   }
 }
 .register form {
@@ -604,67 +624,151 @@ code {
 
 @keyframes roateLoginY {
   0% {
+    z-index: 0;
     opacity: 0.5;
-    transform: perspective(100px) translate3d(12vw, 0px, -4vh);
+    transform: perspective(100px) translate3d(-10vw, 0px, -4vh);
   }
   50% {
-    transform: perspective(100px) translate3d(-3vw, 0px, -4vh);
+    transform: perspective(100px) translate3d(-20vw, 0px, -4vh);
     opacity: 1;
   }
   100% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(12vw, 0px, 0px);
+    transform: translate3d(-10vw, 0px, 0px);
+    z-index: 1;
     opacity: 1;
+  }
+}
+@media only screen and (max-width: 400px) {
+  @keyframes roateLoginY {
+    0% {
+      opacity: 0.5;
+      transform: perspective(100px) translate3d(2vw, 0px, -4vh);
+    }
+    50% {
+      transform: perspective(100px) translate3d(1vw, 0px, 0);
+      opacity: 1;
+    }
+    100% {
+      box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+      transform: perspective(100px) translate3d(2vw, 0px, 0px);
+      z-index: 1;
+      opacity: 1;
+    }
   }
 }
 @keyframes roateRegisterY {
   0% {
     opacity: 1;
-    transform: translate3d(-15vw, 0px, 0px);
+    transform: translate3d(10vw, 0px, 0px);
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
-    z-index: 10;
+    z-index: 1;
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(3vw, 0px, 0px) perspective(100px);
+    transform: translate3d(20vw, 0px, 0px) perspective(100px);
     opacity: 0.5;
   }
   100% {
-    transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
+    transform: perspective(100px) translate3d(10vw, 0px, -4vh);
     opacity: 0.5;
+    z-index: 0;
+  }
+}
+@media only screen and (max-width: 400px) {
+  @keyframes roateRegisterY {
+    0% {
+      opacity: 1;
+      transform: perspective(100px) translate3d(10vw, 0px, 0px);
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
+    50% {
+      box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+      transform: perspective(100px) translate3d(11vw, 0px, -4vh);
+      opacity: 0.5;
+    }
+    100% {
+      transform: perspective(100px) translate3d(10vw, 0px, -4vh);
+      opacity: 0.5;
+      z-index: 0;
+    }
   }
 }
 @keyframes roateLoginX {
   0% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(12vw, 0px, 0px);
+    transform: translate3d(-10vw, 0px, 0px);
     opacity: 1;
+    z-index: 1;
   }
   50% {
-    transform: perspective(100px) translate3d(-3vw, 0px, -4vh);
+    transform: perspective(100px) translate3d(-20vw, 0px, -4vh);
     opacity: 0.5;
   }
   100% {
     opacity: 0.5;
-    transform: perspective(100px) translate3d(12vw, 0px, -4vh);
+    transform: perspective(100px) translate3d(-10vw, 0px, -4vh);
+    z-index: 0;
+  }
+}
+@media only screen and (max-width: 400px) {
+  @keyframes roateLoginX {
+    0% {
+      box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+      transform: perspective(100px) translate3d(-10vw, 0px, 0px);
+      opacity: 1;
+      z-index: 1;
+    }
+    50% {
+      transform: perspective(100px) translate3d(-11vw, 0px, -4vh);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0.5;
+      transform: perspective(100px) translate3d(-10vw, 0px, -4vh);
+      z-index: 0;
+    }
   }
 }
 @keyframes roateRegisterX {
   0% {
-    transform: perspective(100px) translate3d(-15vw, 0px, -4vh);
+    transform: perspective(100px) translate3d(10vw, 0px, -4vh);
     opacity: 0.5;
+    z-index: 0;
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(3vw, 0px, 0px) perspective(100px);
+    transform: translate3d(20vw, 0px, 0px) perspective(100px);
     opacity: 1;
     z-index: 10;
   }
   100% {
     opacity: 1;
-    transform: translate3d(-15vw, 0px, 0px);
+    transform: translate3d(10vw, 0px, 0px);
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
-    z-index: 10;
+    z-index: 1;
+  }
+}
+@media only screen and (max-width: 400px) {
+  @keyframes roateRegisterX {
+    0% {
+      transform: perspective(100px) translate3d(-1vw, 0px, -4vh);
+      opacity: 0.5;
+      z-index: 0;
+    }
+    50% {
+      box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+      transform: perspective(100px) translate3d(0vw, 0px, 0);
+      opacity: 1;
+      z-index: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(100px) translate3d(-1vw, 0px, 0px);
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
   }
 }
 

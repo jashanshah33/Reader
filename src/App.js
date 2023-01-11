@@ -21,6 +21,9 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/register">
+            <Login />
+          </Route>
+          <Route exact path="/register">
             <Register/>
           </Route>
           <Route>

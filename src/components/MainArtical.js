@@ -33,19 +33,22 @@ const MainArtical = () => {
               </div>
               <div className="blog_Profile_discription">
                 <div className="blog_user_name">
-                  <h4>Jashanshah</h4>
-                  <p><h1>.</h1> June 16, 2022</p>
+                  <h4>Jashanshah </h4>
+                  <p>&nbsp;
+                    <b> . </b>&nbsp;June 16, 2022
+                  </p>
                 </div>
                 <div className="blog_user_position"> President </div>
               </div>
             </div>
-            <div className="blog_header"><h2>My First Blog</h2></div>
+            <div className="blog_header">
+              <h2>My First Blog</h2>
+            </div>
             <div className="blog_content">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book. It has
-      
             </div>
           </div>
           <div className="blog_img_container">

@@ -16,8 +16,6 @@ export const useAuth = () => {
 export const useProvideAuth = () => {
   const [user, setUser] = useState(null);
 
-  console.log(user);
-
   useEffect(() => {
     const getuser = () => {
       const userToken = getItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
@@ -49,7 +47,6 @@ export const useProvideAuth = () => {
     const response = await createSession(email, password);
 
     if (response.success) {
-      console.log(response.data.token);
      await setItemInLocalStorage(
         LOCALSTORAGE_TOKEN_KEY,
         response.data.token ? response.data.token : null
