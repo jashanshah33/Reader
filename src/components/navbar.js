@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
+  const [profile, setProfile] = useState(false);
   const auth = useAuth();
 
   const handelDropown = (e) => {
@@ -29,7 +30,13 @@ export const Navbar = () => {
 
   window.document.addEventListener("click", function () {
     setDropdown(false);
+    setProfile(false);
   });
+
+  const handelProfile = (e) => {
+    e.stopPropagation();
+    setProfile(!profile);
+  };
 
   const handelLogout = () => {
     auth.logout();
@@ -119,12 +126,35 @@ export const Navbar = () => {
             <FontAwesomeIcon icon={faBell} size="xl" />
             <div id="profile_container">
               <img
+                onClick={handelProfile}
                 alt="Profile"
                 src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
                 width="100%"
                 height="100%"
               />
+           
+                  <div  className={profile? 'navbar_profile open_profile': 'navbar_profile close_profile'}>
+                    <div className="user_img_container">
+                      <img
+                        width={"100%"}
+                        height="100%"
+                        alt=""
+                        src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                      />
+                    </div>
+                    <div className="user_details">
+                      <p>{auth?.user?.name}</p>
+                      <p>{auth?.user?.email}</p>
+                    </div>
+                    <div className="user_follow">
+                      <span>1 Followers</span>
+                      <span> 2 Following</span>
+                    </div>
+                    <div className="full_profile_page_Nav">More...</div>
+                  </div>
+             
             </div>
+
             <div id="write_blog">
               <FontAwesomeIcon icon={faPenToSquare} size="sm" />
               <h5>Write</h5>

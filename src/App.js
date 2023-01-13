@@ -2,7 +2,7 @@ import Home from "./pages/Home";
 import { Navbar } from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
   const PageNotFound = () => {
@@ -23,8 +23,8 @@ function App() {
           <Route exact path="/register">
             <Login />
           </Route>
-          <Route exact path="/register">
-            <Register/>
+          <Route exact path="/profile">
+            <Profile/>
           </Route>
           <Route>
             <PageNotFound />
