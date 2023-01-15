@@ -1,0 +1,113 @@
+#profile_full_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #profileSetting {
+    box-sizing: border-box;
+    width: 500px;
+    padding: 1vh 0;
+
+    @media only screen and (max-width: 600px) {
+      width: 90%;
+    }
+  }
+  header {
+    color: rgb(31, 169, 127);
+    @media only screen and (max-width: 445px) {
+      text-align: center;
+    }
+  }
+  .profile_pic_container {
+    display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+    justify-content: space-between;
+    flex-basis: auto;
+
+    @media only screen and (max-width: 445px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .profile_pic {
+    width: 300px;
+    padding: 10px 0;
+    border: 2px solid rgb(27, 27, 25);
+    @media only screen and (max-width: 445px) {
+      margin-bottom: 15px;
+    }
+  }
+  .edit_btn_container {
+    margin: 0 0 5px 0;
+    box-sizing: border-box;
+
+    label {
+      box-sizing: border-box;
+      background-color: rgb(31, 169, 127);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      //   margin: 0 0 5px 0;
+    }
+    input {
+      display: none;
+    }
+  }
+  .acccount_info_heading {
+    @media only screen and (max-width: 445px) {
+      text-align: center;
+    }
+  }
+  .acount_information {
+    display: flex;
+    flex-direction: column;
+    @media only screen and (max-width: 445px) {
+      align-items: center;
+    }
+
+    & > div {
+      display: flex;
+      width: 90%;
+      height: 30px;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      @media only screen and (max-width: 445px) {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+      label {
+        font-size: 17px;
+      }
+      input {
+        width: 80%;
+        padding: 5px;
+        @media only screen and (max-width: 445px) {
+           margin-top: 3px;
+        }
+      }
+    }
+  }
+  .submit_btn_container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .submit_btn {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    border-radius: 7px;
+    background-color: rgb(39, 39, 184);
+    padding: 7px 15px;
+    transition: all 0.4s;
+    border: none;
+    margin-top: 3vh;
+
+    &:hover {
+      background-color: grey;
+      color: black;
+    }
+  }
+}

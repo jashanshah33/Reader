@@ -28,6 +28,7 @@ export const Navbar = () => {
     setDropdown(false);
   };
 
+
   window.document.addEventListener("click", function () {
     setDropdown(false);
     setProfile(false);
@@ -64,20 +65,20 @@ export const Navbar = () => {
             <div>
               <ul>
                 <Link to="/">
-                  <li>
+                  <li onClick={()=> setDropdown(false)}>
                     <span>Home</span>{" "}
                     <FontAwesomeIcon icon={faHouse} size="lg" />
                   </li>
                 </Link>
                 <Link to="/profile">
-                  <li>
+                  <li onClick={()=> setDropdown(false)}>
                     {" "}
                     <span> Profile</span>{" "}
                     <FontAwesomeIcon icon={faUser} size="lg" />
                   </li>
                 </Link>
                 <Link to="/contact">
-                  <li>
+                  <li onClick={()=> setDropdown(false)}>
                     {" "}
                     <span>Contact</span>{" "}
                     <FontAwesomeIcon icon={faContactBook} size="lg" />
@@ -132,27 +133,34 @@ export const Navbar = () => {
                 width="100%"
                 height="100%"
               />
-           
-                  <div  className={profile? 'navbar_profile open_profile': 'navbar_profile close_profile'}>
-                    <div className="user_img_container">
-                      <img
-                        width={"100%"}
-                        height="100%"
-                        alt=""
-                        src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                      />
-                    </div>
-                    <div className="user_details">
-                      <p>{auth?.user?.name}</p>
-                      <p>{auth?.user?.email}</p>
-                    </div>
-                    <div className="user_follow">
-                      <span>1 Followers</span>
-                      <span> 2 Following</span>
-                    </div>
-                    <div className="full_profile_page_Nav">More...</div>
-                  </div>
-             
+
+              <div
+                className={
+                  profile
+                    ? "navbar_profile open_profile"
+                    : "navbar_profile close_profile"
+                }
+              >
+                <div className="user_img_container">
+                  <img
+                    width={"100%"}
+                    height="100%"
+                    alt=""
+                    src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                  />
+                </div>
+                <div className="user_details">
+                  <p>{auth?.user?.name}</p>
+                  <p>{auth?.user?.email}</p>
+                </div>
+                <div className="user_follow">
+                  <span>1 Followers</span>
+                  <span> 2 Following</span>
+                </div>
+                <div className="full_profile_page_Nav">
+                  <Link to={"/profile"}> More...</Link>
+                </div>
+              </div>
             </div>
 
             <div id="write_blog">

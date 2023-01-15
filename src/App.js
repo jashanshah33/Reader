@@ -3,8 +3,11 @@ import { Navbar } from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import ProfileSetting from "./pages/ProfileSetting";
+import { useAuth } from "./hooks";
 
 function App() {
+  const auth = useAuth();
   const PageNotFound = () => {
     return <h1>404</h1>;
   };
@@ -24,7 +27,10 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/profile">
-            <Profile/>
+            {auth.user ? <Profile /> : <Login />}
+          </Route>
+          <Route path="/profile/setting">
+            {auth.user ? <ProfileSetting /> : <Login />}
           </Route>
           <Route>
             <PageNotFound />

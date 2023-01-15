@@ -12,6 +12,18 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  @media only screen and (max-width: 600px) {
+    height: 50vh;
+    background: linear-gradient(
+      to top,
+      rgb(238, 238, 238) 0%,
+      rgb(238, 238, 238) 55%,
+      #000000 55%,
+      #000000 100%
+    );
+
+  }
+
   .profile_container {
     box-sizing: border-box;
     padding: 5vh 0;
@@ -21,6 +33,13 @@
     border-radius: 10px;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.078);
     font-size: 1.2rem;
+    @media only screen and (max-width: 992px) {
+      width: 70%;
+    }
+    @media only screen and (max-width: 600px) {
+      width: 90%;
+      height: 70%;
+    }
   }
   .profile {
     margin-top: -15vh;
@@ -30,6 +49,10 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+    @media only screen and (max-width: 600px) {
+      height: 170%;
+
+    }
   }
   .profile_img {
     box-sizing: border-box;
@@ -40,11 +63,19 @@
     padding: 20px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.104);
     // margin-top: -15vh;
+    @media only screen and (max-width: 992px) {
+      margin-left: -5vw;
+      align-self: flex-start;
+    }
   }
   .edit_Btn {
     position: absolute;
     right: 5%;
     top: 15vh;
+    // @media only screen and (max-width: 600px) {
+    //   position:initial;
+
+    //  }
   }
   button {
     font-size: 1rem;
@@ -61,18 +92,26 @@
     }
   }
 
-  p{margin: 0;
-text-align: center;
-}
-.user_follow{
+  p {
+    margin: 0;
+    text-align: center;
+  }
+  .user_follow {
     display: flex;
     justify-content: space-between;
     width: 50%;
-}
-.joined{
+    @media only screen and (max-width: 992px) {
+      width: 80%;
+    }
+    @media only screen and (max-width: 600px) {
+      width: 90%;
+    }
+  
+  }
+  .joined {
     font-size: 1rem;
     color: grey;
     display: flex;
-    align-items: center;    
-}
+    align-items: center;
+  }
 }
