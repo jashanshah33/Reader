@@ -894,7 +894,6 @@ code {
   width: 14rem;
   border-radius: 50%;
   overflow: hidden;
-  padding: 20px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.104);
 }
 @media only screen and (max-width: 992px) {

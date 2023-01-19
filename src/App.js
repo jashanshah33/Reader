@@ -27,10 +27,12 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/profile">
-            {auth.user ? <Profile /> : <Login />}
+          <Profile /> 
+            {/* {auth.user ? <Profile /> : <Login />} */}
           </Route>
           <Route path="/profile/setting">
-            {auth.user ? <ProfileSetting /> : <Login />}
+          <ProfileSetting />
+            {/* {auth.user ? <ProfileSetting /> : <Login />} */}
           </Route>
           <Route>
             <PageNotFound />
