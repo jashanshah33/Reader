@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { register, createSession, updateUser, profilePicture } from "../api";
+import { register, createSession, profilePicture } from "../api";
 import {
   setItemInLocalStorage,
   LOCALSTORAGE_TOKEN_KEY,
@@ -15,6 +15,7 @@ export const useAuth = () => {
 
 export const useProvideAuth = () => {
   const [user, setUser] = useState(null);
+  const [userProfileImage, setUserProfileImage] = useState([]);
 
   useEffect(() => {
     const getuser = () => {
@@ -27,7 +28,23 @@ export const useProvideAuth = () => {
     };
 
     getuser();
+
   }, []);
+
+  useEffect(()=>{
+    const getProfilePic = async () => {
+      if (user?.avatar) {
+        const response = await profilePicture(user?.avatar);
+        if (response.success) {
+          setUserProfileImage(response.data.profilePicture.img.data);
+        } else {
+          console.log("Error");
+        }
+      }
+    };
+    getProfilePic();
+  },[user])
+
 
   const signup = async (name, email, password) => {
     const response = await register(name, email, password);
@@ -66,46 +83,16 @@ export const useProvideAuth = () => {
 
   const logout = () => {
     setUser(null);
+    setUserProfileImage(null)
     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
   };
 
-  const update = async (body, userId) => {
-    const response = await updateUser(body, userId);
-
-    if (response.success) {
-      return {
-        data:response.data,
-        success: true,
-      };
-    } else {
-      return {
-        success: false,
-        message: response.message,
-      };
-    }
-  };
-
-  const profilePic = async (profileId) => {
-    const response = await profilePicture(profileId);
-
-    if (response.success) {
-      return {
-        data:response.data,
-        success: true,
-      };
-    } else {
-      return {
-        success: false,
-        message: response.message,
-      };
-    }
-  };
   return {
     user,
+    userProfileImage,
     signup,
     login,
     logout,
-    update,
-    profilePic
+  
   };
 };

@@ -32,7 +32,7 @@
   }
   .profile_pic {
     width: 300px;
-    padding: 10px 0;
+    // padding: 10px 0;
     border: 2px solid rgb(27, 27, 25);
     @media only screen and (max-width: 445px) {
       margin-bottom: 15px;
@@ -80,6 +80,13 @@
     }
       label {
         font-size: 17px;
+        width: 41%;
+        @media only screen and (max-width: 600px) {
+          width: 55%;
+        }
+        @media only screen and (max-width: 445px) {
+          width: 100%;
+        }
       }
       input {
         width: 80%;

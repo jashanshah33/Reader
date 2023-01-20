@@ -79,13 +79,14 @@ code {
   background-color: rgb(184, 70, 39);
 }
 #navbar #profile_container {
-  width: 38px;
+  width: 45px;
   position: relative;
   display: flex;
   justify-content: center;
 }
 #navbar #profile_container img {
   cursor: pointer;
+  border-radius: 50%;
 }
 #navbar .navbar_profile {
   box-sizing: border-box;
@@ -117,9 +118,9 @@ code {
 }
 #navbar .navbar_profile .user_img_container {
   background-color: rgb(255, 251, 251);
-  width: 40px;
+  width: 50px;
   border-radius: 50%;
-  padding: 5px;
+  overflow: hidden;
 }
 #navbar .navbar_profile .user_follow {
   display: flex;
@@ -985,7 +986,6 @@ code {
 }
 #profile_full_Container .profile_pic {
   width: 300px;
-  padding: 10px 0;
   border: 2px solid rgb(27, 27, 25);
 }
 @media only screen and (max-width: 445px) {
@@ -1038,6 +1038,17 @@ code {
 }
 #profile_full_Container .acount_information > div label {
   font-size: 17px;
+  width: 41%;
+}
+@media only screen and (max-width: 600px) {
+  #profile_full_Container .acount_information > div label {
+    width: 55%;
+  }
+}
+@media only screen and (max-width: 445px) {
+  #profile_full_Container .acount_information > div label {
+    width: 100%;
+  }
 }
 #profile_full_Container .acount_information > div input {
   width: 80%;

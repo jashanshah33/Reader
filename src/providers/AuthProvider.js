@@ -3,11 +3,11 @@ import { useProvideAuth } from "../hooks";
 
 const initialState = {
   user: null,
+  userProfileImage: null,
   signup: () => {},
   login: () => {},
   logout: () => {},
-  update: () => {},
-  profilePic: () => {},
+
 };
 
 export const AuthContext = createContext(initialState);

@@ -1,41 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { LOCALSTORAGE_TOKEN_KEY } from "../utils";
 
-const useFormInfo = (initialValue) => {
-  const [value, setValue] = useState(initialValue);
-
-  function change(e) {
-    setValue(e.target.value);
-  }
-
-  // function valueNull() {
-  //   setValue("");
-  // }
-
-  return {
-    value,
-    onChange: change,
-    // valueNull: valueNull,
-  };
-};
 const ProfileSetting = () => {
-  const name = useFormInfo("");
-  const email = useFormInfo("");
-  const [file, setFile] = useState("");
-
   const auth = useAuth();
-  const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+  const [name, setName] = useState("name");
+  const [email, setEmail] = useState("email");
+  const [password, setPassword] = useState("");
 
-  // console.log('*************',token);
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    setName(`${auth?.user?.name}`);
+    setEmail(`${auth?.user?.email}`);
+  }, [auth, auth?.user]);
+
+  const [file, setFile] = useState("");
 
   const handelEditInfo = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("avatar", file);
-    formData.append("name", name.value);
-    formData.append("email", email.value);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
 
     const userId = auth.user._id;
     const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
@@ -55,13 +45,21 @@ const ProfileSetting = () => {
           }
         );
         const data = await response.json();
-        console.log(data);
+
+        if (data.success) {
+          await auth.login(email, password);
+
+          setRedirect(true);
+        }
       } catch (error) {
         console.error(error);
       }
     }
   };
-  
+
+  if (redirect) {
+    return <Redirect to={"/profile"} />;
+  }
   return (
     <div id="profile_full_Container">
       <div id="profileSetting">
@@ -71,12 +69,25 @@ const ProfileSetting = () => {
         <form encType="multipart/form-data" onSubmit={handelEditInfo}>
           <div className="profile_pic_container">
             <div className="profile_pic">
-              <img
-                alt=""
-                width={"100%"}
-                height="100%"
-                src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-              />
+              {auth.userProfileImage ? (
+                <img
+                  alt=""
+                  width={"100%"}
+                  height="100%"
+                  src={`data:image/png;base64,${btoa(
+                    String.fromCharCode(
+                      ...new Uint8Array(auth.userProfileImage)
+                    )
+                  )}`}
+                />
+              ) : (
+                <img
+                  alt=""
+                  width={"100%"}
+                  height="100%"
+                  src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                />
+              )}
             </div>
             <div className="edit_btn_container">
               <label htmlFor="file">Choose a file</label>
@@ -99,8 +110,8 @@ const ProfileSetting = () => {
                 name="name"
                 id="name"
                 type={"name"}
-                {...name}
-                // onChange={(e)=>e.target.value}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div>
@@ -109,8 +120,18 @@ const ProfileSetting = () => {
                 name="email"
                 id="email"
                 type={"email"}
-                {...email}
-                // onChange={(e)=>e.target.value}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Current Password :</label>
+              <input
+                name="password"
+                id="password"
+                type={"password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>

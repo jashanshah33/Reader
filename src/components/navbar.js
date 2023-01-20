@@ -28,7 +28,6 @@ export const Navbar = () => {
     setDropdown(false);
   };
 
-
   window.document.addEventListener("click", function () {
     setDropdown(false);
     setProfile(false);
@@ -65,20 +64,20 @@ export const Navbar = () => {
             <div>
               <ul>
                 <Link to="/">
-                  <li onClick={()=> setDropdown(false)}>
+                  <li onClick={() => setDropdown(false)}>
                     <span>Home</span>{" "}
                     <FontAwesomeIcon icon={faHouse} size="lg" />
                   </li>
                 </Link>
                 <Link to="/profile">
-                  <li onClick={()=> setDropdown(false)}>
+                  <li onClick={() => setDropdown(false)}>
                     {" "}
                     <span> Profile</span>{" "}
                     <FontAwesomeIcon icon={faUser} size="lg" />
                   </li>
                 </Link>
                 <Link to="/contact">
-                  <li onClick={()=> setDropdown(false)}>
+                  <li onClick={() => setDropdown(false)}>
                     {" "}
                     <span>Contact</span>{" "}
                     <FontAwesomeIcon icon={faContactBook} size="lg" />
@@ -126,14 +125,25 @@ export const Navbar = () => {
           <>
             <FontAwesomeIcon icon={faBell} size="xl" />
             <div id="profile_container">
-              <img
-                onClick={handelProfile}
-                alt="Profile"
-                src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
-                width="100%"
-                height="100%"
-              />
-
+              {auth.userProfileImage ? (
+                <img
+                  onClick={handelProfile}
+                  alt=""
+                  width={"100%"}
+                  height="100%"
+                  src={`data:image/png;base64,${btoa(
+                    String.fromCharCode(...new Uint8Array(auth.userProfileImage))
+                  )}`}
+                />
+              ) : (
+                <img
+                  onClick={handelProfile}
+                  alt=""
+                  width={"80%"}
+                  height="100%"
+                  src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                />
+              )}
               <div
                 className={
                   profile
@@ -142,12 +152,25 @@ export const Navbar = () => {
                 }
               >
                 <div className="user_img_container">
-                  <img
-                    width={"100%"}
-                    height="100%"
-                    alt=""
-                    src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                  />
+                {auth.userProfileImage ? (
+                <img
+                  onClick={handelProfile}
+                  alt=""
+                  width={"100%"}
+                  height="100%"
+                  src={`data:image/png;base64,${btoa(
+                    String.fromCharCode(...new Uint8Array(auth.userProfileImage))
+                  )}`}
+                />
+              ) : (
+                <img
+                  onClick={handelProfile}
+                  alt=""
+                  width={"100%"}
+                  height="100%"
+                  src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                />
+              )}
                 </div>
                 <div className="user_details">
                   <p>{auth?.user?.name}</p>

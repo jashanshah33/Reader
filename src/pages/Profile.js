@@ -1,43 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuth } from "../hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-// import ImageDataURI from "image-data-uri";
 
 const Profile = () => {
   const auth = useAuth();
-  const [userImage, setUserImage] = useState([]);
-  let base64String;
+  
   let dateFormat = { day: "numeric", month: "short", year: "numeric" };
   const formatter = new Intl.DateTimeFormat("en", dateFormat);
   const joined = formatter.format(
     new Date(auth.user ? auth.user.createdAt : null)
   );
-  useEffect(() => {
-    const getProfilePic = async () => {
-      if (auth?.user?.avatar) {
-        console.log(auth?.user?.avatar);
-        const response = await auth.profilePic(auth.user?.avatar);
-        if (response.success) {
-          console.log(response);
-          setUserImage(response.data.profilePicture.img.data);
-        } else {
-          console.log("Error");
-        }
-      }
-    };
-    getProfilePic();
-  }, [auth?.user?.avatar]);
 
-  if (userImage.length) {
-    // base64String = btoa(
-    //   String.fromCharCode(
-    //     ...new Uint8Array(userImage)
-    //   )
-    // );
-    console.log(userImage);
-  }
+
 
   return (
     <main className="profile_outer_container">
@@ -55,13 +31,13 @@ const Profile = () => {
                 />
               );
             })} */}
-            {userImage.length ? (
+            {auth.userProfileImage ? (
               <img
                 alt=""
                 width={"100%"}
                 height="100%"
                 src={`data:image/png;base64,${btoa(
-                  String.fromCharCode(...new Uint8Array(userImage))
+                  String.fromCharCode(...new Uint8Array(auth.userProfileImage))
                 )}`}
               />
             ) : (
