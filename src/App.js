@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import ProfileSetting from "./pages/ProfileSetting";
 import { useAuth } from "./hooks";
+import WriteBlog from "./pages/WriteBlog";
 
 function App() {
   const auth = useAuth();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Login />
+          </Route>
+          <Route exact path="/writeBlog">
+            <WriteBlog />
           </Route>
           <Route exact path="/profile">
           {/* <Profile />  */}

@@ -132,7 +132,9 @@ export const Navbar = () => {
                   width={"100%"}
                   height="100%"
                   src={`data:image/png;base64,${btoa(
-                    String.fromCharCode(...new Uint8Array(auth.userProfileImage))
+                    String.fromCharCode(
+                      ...new Uint8Array(auth.userProfileImage)
+                    )
                   )}`}
                 />
               ) : (
@@ -152,25 +154,27 @@ export const Navbar = () => {
                 }
               >
                 <div className="user_img_container">
-                {auth.userProfileImage ? (
-                <img
-                  onClick={handelProfile}
-                  alt=""
-                  width={"100%"}
-                  height="100%"
-                  src={`data:image/png;base64,${btoa(
-                    String.fromCharCode(...new Uint8Array(auth.userProfileImage))
-                  )}`}
-                />
-              ) : (
-                <img
-                  onClick={handelProfile}
-                  alt=""
-                  width={"100%"}
-                  height="100%"
-                  src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                />
-              )}
+                  {auth.userProfileImage ? (
+                    <img
+                      onClick={handelProfile}
+                      alt=""
+                      width={"100%"}
+                      height="100%"
+                      src={`data:image/png;base64,${btoa(
+                        String.fromCharCode(
+                          ...new Uint8Array(auth.userProfileImage)
+                        )
+                      )}`}
+                    />
+                  ) : (
+                    <img
+                      onClick={handelProfile}
+                      alt=""
+                      width={"100%"}
+                      height="100%"
+                      src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                    />
+                  )}
                 </div>
                 <div className="user_details">
                   <p>{auth?.user?.name}</p>
@@ -185,11 +189,12 @@ export const Navbar = () => {
                 </div>
               </div>
             </div>
-
-            <div id="write_blog">
-              <FontAwesomeIcon icon={faPenToSquare} size="sm" />
-              <h5>Write</h5>
-            </div>
+            <Link to={"/writeBlog"}>
+              <div id="write_blog">
+                <FontAwesomeIcon icon={faPenToSquare} size="sm" />
+                <h5>Write</h5>
+              </div>
+            </Link>
           </>
         ) : (
           <>
