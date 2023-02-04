@@ -1106,6 +1106,15 @@ code {
 .writeBlog .postBlogContainer > div {
   margin: 30px;
 }
+.writeBlog #title_container {
+  display: flex;
+  flex-direction: column;
+}
+.writeBlog #title_container input {
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 5px;
+}
 .writeBlog .dropDown select {
   font-size: 0.9rem;
   width: 180px;

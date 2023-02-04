@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { register, createSession, profilePicture } from "../api";
+import { register, createSession, profilePicture, blog } from "../api";
 import {
   setItemInLocalStorage,
   LOCALSTORAGE_TOKEN_KEY,
@@ -16,6 +16,8 @@ export const useAuth = () => {
 export const useProvideAuth = () => {
   const [user, setUser] = useState(null);
   const [userProfileImage, setUserProfileImage] = useState([]);
+  const [allBlogs, setAllBlogs] = useState([]);
+
 
   useEffect(() => {
     const getuser = () => {
@@ -28,10 +30,9 @@ export const useProvideAuth = () => {
     };
 
     getuser();
-
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     const getProfilePic = async () => {
       if (user?.avatar) {
         const response = await profilePicture(user?.avatar);
@@ -43,7 +44,17 @@ export const useProvideAuth = () => {
       }
     };
     getProfilePic();
-  },[user])
+
+    const getBlog = async () => {
+      const response = await blog();
+      if (response.success) {
+        setAllBlogs(response.data.blog)
+        // console.log(response);
+      }
+    };
+
+    getBlog();
+  }, [user]);
 
 
   const signup = async (name, email, password) => {
@@ -83,16 +94,16 @@ export const useProvideAuth = () => {
 
   const logout = () => {
     setUser(null);
-    setUserProfileImage(null)
+    setUserProfileImage(null);
     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
   };
 
   return {
     user,
     userProfileImage,
+    allBlogs,
     signup,
     login,
     logout,
-  
   };
 };

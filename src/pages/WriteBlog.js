@@ -1,14 +1,20 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import PostBlog from "../components/PostBlog";
+import toast from "react-hot-toast";
 
 const WriteBlog = () => {
   const [post, setPost] = useState(false);
+  const [blogContent, setBlogContent] = useState("");
   const editorRef = useRef();
+
 
   const handelPost = (e) => {
     e.stopPropagation();
+
+    if (!blogContent) {
+      return toast.error("Can't Submit Empty Blog")
+    }
     setPost(!post);
   };
 
@@ -17,7 +23,9 @@ const WriteBlog = () => {
   });
   return (
     <div className="writeBlog">
-      <Editor onClick={()=>setPost(false)}
+      <Editor
+        onChange={() => setBlogContent(editorRef.current.getContent())}
+        onClick={() => setPost(false)}
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
           selector: "textarea#basic-example",
@@ -53,7 +61,7 @@ const WriteBlog = () => {
       />
       {post ? (
         <div onClick={(e) => e.stopPropagation()} className="postBlogContainer">
-          <PostBlog/>
+          <PostBlog blogContent={blogContent} />
         </div>
       ) : null}
 

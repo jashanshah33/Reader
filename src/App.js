@@ -6,7 +6,7 @@ import Profile from "./pages/Profile";
 import ProfileSetting from "./pages/ProfileSetting";
 import { useAuth } from "./hooks";
 import WriteBlog from "./pages/WriteBlog";
-
+import { Toaster } from "react-hot-toast";
 function App() {
   const auth = useAuth();
   const PageNotFound = () => {
@@ -31,11 +31,11 @@ function App() {
             <WriteBlog />
           </Route>
           <Route exact path="/profile">
-          {/* <Profile />  */}
+            {/* <Profile />  */}
             {auth.user ? <Profile /> : <Login />}
           </Route>
           <Route path="/profile/setting">
-          {/* <ProfileSetting /> */}
+            {/* <ProfileSetting /> */}
             {auth.user ? <ProfileSetting /> : <Login />}
           </Route>
           <Route>
@@ -43,6 +43,26 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <Toaster
+        toastOptions={{
+          // Define default options
+          className: '',
+          duration: 5000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+      
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: 'green',
+              secondary: 'black',
+            },
+          },
+        }}
+      />
     </div>
   );
 }
