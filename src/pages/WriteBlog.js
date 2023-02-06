@@ -11,7 +11,7 @@ const WriteBlog = () => {
 
   const handelPost = (e) => {
     e.stopPropagation();
-
+console.log(blogContent);
     if (!blogContent) {
       return toast.error("Can't Submit Empty Blog")
     }
