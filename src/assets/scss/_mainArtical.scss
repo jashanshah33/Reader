@@ -8,6 +8,10 @@
   @media only screen and (max-width: 1200px) {
     padding: 25px 0 0 0;
   }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
 }
 #Main_blog_header {
   display: flex;

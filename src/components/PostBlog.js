@@ -22,7 +22,7 @@ const PostBlog = (props) => {
   const submitBlog = async (e) => {
     e.preventDefault();
 
-    if (!file || !category || !blogContent || !title) {
+    if (!file || !category || !blogContent || !title || !description) {
       return toast.error("Please Fill All The Feilds");
     }
 
@@ -52,7 +52,7 @@ const PostBlog = (props) => {
 
         if (data.success) {
           toast.success(data.message);
-          return <Redirect to={"/"} />;
+          return <Redirect to="/" />;
         }
       } catch (error) {
         console.error(error);

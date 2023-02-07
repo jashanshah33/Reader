@@ -70,3 +70,9 @@ export const blog = () => {
     method: "get",
   });
 };
+
+export const singleblog = (blogId) => {
+  return custonFetch(`${API_URLS.singleblog()}?id=${blogId}`, {
+    method: "get",
+  });
+};

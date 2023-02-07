@@ -5,6 +5,8 @@ export const API_URLS = {
   login: () => `${API_ROOT}/user/login`,
   profile: () => `${API_ROOT}/user/profilePicture`,
   blog: () => `${API_ROOT}/blog/allBlogs`,
+  singleblog: () => `${API_ROOT}/blog/singleBlogs`,
+
 
 };
 
