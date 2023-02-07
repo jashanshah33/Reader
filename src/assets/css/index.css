@@ -11,6 +11,8 @@ body {
   background-color: rgb(238, 238, 238);
   margin: 60px 0 0 0;
   padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
 code {
@@ -267,7 +269,12 @@ code {
 }
 
 #Main_blog_full_container {
-  padding: 25px 5vw 0 0;
+  height: calc(100vh - 60px - 25px - 25px);
+  overflow-y: scroll;
+  padding: 25px 5vw 25px 0;
+}
+#Main_blog_full_container::-webkit-scrollbar {
+  display: none;
 }
 @media only screen and (max-width: 1200px) {
   #Main_blog_full_container {
@@ -357,20 +364,19 @@ code {
 .single_blog_fullContainer .blog_profile_details {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 245px;
 }
 .single_blog_fullContainer .blog_profile_img {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  border: 2px solid red;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  overflow: hidden;
 }
 .single_blog_fullContainer .blog_Profile_discription {
   display: flex;
   flex-direction: column;
   width: 70%;
+  margin-left: 15px;
+  align-self: flex-start;
 }
 .single_blog_fullContainer .blog_user_name {
   display: flex;
@@ -384,7 +390,7 @@ code {
   font-size: 1.2rem;
 }
 .single_blog_fullContainer .blog_user_name p {
-  margin: 0 0 8px 0;
+  margin: -8px 0 0 0;
   display: flex;
   align-items: center;
   font-size: 0.75rem;
@@ -395,10 +401,20 @@ code {
 }
 .single_blog_fullContainer .blog_img_container {
   width: 38%;
-  height: 20vh;
+  height: 23vh;
   align-self: flex-end;
   border-radius: 10px;
   overflow: hidden;
+}
+.single_blog_fullContainer .blog_descriptions {
+  height: 17vh;
+  overflow: hidden;
+}
+.single_blog_fullContainer .blog_header {
+  margin-top: 5px;
+}
+.single_blog_fullContainer .blog_header h2 {
+  margin: 5px 0 0 0;
 }
 
 .full_aside_conatiner {
@@ -1090,13 +1106,18 @@ code {
   position: absolute;
   background-color: white;
   z-index: 20;
-  width: 500px;
-  height: 500px;
+  padding: 30px 40px;
   box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.151);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+@media only screen and (max-width: 430px) {
+  .writeBlog .postBlogContainer {
+    width: 290px;
+    z-index: 100;
+  }
 }
 .writeBlog .postBlogContainer p {
   margin: 0 0 -17px 0;
@@ -1104,7 +1125,7 @@ code {
   color: red;
 }
 .writeBlog .postBlogContainer > div {
-  margin: 30px;
+  margin: 15px;
 }
 .writeBlog #title_container {
   display: flex;

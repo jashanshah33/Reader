@@ -1,7 +1,6 @@
-html{
+html {
   @media only screen and (max-width: 600px) {
- font-size: 13px;
-  
+    font-size: 13px;
   }
 }
 body {
@@ -13,7 +12,8 @@ body {
   background-color: rgb(238, 238, 238);
   margin: 60px 0 0 0;
   padding: 0;
-
+  height: 100vh;
+  overflow: hidden;
 }
 
 code {
@@ -21,10 +21,9 @@ code {
     monospace;
 }
 
-
 @import "./navbar";
 @import "./home";
-@import './login';
+@import "./login";
 @import "./profile";
 @import "./profileSetting";
-@import "./writeBlog"
+@import "./writeBlog";

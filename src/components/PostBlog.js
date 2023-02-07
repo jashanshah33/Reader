@@ -3,11 +3,13 @@ import { FileUploader } from "react-drag-drop-files";
 import { useAuth } from "../hooks";
 import { LOCALSTORAGE_TOKEN_KEY } from "../utils";
 import toast from "react-hot-toast";
+import { Redirect } from "react-router-dom";
 
 const PostBlog = (props) => {
   const [file, setFile] = useState(null);
   const [category, setCategory] = useState(null);
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const { blogContent } = props;
 
@@ -29,7 +31,7 @@ const PostBlog = (props) => {
     formData.append("content", blogContent);
     formData.append("category", category);
     formData.append("title", title);
-
+    formData.append("description", description);
 
     const userId = auth.user._id;
     const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
@@ -49,7 +51,8 @@ const PostBlog = (props) => {
         const data = await response.json();
 
         if (data.success) {
-          return toast.success(data.message);
+          toast.success(data.message);
+          return <Redirect to={"/"} />;
         }
       } catch (error) {
         console.error(error);
@@ -86,6 +89,14 @@ const PostBlog = (props) => {
           <option>Management</option>
           <option>Other</option>
         </select>
+      </div>
+      <div>
+        <textarea
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Write a small blog description..."
+          rows={4}
+          cols={40}
+        />
       </div>
       <div>
         <button onClick={submitBlog}>Submitt</button>
