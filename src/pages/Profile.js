@@ -31,7 +31,7 @@ const Profile = () => {
                 />
               );
             })} */}
-            {auth.userProfileImage ? (
+            {auth?.userProfileImage ? (
               <img
                 alt=""
                 width={"100%"}

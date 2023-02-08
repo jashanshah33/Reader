@@ -7,13 +7,13 @@ import { Markup } from "interweave";
 const ReadBlog = () => {
   const [blog, setBlog] = useState("");
   const params = useParams();
-  console.log(params);
+  // console.log(params);
 
   useEffect(() => {
     const getBlog = async () => {
       const response = await singleblog(params.id);
       if (response.success) {
-        console.log(response.data.blog.content);
+        // console.log(response.data.blog.content);
         setBlog(response.data.blog.content);
       }
     };

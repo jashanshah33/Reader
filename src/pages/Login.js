@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightLong, faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../hooks";
 import { Redirect } from "react-router-dom";
+import toast from "react-hot-toast";
 
 // custom hook for forms
 const useFormInfo = (initialValue) => {
@@ -72,14 +73,18 @@ const Login = () => {
       confirmPassword.valueNull();
     }
 
+    //to check all the feilds are filled
+    if (!name.value, !email.value, !password.value, !confirmPassword.value) {
+      return toast.error("Please Fill All The Feilds");
+    }
     //check if password is equall or more that 8 characters
     if (password.value.length < 8) {
-      return console.log("Password is Short");
+      return toast.error("Password is Short");
     }
 
     //check if Password and confirm password is matching
     if (password.value !== confirmPassword.value) {
-      return console.log("Password and confirm password is't matched");
+      return  toast.error("Password and confirm password is't matching");
     }
 
     // request to signup user
@@ -89,11 +94,12 @@ const Login = () => {
       //if signup request success, request to login
       const loginResponse = await auth.login(email.value, password.value);
       if (loginResponse.success) {
-        //if login request success, redireact to home page
-        return <Redirect to="/" />;
+        toast.success(loginResponse.message);
       }
       //calling registerInputValueNull to make input values null
       registerInputValueNull();
+    }else{
+      toast.success(response.message);
     }
     //calling registerInputValueNull to make input values null
     registerInputValueNull();
@@ -112,15 +118,18 @@ const Login = () => {
     const response = await auth.login(loginEmail.value, loginPassword.value);
 
     if (response.success) {
-      // if request sucess, make form value null and redirect to home page
+      console.log(response);
+      toast.success(response.message);
       loginInputValueNull();
-      return <Redirect to="/" />;
+    }else{
+      toast.success(response.message);
+
     }
     loginInputValueNull();
   };
 
   //if user loged In redirect to home page
-  if (auth.user) {
+  if (auth?.user) {
     return <Redirect to="/" />;
   }
 
@@ -199,6 +208,7 @@ const Login = () => {
             <input
               id="password"
               required
+              type={'password'}
               placeholder="Password"
               value={password.value}
               onChange={password.onChange}
@@ -209,6 +219,7 @@ const Login = () => {
             <label htmlFor="confirmPassword">Confirm Password*</label>
             <input
               id="confirmPassword"
+              type={'password'}
               required
               placeholder="Confirm Password"
               value={confirmPassword.value}

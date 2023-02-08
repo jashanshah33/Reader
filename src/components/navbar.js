@@ -125,7 +125,7 @@ export const Navbar = () => {
           <>
             <FontAwesomeIcon icon={faBell} size="xl" />
             <div id="profile_container">
-              {auth.userProfileImage ? (
+              {auth?.userProfileImage ? (
                 <img
                   onClick={handelProfile}
                   alt=""

@@ -8,6 +8,7 @@ import {
   removeItemFromLocalStorage,
 } from "../utils";
 import jwt from "jwt-decode";
+import toast from "react-hot-toast";
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -39,7 +40,7 @@ export const useProvideAuth = () => {
         if (response.success) {
           setUserProfileImage(response.data.profilePicture.img.data);
         } else {
-          console.log("Error");
+          toast.error("Error in fetching Profile Picture");
         }
       }
     };
@@ -62,6 +63,7 @@ export const useProvideAuth = () => {
     if (response.success) {
       return {
         success: true,
+        message: response.message,
       };
     } else {
       return {
@@ -81,8 +83,11 @@ export const useProvideAuth = () => {
       );
 
       setUser(response.data.user);
+      // console.log(response.data.user);
       return {
         success: true,
+        message: response.message,
+
       };
     } else {
       return {
@@ -96,6 +101,8 @@ export const useProvideAuth = () => {
     setUser(null);
     setUserProfileImage(null);
     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+    toast.success("Logged Out Successfully");
+
   };
 
   return {

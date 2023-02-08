@@ -31,6 +31,7 @@ const custonFetch = async (url, { body, ...customConfig }) => {
       return {
         data: data.data,
         success: true,
+        message: data.message
       };
     }
 

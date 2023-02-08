@@ -10,6 +10,7 @@ const PostBlog = (props) => {
   const [category, setCategory] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const { blogContent } = props;
 
@@ -39,7 +40,7 @@ const PostBlog = (props) => {
     if (userId && token) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/blog/create?id=${auth?.user?._id}`,
+          `http://localhost:8000/api/v1/blog/create?id=${auth?.user._id}`,
           {
             method: "POST",
             headers: {
@@ -52,14 +53,16 @@ const PostBlog = (props) => {
 
         if (data.success) {
           toast.success(data.message);
-          return <Redirect to="/" />;
+          setRedirect(true);
         }
       } catch (error) {
         console.error(error);
       }
     }
   };
-
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <div>
