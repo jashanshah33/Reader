@@ -34,7 +34,7 @@ const PostBlog = (props) => {
     formData.append("title", title);
     formData.append("description", description);
 
-    const userId = auth?.user.id;
+    const userId = auth?.user._id;
     const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
 
     if (userId && token) {
@@ -44,7 +44,7 @@ const PostBlog = (props) => {
           {
             method: "POST",
             headers: {
-              Authorization: `Bearer${token}`,
+              Authorization: `Bearer ${token}`,
             },
             body: formData,
           }
@@ -58,7 +58,7 @@ const PostBlog = (props) => {
       } catch (error) {
         console.error(error);
       }
-    } console.log('error');
+    } 
   };
   if (redirect) {
     return <Redirect to="/" />;

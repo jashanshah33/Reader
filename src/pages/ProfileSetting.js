@@ -28,7 +28,7 @@ const ProfileSetting = () => {
     formData.append("email", email);
     formData.append("password", password);
 
-    const userId = auth.user.id;
+    const userId = auth.user._id;
     const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
 
     // console.log('*************',token);
@@ -40,7 +40,7 @@ const ProfileSetting = () => {
           {
             method: "POST",
             headers: {
-              Authorization: `Bearer${token} `,
+              Authorization: `Bearer ${token} `,
             },
             body: formData,
           }
@@ -62,7 +62,7 @@ const ProfileSetting = () => {
   };
 
   if (redirect) {
-    return <Redirect to={"/profile"} />;
+    return <Redirect to={`/profile/${auth?.user._id}`} />;
   }
   return (
     <div id="profile_full_Container">

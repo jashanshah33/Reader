@@ -13,12 +13,13 @@ import {
 import { useState } from "react";
 import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const [profile, setProfile] = useState(false);
   const auth = useAuth();
-
+  
   const handelDropown = (e) => {
     e.stopPropagation();
     setDropdown(true);
@@ -69,7 +70,7 @@ export const Navbar = () => {
                     <FontAwesomeIcon icon={faHouse} size="lg" />
                   </li>
                 </Link>
-                <Link to="/profile">
+                <Link to={`/profile/${auth?.user?._id}`}>
                   <li onClick={() => setDropdown(false)}>
                     {" "}
                     <span> Profile</span>{" "}
@@ -100,16 +101,19 @@ export const Navbar = () => {
           </div>
         </main>
         <footer>
-          <button onClick={handelLogout} id="logout_btn">
-            <FontAwesomeIcon icon={faPowerOff} size="xl" />
-            {auth.user ? (
+          {auth.user ? (
+            <button onClick={handelLogout} id="logout_btn">
+              <FontAwesomeIcon icon={faPowerOff} size="xl" />
+
               <p>Logout</p>
-            ) : (
-              <Link to={"/login"}>
+            </button>
+          ) : (
+            <Link to={"/login"}>
+              <button id="logout_btn">
                 <p>Login</p>
-              </Link>
-            )}
-          </button>
+              </button>
+            </Link>
+          )}
         </footer>
       </aside>
       {/* ) : null} */}
@@ -185,7 +189,7 @@ export const Navbar = () => {
                   <span> 2 Following</span>
                 </div>
                 <div className="full_profile_page_Nav">
-                  <Link to={"/profile"}> More...</Link>
+                  <Link to={`/profile/${auth?.user?._id}`}> More...</Link>
                 </div>
               </div>
             </div>

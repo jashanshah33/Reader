@@ -34,12 +34,10 @@ function App() {
           <Route exact path="/readBlog/:id">
             <ReadBlog/>
           </Route>
-          <Route exact path="/profile">
-            {/* <Profile />  */}
+          <Route exact path="/profile/:id">
             {auth.user ? <Profile /> : <Login />}
           </Route>
-          <Route path="/profile/setting">
-            {/* <ProfileSetting /> */}
+          <Route exact path="/profileSetting">
             {auth.user ? <ProfileSetting /> : <Login />}
           </Route>
           <Route>

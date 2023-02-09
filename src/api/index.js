@@ -59,6 +59,11 @@ export const createSession = (email, password) => {
     body: { email, password },
   });
 };
+export const userProfile = (profileId) => {
+  return custonFetch(`${API_URLS.userProfile()}?id=${profileId}`, {
+    method: "get",
+  });
+};
 
 export const profilePicture = (profileId) => {
   return custonFetch(`${API_URLS.profile()}?id=${profileId}`, {

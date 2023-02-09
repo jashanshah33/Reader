@@ -2,18 +2,29 @@ import React from "react";
 import { useAuth } from "../hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { userProfile } from "../api";
 
 const Profile = () => {
   const auth = useAuth();
-  
+  const { id } = useParams();
   let dateFormat = { day: "numeric", month: "short", year: "numeric" };
   const formatter = new Intl.DateTimeFormat("en", dateFormat);
   const joined = formatter.format(
     new Date(auth.user ? auth.user.createdAt : null)
   );
 
+  useEffect(() => {
+    const getuserProfile = async () => {
+      const response = await userProfile(id)
+      if (response.success) {
+        console.log(response.data);
+      }
+    };
 
+    getuserProfile()
+  }, []);
 
   return (
     <main className="profile_outer_container">
@@ -50,7 +61,7 @@ const Profile = () => {
             )}
           </div>
           <div className="edit_Btn">
-            <Link to={"/profile/setting"}>
+            <Link to={"/profileSetting"}>
               <button>Edit Profile</button>
             </Link>
           </div>

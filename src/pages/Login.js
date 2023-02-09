@@ -74,7 +74,7 @@ const Login = () => {
     }
 
     //to check all the feilds are filled
-    if (!name.value, !email.value, !password.value, !confirmPassword.value) {
+    if ((!name.value, !email.value, !password.value, !confirmPassword.value)) {
       return toast.error("Please Fill All The Feilds");
     }
     //check if password is equall or more that 8 characters
@@ -84,7 +84,7 @@ const Login = () => {
 
     //check if Password and confirm password is matching
     if (password.value !== confirmPassword.value) {
-      return  toast.error("Password and confirm password is't matching");
+      return toast.error("Password and confirm password is't matching");
     }
 
     // request to signup user
@@ -98,7 +98,7 @@ const Login = () => {
       }
       //calling registerInputValueNull to make input values null
       registerInputValueNull();
-    }else{
+    } else {
       toast.success(response.message);
     }
     //calling registerInputValueNull to make input values null
@@ -118,12 +118,10 @@ const Login = () => {
     const response = await auth.login(loginEmail.value, loginPassword.value);
 
     if (response.success) {
-      console.log(response);
       toast.success(response.message);
       loginInputValueNull();
-    }else{
+    } else {
       toast.success(response.message);
-
     }
     loginInputValueNull();
   };
@@ -141,9 +139,9 @@ const Login = () => {
             <h2>Login : </h2>
           </div>
           <div>
-            <label htmlFor="email">Email*</label>
+            <label htmlFor="loginEmail">Email*</label>
             <input
-              id="email"
+              id="loginEmail"
               required
               placeholder="Email"
               value={loginEmail.value}
@@ -151,10 +149,11 @@ const Login = () => {
             />
           </div>
           <div>
-            <label htmlFor="password">Password*</label>
+            <label htmlFor="loginPassword">Password*</label>
             <input
-              id="password"
+              id="loginPassword"
               required
+              type={"password"}
               placeholder="Password"
               value={loginPassword.value}
               onChange={loginPassword.onChange}
@@ -208,7 +207,7 @@ const Login = () => {
             <input
               id="password"
               required
-              type={'password'}
+              type={"password"}
               placeholder="Password"
               value={password.value}
               onChange={password.onChange}
@@ -219,7 +218,7 @@ const Login = () => {
             <label htmlFor="confirmPassword">Confirm Password*</label>
             <input
               id="confirmPassword"
-              type={'password'}
+              type={"password"}
               required
               placeholder="Confirm Password"
               value={confirmPassword.value}
