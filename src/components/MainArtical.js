@@ -44,7 +44,7 @@ const MainArtical = () => {
                   <div className="blog_container">
                     <div className="blog_profile_details">
                       <div className="blog_profile_img">
-                        {blog.user.avatar.img.data.length ? (
+                        {blog.user?.avatar?.img.data.length ? (
                           <>
                             <img
                               alt=""

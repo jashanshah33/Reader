@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { LOCALSTORAGE_TOKEN_KEY } from "../utils";
+import toast from "react-hot-toast";
 
 const ProfileSetting = () => {
   const auth = useAuth();
@@ -27,7 +28,7 @@ const ProfileSetting = () => {
     formData.append("email", email);
     formData.append("password", password);
 
-    const userId = auth.user._id;
+    const userId = auth.user.id;
     const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
 
     // console.log('*************',token);
@@ -35,7 +36,7 @@ const ProfileSetting = () => {
     if (userId && token) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/user/update?id=${auth?.user?._id}`,
+          `http://localhost:8000/api/v1/user/update?id=${userId}`,
           {
             method: "POST",
             headers: {
@@ -48,8 +49,11 @@ const ProfileSetting = () => {
 
         if (data.success) {
           await auth.login(email, password);
-
+          toast.success(data.message);
           setRedirect(true);
+          return;
+        } else {
+          toast.error(data.message);
         }
       } catch (error) {
         console.error(error);
@@ -69,7 +73,7 @@ const ProfileSetting = () => {
         <form encType="multipart/form-data" onSubmit={handelEditInfo}>
           <div className="profile_pic_container">
             <div className="profile_pic">
-              {auth.userProfileImage ? (
+              {auth.userProfileImage.length ? (
                 <img
                   alt=""
                   width={"100%"}

@@ -125,7 +125,7 @@ export const Navbar = () => {
           <>
             <FontAwesomeIcon icon={faBell} size="xl" />
             <div id="profile_container">
-              {auth?.userProfileImage ? (
+              {auth?.userProfileImage?.length ? (
                 <img
                   onClick={handelProfile}
                   alt=""
@@ -154,7 +154,7 @@ export const Navbar = () => {
                 }
               >
                 <div className="user_img_container">
-                  {auth.userProfileImage ? (
+                  {auth.userProfileImage?.length ? (
                     <img
                       onClick={handelProfile}
                       alt=""

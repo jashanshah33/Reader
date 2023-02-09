@@ -34,13 +34,13 @@ const PostBlog = (props) => {
     formData.append("title", title);
     formData.append("description", description);
 
-    const userId = auth.user._id;
+    const userId = auth?.user.id;
     const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
 
     if (userId && token) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/blog/create?id=${auth?.user._id}`,
+          `http://localhost:8000/api/v1/blog/create?id=${userId}`,
           {
             method: "POST",
             headers: {
@@ -58,7 +58,7 @@ const PostBlog = (props) => {
       } catch (error) {
         console.error(error);
       }
-    }
+    } console.log('error');
   };
   if (redirect) {
     return <Redirect to="/" />;
