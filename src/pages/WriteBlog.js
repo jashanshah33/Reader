@@ -3,17 +3,17 @@ import { Editor } from "@tinymce/tinymce-react";
 import PostBlog from "../components/PostBlog";
 import toast from "react-hot-toast";
 
+
 const WriteBlog = () => {
   const [post, setPost] = useState(false);
   const [blogContent, setBlogContent] = useState("");
   const editorRef = useRef();
 
-
   const handelPost = (e) => {
     e.stopPropagation();
-// console.log(blogContent);
+    // console.log(blogContent);
     if (!blogContent) {
-      return toast.error("Can't Submit Empty Blog")
+      return toast.error("Can't Submit Empty Blog");
     }
     setPost(!post);
   };

@@ -4,11 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { userProfile } from "../api";
+import { userProfile as profile } from "../api";
+import { useState } from "react";
 
 const Profile = () => {
+  const [userProfile, setUserProfile] = useState({});
   const auth = useAuth();
   const { id } = useParams();
+
   let dateFormat = { day: "numeric", month: "short", year: "numeric" };
   const formatter = new Intl.DateTimeFormat("en", dateFormat);
   const joined = formatter.format(
@@ -17,39 +20,26 @@ const Profile = () => {
 
   useEffect(() => {
     const getuserProfile = async () => {
-      const response = await userProfile(id)
+      const response = await profile(id);
       if (response.success) {
-        console.log(response.data);
+        setUserProfile(response.data.userProfile);
       }
     };
 
-    getuserProfile()
-  }, []);
-
+    getuserProfile();
+  }, [auth, id]);
+  // console.log(userProfile);
   return (
     <main className="profile_outer_container">
       <div className="profile_container">
         <div className="profile">
-          <div className="profile_img">
-            {/* {userImage?.map((singleData) => {
-              const base64String = btoa(
-                String.fromCharCode(...new Uint8Array(singleData.img.data.data))
-              );
-              return (
-                <img
-                  src={`data:image/png;base64,${base64String}`}
-                  width="300"
-                />
-              );
-            })} */}
-            {auth?.userProfileImage.length ? (
+          <div  className="profile_img">
+            {userProfile.avatar ? (
               <img
                 alt=""
                 width={"100%"}
                 height="100%"
-                src={`data:image/png;base64,${btoa(
-                  String.fromCharCode(...new Uint8Array(auth.userProfileImage))
-                )}`}
+                src={`data:${userProfile.avatar.type};base64,${userProfile.avatar.img}`}
               />
             ) : (
               <img
@@ -67,8 +57,8 @@ const Profile = () => {
           </div>
 
           <div className="profile_details">
-            <p>{auth?.user?.name}</p>
-            <p>{auth?.user?.email}</p>
+            <p>{userProfile.name}</p>
+            <p>{userProfile.email}</p>
           </div>
           <div className="user_follow">
             <span>1 Followers</span>
@@ -87,6 +77,73 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      {userProfile?.blogs?.length? <>
+      
+      <div className="user_blogs_container">
+        {userProfile?.blogs?.map((blog) => (
+          <div className="single_blog_fullContainer">
+            <div className="blog_container">
+              <div className="blog_profile_details">
+                <div className="blog_profile_img">
+                  {userProfile.avatar ? (
+                    <>
+                      <img
+                        alt=""
+                        width={"100%"}
+                        height="100%"
+                        src={`data:${userProfile.avatar.type};base64,${userProfile.avatar.img}`}
+                        />
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        alt=""
+                        width={"100%"}
+                        height="100%"
+                        src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="blog_Profile_discription">
+                  <div className="blog_user_name">
+                    <h4>{userProfile.name} </h4>
+                    <p>
+                      &nbsp;
+                      {/* <b> . </b>&nbsp;June 16, 2022 */}
+                      <b> . </b>&nbsp;{blog.createdAt.slice(0, 10)}
+                    </p>
+                  </div>
+                  <div className="blog_user_position"> President </div>
+                </div>
+              </div>
+              <div className="blog_descriptions">
+                <div className="blog_header">
+                  <h2>{blog.title}</h2>
+                </div>
+                <div className="blog_content">
+                  <p>{blog.description.slice(0, 200)}</p>
+                </div>
+              </div>
+            </div>
+            <div className="blog_img_container">
+              <img
+                alt=""
+                width={"100%"}
+                height="100%"
+                src={`data:${blog.coverPhoto.type};base64,${blog.coverPhoto.img}`}
+                />
+            </div>
+          </div>
+        ))}
+      </div>
+      </>:
+      <div className="No_blogs" >
+        <h1>Blog list is empty!</h1>
+
+      </div>
+      }
+
     </main>
   );
 };

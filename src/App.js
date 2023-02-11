@@ -29,10 +29,10 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/writeBlog">
-            <WriteBlog />
+            {auth.user ? <WriteBlog /> : <Login />}
           </Route>
           <Route exact path="/readBlog/:id">
-            <ReadBlog/>
+            {auth.user ? <ReadBlog /> : <Login />}
           </Route>
           <Route exact path="/profile/:id">
             {auth.user ? <Profile /> : <Login />}
@@ -48,19 +48,19 @@ function App() {
       <Toaster
         toastOptions={{
           // Define default options
-          className: '',
+          className: "",
           duration: 5000,
           style: {
-            background: '#363636',
-            color: '#fff',
+            background: "#363636",
+            color: "#fff",
           },
-      
+
           // Default options for specific types
           success: {
             duration: 3000,
             theme: {
-              primary: 'green',
-              secondary: 'black',
+              primary: "green",
+              secondary: "black",
             },
           },
         }}

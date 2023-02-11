@@ -1,8 +1,19 @@
 import { API_URLS, LOCALSTORAGE_TOKEN_KEY, getFormBody } from "../utils";
+// import jwt from "jwt-decode";
+// import toast from "react-hot-toast";
+// import { useAuth } from "../hooks";
 
 const custonFetch = async (url, { body, ...customConfig }) => {
   const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
-
+  // if (token) {
+  //   let decodedToken = jwt(token);
+  //   const currentTime = Date.now().valueOf() / 1000;
+  //   // const auth = useAuth();
+  //   if (decodedToken.exp < currentTime) {
+  //     window.localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY)
+  //     toast.success("Token has expired, please login again");
+  //   }
+  // }
   const headers = {
     "content-type": "application/x-www-form-urlencoded",
   };
@@ -31,7 +42,7 @@ const custonFetch = async (url, { body, ...customConfig }) => {
       return {
         data: data.data,
         success: true,
-        message: data.message
+        message: data.message,
       };
     }
 

@@ -19,6 +19,18 @@ export const useProvideAuth = () => {
   const [userProfileImage, setUserProfileImage] = useState([]);
   const [allBlogs, setAllBlogs] = useState([]);
 
+  // const token = getItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+
+  // useEffect(() => {
+  //   // console.log(token);
+  //   if (token == null) {
+  //     console.log('aaaaaaaaaaaaaaaaaaaaaaaa');
+  //     setUser(null);
+  //     setUserProfileImage(null);
+  //     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+  //     toast.success("Token has expired, please login again");
+  //   }
+  // }, [token]);
 
   useEffect(() => {
     const getuser = () => {
@@ -39,6 +51,7 @@ export const useProvideAuth = () => {
         const response = await profilePicture(user?.avatar);
         if (response.success) {
           setUserProfileImage(response.data.profilePicture.img.data);
+          console.log(response.data.profilePicture);
         } else {
           toast.error("Error in fetching Profile Picture");
         }
@@ -49,14 +62,13 @@ export const useProvideAuth = () => {
     const getBlog = async () => {
       const response = await blog();
       if (response.success) {
-        setAllBlogs(response.data.blog)
+        setAllBlogs(response.data.blog);
         // console.log(response);
       }
     };
 
     getBlog();
   }, [user]);
-
 
   const signup = async (name, email, password) => {
     const response = await register(name, email, password);
@@ -87,7 +99,6 @@ export const useProvideAuth = () => {
       return {
         success: true,
         message: response.message,
-
       };
     } else {
       return {
@@ -102,7 +113,6 @@ export const useProvideAuth = () => {
     setUserProfileImage(null);
     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
     toast.success("Logged Out Successfully");
-
   };
 
   return {

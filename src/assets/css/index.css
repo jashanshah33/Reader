@@ -11,7 +11,6 @@ body {
   background-color: rgb(238, 238, 238);
   margin: 60px 0 0 0;
   padding: 0;
-  height: 100vh;
   overflow: hidden;
 }
 
@@ -399,6 +398,11 @@ code {
   align-items: center;
   font-size: 0.75rem;
   color: grey;
+}
+@media only screen and (max-width: 600px) {
+  .single_blog_fullContainer .blog_user_name p {
+    display: none;
+  }
 }
 .single_blog_fullContainer .blog_user_position {
   color: gray;
@@ -863,24 +867,26 @@ code {
   }
 }
 .profile_outer_container {
-  background: linear-gradient(to top, rgb(238, 238, 238) 0%, rgb(238, 238, 238) 65%, #000000 65%, #000000 100%);
+  background: linear-gradient(to bottom, #000000 0%, #000000 30%, rgb(238, 238, 238) 30%, rgb(238, 238, 238) 100%);
   width: 100%;
-  height: 70vh;
+  height: calc(100vh - 60px);
+  padding: 130px 0 20px 0;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  box-sizing: border-box;
 }
 @media only screen and (max-width: 600px) {
   .profile_outer_container {
-    height: 50vh;
-    background: linear-gradient(to top, rgb(238, 238, 238) 0%, rgb(238, 238, 238) 55%, #000000 55%, #000000 100%);
+    padding-top: 100px;
   }
 }
 .profile_outer_container .profile_container {
   box-sizing: border-box;
-  padding: 5vh 0;
+  padding: 5vh 0 15vh 0;
   width: 60%;
-  height: 80%;
+  height: 50vh;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.078);
@@ -894,34 +900,50 @@ code {
 @media only screen and (max-width: 600px) {
   .profile_outer_container .profile_container {
     width: 90%;
-    height: 70%;
   }
 }
 .profile_outer_container .profile {
   margin-top: -15vh;
-  height: 130%;
+  height: 230%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
+@media only screen and (max-width: 992px) {
+  .profile_outer_container .profile {
+    height: 215%;
+  }
+}
 @media only screen and (max-width: 600px) {
   .profile_outer_container .profile {
-    height: 170%;
+    height: 270%;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .profile_outer_container .profile {
+    height: 300%;
   }
 }
 .profile_outer_container .profile_img {
   box-sizing: border-box;
   background-color: white;
-  width: 14rem;
+  width: 12rem;
+  height: 11rem;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.104);
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.315);
 }
 @media only screen and (max-width: 992px) {
   .profile_outer_container .profile_img {
-    margin-left: -5vw;
+    margin: 2vh 0 0 -8vw;
+    align-self: flex-start;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .profile_outer_container .profile_img {
+    margin-left: -3vw;
     align-self: flex-start;
   }
 }
@@ -968,6 +990,30 @@ code {
   color: grey;
   display: flex;
   align-items: center;
+}
+.profile_outer_container .user_blogs_container {
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+.profile_outer_container .single_blog_fullContainer {
+  width: 80%;
+}
+@media only screen and (max-width: 992px) {
+  .profile_outer_container .single_blog_fullContainer {
+    width: 90%;
+  }
+}
+.profile_outer_container .blog_content P {
+  text-align: start;
+}
+.profile_outer_container .No_blogs {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  color: gray;
 }
 
 #profile_full_Container {
