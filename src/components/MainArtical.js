@@ -39,47 +39,50 @@ const MainArtical = () => {
         {blogs.length ? (
           <>
             {blogs.map((blog) => (
-              <Link to={`/readBlog/${blog._id}`} key={blog._id}>
-                <div className="single_blog_fullContainer">
+              // <Link to={`/readBlog/${blog._id}`} key={blog._id}>
+                <div key={blog._id} className="single_blog_fullContainer">
                   <div className="blog_container">
-                    <div className="blog_profile_details">
-                      <div className="blog_profile_img">
-                        {blog.user?.avatar?.img.data.length ? (
-                          <>
-                            <img
-                              alt=""
-                              width={"100%"}
-                              height="100%"
-                              src={`data:image/png;base64,${btoa(
-                                String.fromCharCode(
-                                  ...new Uint8Array(blog.user.avatar.img.data)
-                                )
-                              )}`}
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <img
-                              alt=""
-                              width={"100%"}
-                              height="100%"
-                              src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                            />
-                          </>
-                        )}
-                      </div>
-                      <div className="blog_Profile_discription">
-                        <div className="blog_user_name">
-                          <h4>{blog.user.name} </h4>
-                          <p>
-                            &nbsp;
-                            {/* <b> . </b>&nbsp;June 16, 2022 */}
-                            <b> . </b>&nbsp;{blog.createdAt.slice(0, 10)}
-                          </p>
+                    <Link to={`/profile/${blog.user._id}`}>
+                      <div className="blog_profile_details">
+                        <div className="blog_profile_img">
+                          {blog.user?.avatar?.img.data.length ? (
+                            <>
+                              <img
+                                alt=""
+                                width={"100%"}
+                                height="100%"
+                                src={`data:image/png;base64,${btoa(
+                                  String.fromCharCode(
+                                    ...new Uint8Array(blog.user.avatar.img.data)
+                                  )
+                                )}`}
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <img
+                                alt=""
+                                width={"100%"}
+                                height="100%"
+                                src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                              />
+                            </>
+                          )}
                         </div>
-                        <div className="blog_user_position"> President </div>
+                        <div className="blog_Profile_discription">
+                          <div className="blog_user_name">
+                            <h4>{blog.user.name} </h4>
+                            <p>
+                              &nbsp;
+                              {/* <b> . </b>&nbsp;June 16, 2022 */}
+                              <b> . </b>&nbsp;{blog.createdAt.slice(0, 10)}
+                            </p>
+                          </div>
+                          <div className="blog_user_position"> President </div>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
+                    <Link to={`/readBlog/${blog._id}`} key={blog._id}>
                     <div className="blog_descriptions">
                       <div className="blog_header">
                         <h2>{blog.title}</h2>
@@ -88,8 +91,10 @@ const MainArtical = () => {
                         <p>{blog.description.slice(0, 200)}</p>
                       </div>
                     </div>
+                    </Link>
                   </div>
-                  <div className="blog_img_container">
+                  <Link className="blog_img_container" to={`/readBlog/${blog._id}`} key={blog._id}>
+                  {/* <div > */}
                     <img
                       alt=""
                       width={"100%"}
@@ -100,9 +105,10 @@ const MainArtical = () => {
                         )
                       )}`}
                     />
-                  </div>
+                  {/* </div> */}
+                  </Link>
                 </div>
-              </Link>
+              // </Link>
             ))}
           </>
         ) : (

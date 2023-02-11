@@ -7,6 +7,8 @@ export const API_URLS = {
   profile: () => `${API_ROOT}/user/profilePicture`,
   blog: () => `${API_ROOT}/blog/allBlogs`,
   singleblog: () => `${API_ROOT}/blog/singleBlogs`,
+  deleteBlog: () => `${API_ROOT}/blog/deleteBlog`,
+
 
 
 };

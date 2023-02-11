@@ -51,7 +51,7 @@ export const useProvideAuth = () => {
         const response = await profilePicture(user?.avatar);
         if (response.success) {
           setUserProfileImage(response.data.profilePicture.img.data);
-          console.log(response.data.profilePicture);
+          // console.log(response.data.profilePicture);
         } else {
           toast.error("Error in fetching Profile Picture");
         }

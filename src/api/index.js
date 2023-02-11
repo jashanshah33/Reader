@@ -93,3 +93,10 @@ export const singleblog = (blogId) => {
     method: "get",
   });
 };
+
+export const deleteBlog = (blogId, userId) => {
+  return custonFetch(`${API_URLS.deleteBlog()}`, {
+    method: "post",
+    body: { blogId, userId },
+  });
+};

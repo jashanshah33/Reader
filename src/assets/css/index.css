@@ -921,11 +921,6 @@ code {
     height: 270%;
   }
 }
-@media only screen and (max-width: 420px) {
-  .profile_outer_container .profile {
-    height: 300%;
-  }
-}
 .profile_outer_container .profile_img {
   box-sizing: border-box;
   background-color: white;
