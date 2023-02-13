@@ -82,6 +82,13 @@ export const profilePicture = (profileId) => {
   });
 };
 
+export const toggleFollow = ( userId, followToUserId) => {
+  return custonFetch(`${API_URLS.toggleFollow()}`, {
+    method: "post",
+    body: { userId, followToUserId },
+  });
+};
+
 export const blog = () => {
   return custonFetch(`${API_URLS.blog()}`, {
     method: "get",

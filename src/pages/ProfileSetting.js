@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { LOCALSTORAGE_TOKEN_KEY } from "../utils";
 import toast from "react-hot-toast";
+import { userProfile } from "../api";
 
 const ProfileSetting = () => {
   const auth = useAuth();
@@ -12,10 +13,29 @@ const ProfileSetting = () => {
 
   const [redirect, setRedirect] = useState(false);
 
+  const [profileInfo, setProfileInfo] = useState({});
+
+
+  // useEffect(() => {
+  //   setName(`${auth?.user?.name}`);
+  //   setEmail(`${auth?.user?.email}`);
+  // }, [auth, auth?.user]);
+
   useEffect(() => {
-    setName(`${auth?.user?.name}`);
-    setEmail(`${auth?.user?.email}`);
-  }, [auth, auth?.user]);
+    const getUserInfo = async () => {
+      if (auth?.user?._id) {
+        const response = await userProfile(auth?.user?._id);
+        if (response.success) {
+          const profile = response.data.userProfile
+          setProfileInfo(profile);
+          setName(`${profile.name}`);
+          setEmail(`${profile.email}`);
+
+        }
+      }
+    };
+    getUserInfo();
+  }, [ auth]);
 
   const [file, setFile] = useState("");
 
@@ -73,16 +93,18 @@ const ProfileSetting = () => {
         <form encType="multipart/form-data" onSubmit={handelEditInfo}>
           <div className="profile_pic_container">
             <div className="profile_pic">
-              {auth.userProfileImage.length ? (
+              {profileInfo.avatar ? (
                 <img
                   alt=""
                   width={"100%"}
                   height="100%"
-                  src={`data:image/png;base64,${btoa(
-                    String.fromCharCode(
-                      ...new Uint8Array(auth.userProfileImage)
-                    )
-                  )}`}
+                  // src={`data:image/png;base64,${btoa(
+                  //   String.fromCharCode(
+                  //     ...new Uint8Array(auth.userProfileImage)
+                  //   )
+                  // )}`}
+                  src={`data:${profileInfo?.avatar?.type};base64,${profileInfo?.avatar?.img}`}
+
                 />
               ) : (
                 <img

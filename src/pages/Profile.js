@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { deleteBlog, userProfile as profile } from "../api";
+import { deleteBlog, toggleFollow, userProfile as profile } from "../api";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 const Profile = () => {
   const [userProfile, setUserProfile] = useState({});
+  const [follow, setFollow] = useState(false);
   const auth = useAuth();
   const { id } = useParams();
 
@@ -23,14 +24,30 @@ const Profile = () => {
     const getuserProfile = async () => {
       const response = await profile(id);
       if (response.success) {
-        setUserProfile(response.data.userProfile);
+        const profile = response.data.userProfile;
+        setUserProfile(profile);
+
+        for (const i of profile.followers) {
+          if (i == auth?.user._id) {
+            setFollow(true);
+          }
+        }
       }
     };
 
     getuserProfile();
   }, [auth, id]);
 
+  // useEffect(() => {
+  //   console.log(userProfile?.following);
+  //   // if (userProfile.following.length) {
+  //     for (const i of userProfile?.following) {
+  //       console.log(i);
+  //     // }
+  //   }
+  // });
   const handelDeletePost = async (blogId, userId) => {
+    // console.log("Post Deleted");
     if (userId === auth.user._id) {
       const response = await deleteBlog(blogId, auth?.user._id);
       if (response.success) {
@@ -42,7 +59,26 @@ const Profile = () => {
       }
     }
   };
-  // console.log(userProfile);
+  const handelToggleFollow = async () => {
+    const response = await toggleFollow(auth?.user._id, userProfile._id);
+
+    if (response.success) {
+      if (follow) {
+        setUserProfile((prevProfile) => ({
+          ...prevProfile,
+          followers: prevProfile.followers.filter(
+            (follower) => follower !== auth?.user._id
+          ),
+        }));
+      } else {
+        setUserProfile((prevProfile) => ({
+          ...prevProfile,
+          followers: [...prevProfile.followers, auth?.user._id],
+        }));
+      }
+      setFollow(!follow);
+    }
+  };
   return (
     <main className="profile_outer_container">
       <div className="profile_container">
@@ -65,9 +101,15 @@ const Profile = () => {
             )}
           </div>
           <div className="edit_Btn">
-            <Link to={"/profileSetting"}>
-              <button>Edit Profile</button>
-            </Link>
+            {userProfile._id === auth?.user._id ? (
+              <Link to={"/profileSetting"}>
+                <button>Edit Profile</button>
+              </Link>
+            ) : (
+              <button onClick={handelToggleFollow}>
+                {follow ? "Following" : "Follow"}
+              </button>
+            )}
           </div>
 
           <div className="profile_details">
@@ -75,8 +117,8 @@ const Profile = () => {
             <p>{userProfile.email}</p>
           </div>
           <div className="user_follow">
-            <span>1 Followers</span>
-            <span> 2 Following</span>
+            <span>{userProfile?.followers?.length} Followers</span>
+            <span> {userProfile?.following?.length} Following</span>
           </div>
 
           <div className="joined">
@@ -95,7 +137,12 @@ const Profile = () => {
         <>
           <div className="user_blogs_container">
             {userProfile?.blogs?.map((blog) => (
-              <div key={blog._id} className="single_blog_fullContainer">
+              <Link
+                className="single_blog_fullContainer"
+                to={`/readBlog/${blog._id}`}
+                key={blog._id}
+              >
+                {/* <div > */}
                 <div className="blog_container">
                   <div className="blog_profile_details">
                     <div className="blog_profile_img">
@@ -140,7 +187,12 @@ const Profile = () => {
                     </div>
                   </div>
                   {blog.user === auth.user._id && (
-                    <div>
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                      }}
+                    >
                       <button
                         onClick={() => handelDeletePost(blog._id, blog.user)}
                       >
@@ -157,7 +209,8 @@ const Profile = () => {
                     src={`data:${blog.coverPhoto.type};base64,${blog.coverPhoto.img}`}
                   />
                 </div>
-              </div>
+                {/* </div> */}
+              </Link>
             ))}
           </div>
         </>

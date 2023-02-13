@@ -3,7 +3,6 @@ import { useProvideAuth } from "../hooks";
 
 const initialState = {
   user: null,
-  userProfileImage: null,
   allBlogs: null,
   signup: () => {},
   login: () => {},

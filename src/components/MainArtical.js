@@ -13,6 +13,7 @@ const MainArtical = () => {
       const response = await blog();
       if (response.success) {
         setBlogs(response.data.blog);
+        // console.log(response.data.blog);
       }
     };
     getBlog();

@@ -882,6 +882,10 @@ code {
     padding-top: 100px;
   }
 }
+.profile_outer_container a {
+  text-decoration: none;
+  color: inherit;
+}
 .profile_outer_container .profile_container {
   box-sizing: border-box;
   padding: 5vh 0 15vh 0;
@@ -992,13 +996,14 @@ code {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  width: 100%;
 }
 .profile_outer_container .single_blog_fullContainer {
   width: 80%;
 }
 @media only screen and (max-width: 992px) {
   .profile_outer_container .single_blog_fullContainer {
-    width: 90%;
+    width: 85vw;
   }
 }
 .profile_outer_container .blog_content P {

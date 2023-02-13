@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -13,13 +13,26 @@ import {
 import { useState } from "react";
 import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { userProfile } from "../api";
 
 export const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [profileInfo, setProfileInfo] = useState({});
   const auth = useAuth();
-  
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      if (auth?.user?._id) {
+        const response = await userProfile(auth?.user?._id);
+        if (response.success) {
+          setProfileInfo(response.data.userProfile);
+        }
+      }
+    };
+    getUserInfo();
+  }, [profile, auth]);
+
   const handelDropown = (e) => {
     e.stopPropagation();
     setDropdown(true);
@@ -34,7 +47,7 @@ export const Navbar = () => {
     setProfile(false);
   });
 
-  const handelProfile = (e) => {
+  const handelProfile = async (e) => {
     e.stopPropagation();
     setProfile(!profile);
   };
@@ -129,17 +142,13 @@ export const Navbar = () => {
           <>
             <FontAwesomeIcon icon={faBell} size="xl" />
             <div id="profile_container">
-              {auth?.userProfileImage?.length ? (
+              {profileInfo.avatar ? (
                 <img
                   onClick={handelProfile}
                   alt=""
                   width={"100%"}
                   height="100%"
-                  src={`data:image/png;base64,${btoa(
-                    String.fromCharCode(
-                      ...new Uint8Array(auth.userProfileImage)
-                    )
-                  )}`}
+                  src={`data:${profileInfo?.avatar?.type};base64,${profileInfo?.avatar?.img}`}
                 />
               ) : (
                 <img
@@ -158,17 +167,13 @@ export const Navbar = () => {
                 }
               >
                 <div className="user_img_container">
-                  {auth.userProfileImage?.length ? (
+                  {profileInfo.avatar ? (
                     <img
                       onClick={handelProfile}
                       alt=""
                       width={"100%"}
                       height="100%"
-                      src={`data:image/png;base64,${btoa(
-                        String.fromCharCode(
-                          ...new Uint8Array(auth.userProfileImage)
-                        )
-                      )}`}
+                      src={`data:${profileInfo?.avatar?.type};base64,${profileInfo?.avatar?.img}`}
                     />
                   ) : (
                     <img
@@ -181,15 +186,15 @@ export const Navbar = () => {
                   )}
                 </div>
                 <div className="user_details">
-                  <p>{auth?.user?.name}</p>
-                  <p>{auth?.user?.email}</p>
+                  <p>{profileInfo.name}</p>
+                  <p>{profileInfo.email}</p>
                 </div>
                 <div className="user_follow">
-                  <span>1 Followers</span>
-                  <span> 2 Following</span>
+                  <span>{profileInfo.followers?.length} Followers</span>
+                  <span> {profileInfo.following?.length} Following</span>
                 </div>
                 <div className="full_profile_page_Nav">
-                  <Link to={`/profile/${auth?.user?._id}`}> More...</Link>
+                  <Link to={`/profile/${profileInfo._id}`}> More...</Link>
                 </div>
               </div>
             </div>
