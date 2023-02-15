@@ -8,6 +8,7 @@ import { useAuth } from "./hooks";
 import WriteBlog from "./pages/WriteBlog";
 import { Toaster } from "react-hot-toast";
 import ReadBlog from "./pages/ReadBlog";
+import FollowList from "./pages/FollowList";
 function App() {
   const auth = useAuth();
   const PageNotFound = () => {
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/profileSetting">
             {auth.user ? <ProfileSetting /> : <Login />}
+          </Route>
+          <Route exact path="/followList/:list">
+            {auth.user ? <FollowList/> : <Login />}
           </Route>
           <Route>
             <PageNotFound />

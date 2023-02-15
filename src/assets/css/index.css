@@ -1215,4 +1215,77 @@ code {
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.253);
 }
 
+.followList_container {
+  height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+}
+.followList_container .followList_outer_div {
+  width: 800px;
+  height: 100%;
+  background-color: rgb(237, 237, 237);
+  border: 2px solid rgb(172, 170, 170);
+}
+.followList_container .list_seprations {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  font-size: 1.3rem;
+}
+.followList_container .selectedList {
+  background-color: blue;
+  width: 50%;
+  padding: 15px 0;
+  text-align: center;
+  color: white;
+}
+.followList_container .notseletedList {
+  width: 50%;
+  padding: 15px 0;
+  text-align: center;
+}
+.followList_container .user_full_info {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+  margin: 15px;
+}
+.followList_container .user_profile_detail {
+  display: flex;
+}
+.followList_container .user_profile_detail p {
+  margin: 0;
+}
+.followList_container .user_profile_img {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.followList_container button {
+  border: none;
+  font-size: 0.9rem;
+  background-color: blue;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+}
+.followList_container button:hover {
+  background-color: rgb(181, 33, 33);
+  color: black;
+}
+.followList_container .empty_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+
 /*# sourceMappingURL=index.css.map */

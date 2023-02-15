@@ -117,8 +117,22 @@ const Profile = () => {
             <p>{userProfile.email}</p>
           </div>
           <div className="user_follow">
-            <span>{userProfile?.followers?.length} Followers</span>
-            <span> {userProfile?.following?.length} Following</span>
+            {userProfile._id === auth?.user._id ? (
+              <>
+                <Link to={`/followList/followers`}>
+                  <span>{userProfile?.followers?.length} Followers</span>
+                </Link>
+                <Link to={`/followList/following`}>
+                  <span> {userProfile?.following?.length} Following</span>
+                </Link>
+              </>
+            ) : (
+              <>
+                <span>{userProfile?.followers?.length} Followers</span>
+                <span> {userProfile?.following?.length} Following</span>
+              </>
+            )}
+            
           </div>
 
           <div className="joined">

@@ -1,0 +1,83 @@
+.followList_container {
+  height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+
+  .followList_outer_div {
+    width: 800px;
+    height: 100%;
+    background-color: rgb(237, 237, 237);
+    border:2px solid rgb(172, 170, 170) ;
+  }
+  .list_seprations {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    font-size: 1.3rem;
+  }
+  .selectedList{
+    background-color: blue;
+    width: 50%;
+    padding: 15px 0;
+    text-align: center;
+    color: white;
+
+}
+.notseletedList{
+    width: 50%;
+    padding: 15px 0;
+    text-align: center;
+
+}
+  .follow_list_details {
+  }
+  .user_full_info {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    // border: 2px solid black;
+    // box-shadow: 0 0 25px 1px rgba(0, 0, 0, 0.128);
+    background-color: white;
+    border-radius: 15px;
+    margin: 15px;
+  }
+  .user_profile_detail {
+    display: flex;
+    p {
+      margin: 0;
+    }
+  }
+  .user_profile_img {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+//   .unfollow_btn_container{
+    button{
+        border: none;
+        font-size: 0.9rem;
+        background-color: blue;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        transition: all 0.5s ease;
+
+        &:hover{
+            background-color: rgb(181, 33, 33);
+            color: black;
+        }
+    }
+
+.empty_list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+//   }
+}

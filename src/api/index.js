@@ -89,6 +89,11 @@ export const toggleFollow = ( userId, followToUserId) => {
   });
 };
 
+export const followList = ( userId) => {
+  return custonFetch(`${API_URLS.followList()}?id=${userId}`, {
+    method: "get",
+  });
+};
 export const blog = () => {
   return custonFetch(`${API_URLS.blog()}`, {
     method: "get",

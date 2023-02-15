@@ -190,8 +190,12 @@ export const Navbar = () => {
                   <p>{profileInfo.email}</p>
                 </div>
                 <div className="user_follow">
+                  <Link to={`/followList/followers`}>
                   <span>{profileInfo.followers?.length} Followers</span>
+                  </Link>
+                  <Link to={`/followList/following`}>
                   <span> {profileInfo.following?.length} Following</span>
+                  </Link>
                 </div>
                 <div className="full_profile_page_Nav">
                   <Link to={`/profile/${profileInfo._id}`}> More...</Link>

@@ -6,6 +6,7 @@ export const API_URLS = {
   userProfile: () => `${API_ROOT}/user/profile`,
   profile: () => `${API_ROOT}/user/profilePicture`,
   toggleFollow: () => `${API_ROOT}/user/toggleFollow`,
+  followList: () => `${API_ROOT}/user/followList`,
   blog: () => `${API_ROOT}/blog/allBlogs`,
   singleblog: () => `${API_ROOT}/blog/singleBlogs`,
   deleteBlog: () => `${API_ROOT}/blog/deleteBlog`,
