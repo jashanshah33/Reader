@@ -15,12 +15,12 @@ import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
 import { userProfile } from "../api";
 
-export const Navbar = () => {
+export const Navbar = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [profile, setProfile] = useState(false);
   const [profileInfo, setProfileInfo] = useState({});
   const auth = useAuth();
-
+  const { setCategory } = props;
   useEffect(() => {
     const getUserInfo = async () => {
       if (auth?.user?._id) {
@@ -102,13 +102,81 @@ export const Navbar = () => {
             <div>
               <h3>Blog Catagories</h3>
               <ul>
-                <li>View all </li>
-                <li>Design </li>
-                <li>Product </li>
-                <li>SoftWare Enginnering </li>
-                <li>Customer Success </li>
-                <li>LeaderShip </li>
-                <li>Management </li>
+                <Link to={"/"}>
+                  <li
+                    onClick={() => {
+                      setCategory("viewAll");
+                      setDropdown(false);
+                    }}
+                  >
+                    View all{" "}
+                  </li>
+                </Link>
+                <Link to={"/"}>
+                  {" "}
+                  <li
+                    onClick={() => {
+                      setCategory("design");
+                      setDropdown(false);
+                    }}
+                  >
+                    Design{" "}
+                  </li>
+                </Link>
+                <Link to={"/"}>
+                  {" "}
+                  <li
+                    onClick={() => {
+                      setCategory("product");
+                      setDropdown(false);
+                    }}
+                  >
+                    Product{" "}
+                  </li>
+                </Link>
+                <Link to={"/"}>
+                  {" "}
+                  <li
+                    onClick={() => {
+                      setCategory("development");
+                      setDropdown(false);
+                    }}
+                  >
+                    Development{" "}
+                  </li>
+                </Link>
+                <Link to={"/"}>
+                  <li
+                    onClick={() => {
+                      setCategory("customerSuccess");
+                      setDropdown(false);
+                    }}
+                  >
+                    Customer Success{" "}
+                  </li>
+                </Link>
+                <Link to={"/"}>
+                  {" "}
+                  <li
+                    onClick={() => {
+                      setCategory("leaderShip");
+                      setDropdown(false);
+                    }}
+                  >
+                    LeaderShip{" "}
+                  </li>
+                </Link>
+                <Link to={"/"}>
+                  {" "}
+                  <li
+                    onClick={() => {
+                      setCategory("management");
+                      setDropdown(false);
+                    }}
+                  >
+                    Management{" "}
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>
@@ -191,10 +259,10 @@ export const Navbar = () => {
                 </div>
                 <div className="user_follow">
                   <Link to={`/followList/followers`}>
-                  <span>{profileInfo.followers?.length} Followers</span>
+                    <span>{profileInfo.followers?.length} Followers</span>
                   </Link>
                   <Link to={`/followList/following`}>
-                  <span> {profileInfo.following?.length} Following</span>
+                    <span> {profileInfo.following?.length} Following</span>
                   </Link>
                 </div>
                 <div className="full_profile_page_Nav">

@@ -216,7 +216,7 @@
     }
 
     50% {
-      transform: perspective(100px) translate3d(1vw, 0px, 0);
+      transform: perspective(100px) translate3d(1vw, 0px, -4vh);
       opacity: 1;
     }
 
@@ -238,7 +238,7 @@
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(20vw, 0px, 0px) perspective(100px);
+    transform: perspective(100px) translate3d(20vw, 0px, 0px) ;
     opacity: 0.5;
   }
   100% {
@@ -260,7 +260,7 @@
 
     50% {
       box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-      transform: perspective(100px) translate3d(11vw, 0px, -4vh) ;
+      transform: perspective(100px) translate3d(11vw, 0px, 0px) ;
       opacity: 0.5;
     }
 
@@ -281,8 +281,10 @@
 
   }
   50% {
-    transform: perspective(100px) translate3d(-20vw, 0px, -4vh);
+    transform: perspective(100px) translate3d(-20vw, 0px, 0px);
     opacity: 0.5;
+    z-index: 0;
+
   }
   100% {
     opacity: 0.5;
@@ -303,8 +305,10 @@
     }
 
     50% {
-      transform: perspective(100px) translate3d(-11vw, 0px, -4vh);
+      transform: perspective(100px) translate3d(-11vw, 0px, 0px);
       opacity: 0.5;
+      z-index: 0;
+
     }
 
     100% {
@@ -324,9 +328,9 @@
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: translate3d(20vw, 0px, 0px) perspective(100px);
-    opacity: 1;
-    z-index: 10;
+    transform:perspective(100px) translate3d(20vw, 0px, -4vh) ;
+    opacity: 0.5;
+    z-index: 1;
   }
   100% {
     opacity: 1;
@@ -346,8 +350,8 @@
 
     50% {
       box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-      transform: perspective(100px) translate3d(0vw, 0px, 0) ;
-      opacity: 1;
+      transform: perspective(100px) translate3d(0vw, 0px, -4vh) ;
+      opacity: 0.5;
       z-index: 1;
     }
 

@@ -9,7 +9,9 @@ import WriteBlog from "./pages/WriteBlog";
 import { Toaster } from "react-hot-toast";
 import ReadBlog from "./pages/ReadBlog";
 import FollowList from "./pages/FollowList";
+import { useState } from "react";
 function App() {
+  const [category, setCategory] = useState('')
   const auth = useAuth();
   const PageNotFound = () => {
     return <h1>404</h1>;
@@ -18,10 +20,10 @@ function App() {
   return (
     <div>
       <Router>
-        <Navbar />
+        <Navbar setCategory={setCategory} />
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home category={category} />
           </Route>
           <Route exact path="/login">
             <Login />

@@ -86,7 +86,7 @@ const PostBlog = (props) => {
           <option disabled>Select a category</option>
           <option>Design</option>
           <option>Product</option>
-          <option>Software Enginnering</option>
+          <option>Development</option>
           <option>Customer Success</option>
           <option>LeaderShip</option>
           <option>Management</option>

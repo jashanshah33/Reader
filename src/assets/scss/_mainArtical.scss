@@ -12,6 +12,7 @@
     text-decoration: none;
     color: inherit;
   }
+
 }
 #Main_blog_header {
   display: flex;
@@ -70,8 +71,13 @@
   }
   li {
     border-radius: 20px;
-    padding: 5px 15px;
+    padding: 4px 15px 7px 15px;
     background-color: rgb(222, 221, 221);
+    cursor: pointer;
+  }
+  .slected_type{
+    background-color: blue;
+    color: white;
   }
 }
 

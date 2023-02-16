@@ -62,7 +62,6 @@
 }
 .followList_container button:hover {
   background-color: rgb(181, 33, 33);
-  color: black;
 }
 .followList_container .empty_list {
   display: flex;
