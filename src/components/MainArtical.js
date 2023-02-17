@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { blog } from "../api/index";
+import { blog, searchBlog } from "../api/index";
 
 const MainArtical = (props) => {
   const [blogs, setBlogs] = useState([]);
@@ -13,6 +13,10 @@ const MainArtical = (props) => {
   const [leaderShipBlog, setLeaderShipBlog] = useState([]);
   const [managementBlog, setManagementBlog] = useState([]);
 
+  const [searchUser, setSearchUser] = useState([]);
+  const [searchBlogs, setSearchBlogs] = useState([]);
+
+  const [searching, setSearching] = useState(false);
   const [topics, setTopics] = useState({
     viewAll: true,
     design: false,
@@ -60,6 +64,37 @@ const MainArtical = (props) => {
     }
   }, [category]);
 
+  const handelSearchBox = async (e) => {
+    const response = await searchBlog(e.target.value);
+
+    if (response.success) {
+      const { data } = response;
+      setSearchUser(data.users.slice(0,5));
+      setSearchBlogs(data.blogs.slice(0,5));
+      setSearching(true);
+    }
+  };
+
+  const handelPresentValue = (e) => {
+    e.stopPropagation();
+    if (e.target.value) {
+      if (searchBlogs || searchUser) {
+        setSearching(true);
+      }
+    }
+  };
+
+  useEffect(() => {
+    function handleClick() {
+      setSearching(false);
+    }
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
   let selectedBlog = [];
 
   if (topics.viewAll) {
@@ -77,15 +112,106 @@ const MainArtical = (props) => {
   } else if (topics.management) {
     selectedBlog = managementBlog;
   }
-
-  const topicList = ["viewAll", "design", "development", "product"];
+  const topicList = ["viewAll", "design", "product", "development"];
   return (
     <section id="Main_blog_full_container">
       <header id="Main_blog_header">
-        <div id="search_container">
+        <div className="activeSearchContainer" id="search_container">
           <FontAwesomeIcon className="search_icon" icon={faSearch} size="lg" />
-          <input placeholder="Search" />
+          <input
+            onClick={handelPresentValue}
+            onChange={handelSearchBox}
+            placeholder="Search"
+          />
+          {searching ? (
+            <>
+              <div
+                className="searchResult"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {searchBlogs.length || searchUser.length ? (
+                  <>
+                    {searchUser.length ? (
+                      <>
+                        <div className="people_result">
+                          <p>People</p>
+                          <hr />
+                          {searchUser.map((user) => (
+                            <Link key={user._id} to={`/profile/${user._id}`}>
+                              <div className="search_info">
+                                <div className="search_img_wrapper">
+                                  {user.avatar ? (
+                                    <img
+                                      alt=""
+                                      width={"100%"}
+                                      height="100%"
+                                      src={`data:${user.avatar.type};base64,${user.avatar.img}`}
+                                    />
+                                  ) : (
+                                    <img
+                                      alt=""
+                                      width={"100%"}
+                                      height="100%"
+                                      src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                                    />
+                                  )}
+                                </div>
+                                <div>{user.name}</div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </>
+                    ) : null}
+                    {searchBlogs.length ? (
+                      <>
+                        <div className="blogs_result">
+                          <p>Blogs</p>
+                          <hr />
+                          {searchBlogs.map((blog) => (
+                            <Link key={blog._id} to={`/readBlog/${blog._id}`}>
+                              <div className="search_info">
+                                <div className="search_img_wrapper">
+                                  {blog.coverPhoto ? (
+                                    <img
+                                      alt=""
+                                      width={"100%"}
+                                      height="100%"
+                                      src={`data:image/png;base64,${btoa(
+                                        String.fromCharCode(
+                                          ...new Uint8Array(
+                                            blog.coverPhoto.img.data
+                                          )
+                                        )
+                                      )}`}
+                                    />
+                                  ) : (
+                                    <img
+                                      alt=""
+                                      width={"100%"}
+                                      height="100%"
+                                      src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                                    />
+                                  )}
+                                </div>
+                                <div>{blog.title}</div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </>
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <div>No Results</div>
+                  </>
+                )}
+              </div>
+            </>
+          ) : null}
         </div>
+
         <div id="topics">
           <p>Topics: </p>
           <ul>

@@ -10,6 +10,8 @@ export const API_URLS = {
   blog: () => `${API_ROOT}/blog/allBlogs`,
   singleblog: () => `${API_ROOT}/blog/singleBlogs`,
   deleteBlog: () => `${API_ROOT}/blog/deleteBlog`,
+  searchBlog: () => `${API_ROOT}/search/searchBlogUser`,
+
 };
 
 export const LOCALSTORAGE_TOKEN_KEY = "__blog_token__";

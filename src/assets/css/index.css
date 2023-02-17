@@ -295,6 +295,7 @@ code {
 #search_container {
   background-color: white;
   width: 11vw;
+  position: relative;
   border: 2px solid rgb(177, 176, 176);
   padding: 4px 10px;
   border-radius: 15px;
@@ -321,6 +322,63 @@ code {
 }
 #search_container input:focus {
   outline: none;
+}
+#search_container .searchResult {
+  position: absolute;
+  width: 300px;
+  left: 0;
+  top: 160%;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.304);
+}
+#search_container .searchResult:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 26px;
+  width: 0;
+  height: 0;
+  border-left: 13px solid transparent;
+  border-bottom: 15px solid rgb(255, 255, 255);
+  border-right: 13px solid transparent;
+}
+
+.people_result {
+  margin-bottom: 10px;
+}
+.people_result p {
+  margin: 0;
+  color: gray;
+}
+
+.blogs_result p {
+  margin: 0;
+  color: gray;
+}
+
+.search_info {
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 6px 5px;
+  transition: all 0.3s ease;
+}
+.search_info:hover {
+  background-color: blue;
+  color: white;
+}
+.search_info div {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+.search_img_wrapper {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 #topics {

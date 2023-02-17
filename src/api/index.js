@@ -82,14 +82,14 @@ export const profilePicture = (profileId) => {
   });
 };
 
-export const toggleFollow = ( userId, followToUserId) => {
+export const toggleFollow = (userId, followToUserId) => {
   return custonFetch(`${API_URLS.toggleFollow()}`, {
     method: "post",
     body: { userId, followToUserId },
   });
 };
 
-export const followList = ( userId) => {
+export const followList = (userId) => {
   return custonFetch(`${API_URLS.followList()}?id=${userId}`, {
     method: "get",
   });
@@ -110,5 +110,11 @@ export const deleteBlog = (blogId, userId) => {
   return custonFetch(`${API_URLS.deleteBlog()}`, {
     method: "post",
     body: { blogId, userId },
+  });
+};
+
+export const searchBlog = (title) => {
+  return custonFetch(`${API_URLS.searchBlog()}?title=${title}`, {
+    method: "get",
   });
 };

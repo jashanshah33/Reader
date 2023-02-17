@@ -9,6 +9,7 @@ import {
   faUser,
   faContactBook,
   faPowerOff,
+  faGear
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useAuth } from "../hooks";
@@ -88,6 +89,13 @@ export const Navbar = (props) => {
                     {" "}
                     <span> Profile</span>{" "}
                     <FontAwesomeIcon icon={faUser} size="lg" />
+                  </li>
+                </Link>
+                <Link to="/profileSetting">
+                  <li onClick={() => setDropdown(false)}>
+                    {" "}
+                    <span>Setting</span>{" "}
+                    <FontAwesomeIcon icon={faGear} size="lg" />
                   </li>
                 </Link>
                 <Link to="/contact">
