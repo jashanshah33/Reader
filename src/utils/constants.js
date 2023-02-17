@@ -11,7 +11,7 @@ export const API_URLS = {
   singleblog: () => `${API_ROOT}/blog/singleBlogs`,
   deleteBlog: () => `${API_ROOT}/blog/deleteBlog`,
   searchBlog: () => `${API_ROOT}/search/searchBlogUser`,
-
+  contact: () => `${API_ROOT}/contact/message`,
 };
 
 export const LOCALSTORAGE_TOKEN_KEY = "__blog_token__";

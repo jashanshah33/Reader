@@ -118,3 +118,10 @@ export const searchBlog = (title) => {
     method: "get",
   });
 };
+
+export const contact = (name, email, phone, message) => {
+  return custonFetch(`${API_URLS.contact()}`, {
+    method: "post",
+    body: { name, email, phone, message },
+  });
+};

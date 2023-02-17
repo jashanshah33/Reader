@@ -1,0 +1,123 @@
+.contact_page {
+  box-sizing: border-box;
+  background: linear-gradient(
+    to bottom,
+    #000000 0vh,
+    #000000 40vh,
+    rgb(238, 238, 238) 40vh,
+    rgb(238, 238, 238) 100vh
+  );
+  height: calc(100vh - 60px);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  .contact_heading {
+    box-sizing: border-box;
+    color: white;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+.contact_form_wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4vh;
+  p {
+    margin: 0;
+  }
+  @media only screen and (max-width: 600px) {
+    margin-top: 2vh;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    @media only screen and (max-width: 992px) {
+        width: 80%;
+      }
+    @media only screen and (max-width: 400px) {
+      width: 90%;
+    }
+  }
+  .form_inputs_wrapper {
+    margin-top: 4vh;
+    display: flex;
+    justify-content: space-between;
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      margin-top: 2vh;
+    }
+    .name_input {
+      background: url("https://cdn-icons-png.flaticon.com/512/1077/1077114.png")
+        no-repeat 3px 6px;
+      background-size: 22px;
+      background-color: white;
+    }
+    .phone_input {
+      background: url("https://cdn-icons-png.flaticon.com/512/597/597177.png")
+        no-repeat 3px 6px;
+      background-size: 22px;
+      background-color: white;
+    }
+    .email_input {
+      background: url("https://cdn-icons-png.flaticon.com/512/2099/2099199.png")
+        no-repeat 3px 6px;
+      background-size: 22px;
+      background-color: white;
+    }
+  }
+  input {
+    box-sizing: border-box;
+    padding: 0 5px 0 30px;
+    width: 30%;
+    height: 35px;
+    font-size: 15px;
+    min-width: 0;
+    border: 1px solid black;
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+      margin-top: 1vh;
+    }
+  }
+
+  textarea {
+    box-sizing: border-box;
+    margin-top: 4vh;
+    justify-self: center;
+    width: 100%;
+    height: 15vh;
+    padding: 5px 5px 5px 30px;
+    font-size: 15px;
+    background: url("https://cdn-icons-png.flaticon.com/512/2462/2462844.png")
+      no-repeat 3px 4px;
+    background-size: 22px;
+    background-color: white;
+    &:focus {
+      background-image: none;
+      padding: 5px;
+    }
+    @media only screen and (max-width: 600px) {
+      margin-top: 1vh;
+    }
+  }
+  button {
+    align-self: flex-end;
+    margin-top: 3vh;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(196, 196, 5);
+  }
+}

@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import ReadBlog from "./pages/ReadBlog";
 import FollowList from "./pages/FollowList";
 import { useState } from "react";
+import Contact from "./pages/Contact";
 function App() {
   const [category, setCategory] = useState('')
   const auth = useAuth();
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path="/profileSetting">
             {auth.user ? <ProfileSetting /> : <Login />}
+          </Route>
+          <Route exact path="/contact">
+            {auth.user ? <Contact/> : <Login />}
           </Route>
           <Route exact path="/followList/:list">
             {auth.user ? <FollowList/> : <Login />}
