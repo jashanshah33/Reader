@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { register, createSession, profilePicture, blog } from "../api";
+import { register, createSession } from "../api";
 import {
   setItemInLocalStorage,
   LOCALSTORAGE_TOKEN_KEY,
@@ -16,46 +16,31 @@ export const useAuth = () => {
 
 export const useProvideAuth = () => {
   const [user, setUser] = useState(null);
-  const [allBlogs, setAllBlogs] = useState([]);
-
-  // const token = getItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
-
-  // useEffect(() => {
-  //   // console.log(token);
-  //   if (token == null) {
-  //     console.log('aaaaaaaaaaaaaaaaaaaaaaaa');
-  //     setUser(null);
-  //     setUserProfileImage(null);
-  //     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
-  //     toast.success("Token has expired, please login again");
-  //   }
-  // }, [token]);
+  const [timeoutId, setTimeoutId] = useState(null);
 
   useEffect(() => {
     const getuser = () => {
       const userToken = getItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
 
       if (userToken) {
-        const user = jwt(userToken);
-        setUser(user);
+        const { exp } = jwt(userToken);
+        if (Date.now() < exp * 1000) {
+          setUser(jwt(userToken));
+          const timeout = setTimeout(() => {
+            removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+            setUser(null);
+            toast.error("Session expired, please log in again");
+          }, (exp - Date.now() / 1000) * 1000);
+          setTimeoutId(timeout);
+        } else {
+          removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+        }
       }
     };
 
     getuser();
+    return () => clearTimeout(timeoutId);
   }, []);
-
-  useEffect(() => {
-
-    const getBlog = async () => {
-      const response = await blog();
-      if (response.success) {
-        setAllBlogs(response.data.blog);
-        // console.log(response);
-      }
-    };
-
-    getBlog();
-  }, [user]);
 
   const signup = async (name, email, password) => {
     const response = await register(name, email, password);
@@ -81,8 +66,14 @@ export const useProvideAuth = () => {
         response.data.token ? response.data.token : null
       );
 
+      const { exp } = jwt(response.data.token);
       setUser(response.data.user);
-      // console.log(response.data.user);
+      const timeout = setTimeout(() => {
+        removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+        setUser(null);
+        toast.error("Session expired, please log in again");
+      }, (exp - Date.now() / 1000) * 1000);
+      setTimeoutId(timeout);
       return {
         success: true,
         message: response.message,
@@ -98,14 +89,16 @@ export const useProvideAuth = () => {
   const logout = () => {
     setUser(null);
     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+    clearTimeout(timeoutId);
     toast.success("Logged Out Successfully");
   };
 
   return {
     user,
-    allBlogs,
     signup,
     login,
     logout,
   };
 };
+
+

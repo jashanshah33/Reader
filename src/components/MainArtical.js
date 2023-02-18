@@ -69,8 +69,8 @@ const MainArtical = (props) => {
 
     if (response.success) {
       const { data } = response;
-      setSearchUser(data.users.slice(0,5));
-      setSearchBlogs(data.blogs.slice(0,5));
+      setSearchUser(data.users.slice(0, 5));
+      setSearchBlogs(data.blogs.slice(0, 5));
       setSearching(true);
     }
   };

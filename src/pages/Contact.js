@@ -16,10 +16,10 @@ const Contact = () => {
 
     if (response.success) {
       toast.success(response.message);
-      setEmail("");
-      setMessage("");
       setName("");
       setPhone("");
+      setEmail("");
+      setMessage("");
       return;
     }
   };

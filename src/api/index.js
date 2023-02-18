@@ -119,7 +119,7 @@ export const searchBlog = (title) => {
   });
 };
 
-export const contact = (name, email, phone, message) => {
+export const contact = (name, phone, email, message) => {
   return custonFetch(`${API_URLS.contact()}`, {
     method: "post",
     body: { name, email, phone, message },
