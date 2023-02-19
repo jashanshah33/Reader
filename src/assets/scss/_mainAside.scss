@@ -1,5 +1,10 @@
 .full_aside_conatiner {
   padding: 25px 0 0 3vw;
+  
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
 
   .trending_topics {
     h2 {
@@ -30,11 +35,11 @@
     }
   }
   .intrested_people_img {
-    width: 35px;
-    height: 35px;
-    border: 2px solid red;
+    width: 45px;
+    height: 45px;
+    border: 1px solid red;
     border-radius: 50%;
-    padding: 5px;
+    overflow: hidden;
   }
   .intrested_people_left {
     display: flex;
@@ -58,6 +63,11 @@
       }
     }
   }
+  .empty_text{
+    color: gray;
+    text-align: center;
+    font-size: 1.5rem;
+  }
 }
 .recently_readed {
   margin-top: 3vh;
@@ -65,9 +75,11 @@
 .readed_blog {
   display: flex;
   margin-bottom: 20px;
+  height: 11vh;
 
   .readed_blog_img {
     width: 40%;
+    height: 100%;
     margin-right: 10px;
     border-radius: 10px;
     overflow: hidden;

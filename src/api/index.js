@@ -94,15 +94,29 @@ export const followList = (userId) => {
     method: "get",
   });
 };
+
+export const recentlyReaded = (userId) => {
+  return custonFetch(`${API_URLS.recentlyReaded()}?id=${userId}`, {
+    method: "get",
+  });
+};
+
+export const allUser = (userId) => {
+  return custonFetch(`${API_URLS.allUser()}?id=${userId}`, {
+    method: "get",
+  });
+};
+
 export const blog = () => {
   return custonFetch(`${API_URLS.blog()}`, {
     method: "get",
   });
 };
 
-export const singleblog = (blogId) => {
-  return custonFetch(`${API_URLS.singleblog()}?id=${blogId}`, {
-    method: "get",
+export const singleblog = (blogId, userId) => {
+  return custonFetch(`${API_URLS.singleblog()}`, {
+    method: "post",
+    body: { blogId, userId },
   });
 };
 

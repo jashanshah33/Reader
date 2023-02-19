@@ -7,10 +7,15 @@ export const API_URLS = {
   profile: () => `${API_ROOT}/user/profilePicture`,
   toggleFollow: () => `${API_ROOT}/user/toggleFollow`,
   followList: () => `${API_ROOT}/user/followList`,
+  recentlyReaded: () => `${API_ROOT}/user/recentlyReadedList`,
+  allUser: () => `${API_ROOT}/user/allUser`,
+
+
   blog: () => `${API_ROOT}/blog/allBlogs`,
   singleblog: () => `${API_ROOT}/blog/singleBlogs`,
   deleteBlog: () => `${API_ROOT}/blog/deleteBlog`,
   searchBlog: () => `${API_ROOT}/search/searchBlogUser`,
+
   contact: () => `${API_ROOT}/contact/message`,
 };
 

@@ -491,6 +491,10 @@ code {
 .full_aside_conatiner {
   padding: 25px 0 0 3vw;
 }
+.full_aside_conatiner a {
+  text-decoration: none;
+  color: inherit;
+}
 .full_aside_conatiner .trending_topics h2 {
   margin: 0;
 }
@@ -517,11 +521,11 @@ code {
   color: grey;
 }
 .full_aside_conatiner .intrested_people_img {
-  width: 35px;
-  height: 35px;
-  border: 2px solid red;
+  width: 45px;
+  height: 45px;
+  border: 1px solid red;
   border-radius: 50%;
-  padding: 5px;
+  overflow: hidden;
 }
 .full_aside_conatiner .intrested_people_left {
   display: flex;
@@ -545,6 +549,11 @@ code {
   background-color: rgb(43, 46, 226);
   color: white;
 }
+.full_aside_conatiner .empty_text {
+  color: gray;
+  text-align: center;
+  font-size: 1.5rem;
+}
 
 .recently_readed {
   margin-top: 3vh;
@@ -553,9 +562,11 @@ code {
 .readed_blog {
   display: flex;
   margin-bottom: 20px;
+  height: 11vh;
 }
 .readed_blog .readed_blog_img {
   width: 40%;
+  height: 100%;
   margin-right: 10px;
   border-radius: 10px;
   overflow: hidden;
