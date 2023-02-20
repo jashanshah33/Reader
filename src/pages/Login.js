@@ -61,7 +61,14 @@ const Login = () => {
     setEmailClasses("login rotate_Login_X");
   };
 
+  const isValidEmail = (email) => {
+    // regular expression to validate email address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   //redgister a new user
+
   const register = async (e) => {
     e.preventDefault();
 
@@ -76,6 +83,11 @@ const Login = () => {
     //to check all the feilds are filled
     if ((!name.value, !email.value, !password.value, !confirmPassword.value)) {
       return toast.error("Please Fill All The Feilds");
+    }
+
+    //to check if email has correct format
+    if (!isValidEmail(email.value)) {
+      return toast.error("Please enter a valid email address");
     }
     //check if password is equall or more that 8 characters
     if (password.value.length < 8) {
@@ -98,8 +110,8 @@ const Login = () => {
       }
       //calling registerInputValueNull to make input values null
       registerInputValueNull();
-    } else {
-      toast.success(response.message);
+    }else{
+      toast.error(response.message);
     }
     //calling registerInputValueNull to make input values null
     registerInputValueNull();
@@ -108,6 +120,12 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
 
+    if (!isValidEmail(loginEmail.value)) {
+      return toast.error("Please enter a valid email address");
+    }
+    if (!loginEmail.value || !loginPassword.value) {
+      return toast.error("Please Fill All The Feilds");
+    }
     //function to make login form value's null
     function loginInputValueNull() {
       loginEmail.valueNull();
@@ -120,8 +138,8 @@ const Login = () => {
     if (response.success) {
       toast.success(response.message);
       loginInputValueNull();
-    } else {
-      toast.success(response.message);
+    }else{
+      toast.error(response.message);
     }
     loginInputValueNull();
   };
@@ -143,7 +161,8 @@ const Login = () => {
             <input
               id="loginEmail"
               required
-              placeholder="Email"
+              type="email"
+              placeholder="example@gmail.com"
               value={loginEmail.value}
               onChange={loginEmail.onChange}
             />
@@ -187,6 +206,7 @@ const Login = () => {
             <input
               id="name"
               required
+              type="text"
               placeholder="Name"
               value={name.value}
               onChange={name.onChange}
@@ -197,7 +217,8 @@ const Login = () => {
             <input
               id="email"
               required
-              placeholder="Email"
+              type="email"
+              placeholder="example@gmail.com"
               value={email.value}
               onChange={email.onChange}
             />

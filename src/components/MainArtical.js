@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -270,7 +270,7 @@ const MainArtical = (props) => {
                             <b> . </b>&nbsp;{blog.createdAt.slice(0, 10)}
                           </p>
                         </div>
-                        <div className="blog_user_position"> President </div>
+                        <div className="blog_user_position"> {blog.user.position} </div>
                       </div>
                     </div>
                   </Link>

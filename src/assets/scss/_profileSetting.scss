@@ -14,7 +14,7 @@
   }
   header {
     color: rgb(31, 169, 127);
-    @media only screen and (max-width: 445px) {
+    @media only screen and (max-width: 485px) {
       text-align: center;
     }
   }
@@ -25,7 +25,7 @@
     justify-content: space-between;
     flex-basis: auto;
 
-    @media only screen and (max-width: 445px) {
+    @media only screen and (max-width: 485px) {
       flex-direction: column;
       align-items: center;
     }
@@ -34,7 +34,7 @@
     width: 300px;
     // padding: 10px 0;
     border: 2px solid rgb(27, 27, 25);
-    @media only screen and (max-width: 445px) {
+    @media only screen and (max-width: 485px) {
       margin-bottom: 15px;
     }
   }
@@ -57,14 +57,14 @@
     }
   }
   .acccount_info_heading {
-    @media only screen and (max-width: 445px) {
+    @media only screen and (max-width: 485px) {
       text-align: center;
     }
   }
   .acount_information {
     display: flex;
     flex-direction: column;
-    @media only screen and (max-width: 445px) {
+    @media only screen and (max-width: 485px) {
       align-items: center;
     }
 
@@ -74,25 +74,25 @@
       height: 30px;
       justify-content: space-between;
       margin-bottom: 20px;
-      @media only screen and (max-width: 445px) {
+      @media only screen and (max-width: 485px) {
         flex-direction: column;
         margin-top: 10px;
     }
       label {
         font-size: 17px;
-        width: 41%;
+        width: 45%;
         @media only screen and (max-width: 600px) {
           width: 55%;
         }
-        @media only screen and (max-width: 445px) {
+        @media only screen and (max-width: 485px) {
           width: 100%;
         }
       }
       input {
         width: 80%;
         padding: 5px;
-        @media only screen and (max-width: 445px) {
-           margin-top: 3px;
+        @media only screen and (max-width: 485px) {
+          margin-top: 3px;
         }
       }
     }

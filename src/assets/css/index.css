@@ -1110,7 +1110,7 @@ code {
 #profile_full_Container header {
   color: rgb(31, 169, 127);
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container header {
     text-align: center;
   }
@@ -1122,7 +1122,7 @@ code {
   justify-content: space-between;
   flex-basis: auto;
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container .profile_pic_container {
     flex-direction: column;
     align-items: center;
@@ -1132,7 +1132,7 @@ code {
   width: 300px;
   border: 2px solid rgb(27, 27, 25);
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container .profile_pic {
     margin-bottom: 15px;
   }
@@ -1153,7 +1153,7 @@ code {
 #profile_full_Container .edit_btn_container input {
   display: none;
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container .acccount_info_heading {
     text-align: center;
   }
@@ -1162,7 +1162,7 @@ code {
   display: flex;
   flex-direction: column;
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container .acount_information {
     align-items: center;
   }
@@ -1174,7 +1174,7 @@ code {
   justify-content: space-between;
   margin-bottom: 20px;
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container .acount_information > div {
     flex-direction: column;
     margin-top: 10px;
@@ -1182,14 +1182,14 @@ code {
 }
 #profile_full_Container .acount_information > div label {
   font-size: 17px;
-  width: 41%;
+  width: 45%;
 }
 @media only screen and (max-width: 600px) {
   #profile_full_Container .acount_information > div label {
     width: 55%;
   }
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container .acount_information > div label {
     width: 100%;
   }
@@ -1198,7 +1198,7 @@ code {
   width: 80%;
   padding: 5px;
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 485px) {
   #profile_full_Container .acount_information > div input {
     margin-top: 3px;
   }

@@ -10,11 +10,10 @@ const ProfileSetting = () => {
   const [name, setName] = useState("name");
   const [email, setEmail] = useState("email");
   const [password, setPassword] = useState("");
-
+  const [position, setPosition] = useState("");
   const [redirect, setRedirect] = useState(false);
 
   const [profileInfo, setProfileInfo] = useState({});
-
 
   // useEffect(() => {
   //   setName(`${auth?.user?.name}`);
@@ -26,16 +25,18 @@ const ProfileSetting = () => {
       if (auth?.user?._id) {
         const response = await userProfile(auth?.user?._id);
         if (response.success) {
-          const profile = response.data.userProfile
+          const profile = response.data.userProfile;
           setProfileInfo(profile);
           setName(`${profile.name}`);
           setEmail(`${profile.email}`);
-
+          if (profile?.position) {
+            setPosition(`${profile.position}`);
+          }
         }
       }
     };
     getUserInfo();
-  }, [ auth]);
+  }, [auth]);
 
   const [file, setFile] = useState("");
 
@@ -46,6 +47,7 @@ const ProfileSetting = () => {
     formData.append("avatar", file);
     formData.append("name", name);
     formData.append("email", email);
+    formData.append("position", position);
     formData.append("password", password);
 
     const userId = auth.user._id;
@@ -104,7 +106,6 @@ const ProfileSetting = () => {
                   //   )
                   // )}`}
                   src={`data:${profileInfo?.avatar?.type};base64,${profileInfo?.avatar?.img}`}
-
                 />
               ) : (
                 <img
@@ -135,11 +136,12 @@ const ProfileSetting = () => {
               <input
                 name="name"
                 id="name"
-                type={"name"}
+                type={"text"}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
+
             <div>
               <label htmlFor="email">Email :</label>
               <input
@@ -148,6 +150,17 @@ const ProfileSetting = () => {
                 type={"email"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="position">Employment status :</label>
+              <input
+                name="position"
+                id="position"
+                placeholder="EX:Software Developer"
+                type={"text"}
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
               />
             </div>
             <div>
