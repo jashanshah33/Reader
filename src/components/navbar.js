@@ -9,14 +9,16 @@ import {
   faUser,
   faContactBook,
   faPowerOff,
-  faGear
+  faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
 import { userProfile } from "../api";
+import Loader from "./Loader";
 
 export const Navbar = (props) => {
+  const [loading, setLoading] = useState(true);
   const [dropdown, setDropdown] = useState(false);
   const [profile, setProfile] = useState(false);
   const [profileInfo, setProfileInfo] = useState({});
@@ -30,6 +32,7 @@ export const Navbar = (props) => {
           setProfileInfo(response.data.userProfile);
         }
       }
+      setLoading(false);
     };
     getUserInfo();
   }, [profile, auth]);
@@ -56,6 +59,9 @@ export const Navbar = (props) => {
   const handelLogout = () => {
     auth.logout();
   };
+  if (loading) {
+    return <Loader/>
+  }
   return (
     <nav id="navbar">
       <section id="left">

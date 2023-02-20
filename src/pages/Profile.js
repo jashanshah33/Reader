@@ -7,8 +7,10 @@ import { useEffect } from "react";
 import { deleteBlog, toggleFollow, userProfile as profile } from "../api";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Loader from "../components/Loader";
 
 const Profile = () => {
+  const [loading, setLoading] = useState(true);
   const [userProfile, setUserProfile] = useState({});
   const [follow, setFollow] = useState(false);
   const auth = useAuth();
@@ -33,6 +35,7 @@ const Profile = () => {
           }
         }
       }
+      setLoading(false);
     };
 
     getuserProfile();
@@ -47,7 +50,6 @@ const Profile = () => {
   //   }
   // });
   const handelDeletePost = async (blogId, userId) => {
-    // console.log("Post Deleted");
     if (userId === auth.user._id) {
       const response = await deleteBlog(blogId, auth?.user._id);
       if (response.success) {
@@ -79,6 +81,9 @@ const Profile = () => {
       setFollow(!follow);
     }
   };
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <main className="profile_outer_container">
       <div className="profile_container">
@@ -132,7 +137,6 @@ const Profile = () => {
                 <span> {userProfile?.following?.length} Following</span>
               </>
             )}
-            
           </div>
 
           <div className="joined">

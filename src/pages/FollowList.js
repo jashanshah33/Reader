@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { followList, toggleFollow } from "../api";
+import Loader from "../components/Loader";
 import { useAuth } from "../hooks";
 
 const FollowList = () => {
+  const [loading, setLoading] = useState(true);
   const [followers, setFollwers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [follower, setFollwer] = useState(true);
-  const [checkedFollowing, setcheckedFollowing] = useState(false);
   const { list } = useParams();
   const auth = useAuth();
   useEffect(() => {
@@ -25,6 +26,7 @@ const FollowList = () => {
           }
         }
       }
+      setLoading(false);
     };
     getUserFollowData();
   }, [auth]);
@@ -75,6 +77,9 @@ const FollowList = () => {
 
   const List = follower ? followers : following;
 
+  if (loading) {
+    return <Loader/>
+  }
   return (
     <main className="followList_container">
       <div className="followList_outer_div">
@@ -152,8 +157,8 @@ const FollowList = () => {
           </>
         ) : (
           <div className="empty_list">
-           <h1> Empty List!!</h1>
-            </div>
+            <h1> Empty List!!</h1>
+          </div>
         )}
       </div>
     </main>

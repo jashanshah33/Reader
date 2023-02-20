@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { blog, searchBlog } from "../api/index";
+import Loader from "./Loader";
 
 const MainArtical = (props) => {
+  const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
   const [designBlog, setDesignBlog] = useState([]);
   const [developmentBlog, setDevelopmentBlog] = useState([]);
@@ -32,6 +34,8 @@ const MainArtical = (props) => {
 
   useEffect(() => {
     const getBlog = async () => {
+      setLoading(true)
+
       const response = await blog();
       if (response.success) {
         const { data } = response;
@@ -43,6 +47,7 @@ const MainArtical = (props) => {
         setLeaderShipBlog(data.LeaderShipBlog);
         setManagementBlog(data.managementBlog);
       }
+      setLoading(false)
     };
     getBlog();
   }, []);
@@ -113,6 +118,11 @@ const MainArtical = (props) => {
     selectedBlog = managementBlog;
   }
   const topicList = ["viewAll", "design", "product", "development"];
+  
+  if (loading) {
+    return <Loader/>
+  }
+
   return (
     <section id="Main_blog_full_container">
       <header id="Main_blog_header">
@@ -270,7 +280,10 @@ const MainArtical = (props) => {
                             <b> . </b>&nbsp;{blog.createdAt.slice(0, 10)}
                           </p>
                         </div>
-                        <div className="blog_user_position"> {blog.user.position} </div>
+                        <div className="blog_user_position">
+                          {" "}
+                          {blog.user.position}{" "}
+                        </div>
                       </div>
                     </div>
                   </Link>

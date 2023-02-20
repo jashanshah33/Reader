@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import { singleblog } from "../api";
 import { Markup } from "interweave";
 import { useAuth } from "../hooks";
+import Loader from "../components/Loader";
 
 const ReadBlog = () => {
+  const [loading, setLoading] = useState(true);
   const [blog, setBlog] = useState("");
   const params = useParams();
   const auth = useAuth();
@@ -18,10 +20,13 @@ const ReadBlog = () => {
         // console.log(response.data.blog.content);
         setBlog(response.data.blog.content);
       }
+      setLoading(false);
     };
     getBlog();
   }, [params]);
-
+if (loading) {
+  return <Loader/>
+}
   return (
     <div style={{ padding: "10px 20px" }}>
       {" "}

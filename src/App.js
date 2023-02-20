@@ -11,12 +11,14 @@ import ReadBlog from "./pages/ReadBlog";
 import FollowList from "./pages/FollowList";
 import { useState } from "react";
 import Contact from "./pages/Contact";
+
+const PageNotFound = () => {
+  return <h1>404</h1>;
+};
+
 function App() {
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState("");
   const auth = useAuth();
-  const PageNotFound = () => {
-    return <h1>404</h1>;
-  };
 
   return (
     <div>
@@ -45,10 +47,10 @@ function App() {
             {auth.user ? <ProfileSetting /> : <Login />}
           </Route>
           <Route exact path="/contact">
-            {auth.user ? <Contact/> : <Login />}
+            {auth.user ? <Contact /> : <Login />}
           </Route>
           <Route exact path="/followList/:list">
-            {auth.user ? <FollowList/> : <Login />}
+            {auth.user ? <FollowList /> : <Login />}
           </Route>
           <Route>
             <PageNotFound />

@@ -4,9 +4,11 @@ import { useAuth } from "../hooks";
 import { LOCALSTORAGE_TOKEN_KEY } from "../utils";
 import toast from "react-hot-toast";
 import { userProfile } from "../api";
+import Loader from "../components/Loader";
 
 const ProfileSetting = () => {
   const auth = useAuth();
+  const [loading, setLoading] = useState(true);
   const [name, setName] = useState("name");
   const [email, setEmail] = useState("email");
   const [password, setPassword] = useState("");
@@ -34,6 +36,7 @@ const ProfileSetting = () => {
           }
         }
       }
+      setLoading(false);
     };
     getUserInfo();
   }, [auth]);
@@ -85,6 +88,9 @@ const ProfileSetting = () => {
 
   if (redirect) {
     return <Redirect to={`/profile/${auth?.user._id}`} />;
+  }
+  if (loading) {
+    return <Loader/>
   }
   return (
     <div id="profile_full_Container">
