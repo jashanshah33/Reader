@@ -58,7 +58,10 @@ code {
   display: flex;
   align-items: center;
 }
-#navbar #right div {
+#navbar #right > div {
+  margin-left: 20px;
+}
+#navbar #right > a {
   margin-left: 20px;
 }
 #navbar #right .login_btn,
@@ -78,6 +81,99 @@ code {
 }
 #navbar #right .register_btn {
   background-color: rgb(184, 70, 39);
+}
+#navbar .notification_wrapper {
+  position: relative;
+  cursor: pointer;
+}
+#navbar .notification_wrapper .red_dot {
+  background-color: rgb(255, 0, 0);
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+}
+@media only screen and (max-width: 600px) {
+  #navbar .notification_wrapper .red_dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+#navbar .notification_wrapper .notification_box {
+  box-sizing: border-box;
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.304);
+  transition: all 0.5s ease;
+}
+#navbar .notification_wrapper .notification_box:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 75px;
+  width: 0;
+  height: 0;
+  border-left: 13px solid transparent;
+  border-bottom: 15px solid rgb(255, 255, 255);
+  border-right: 13px solid transparent;
+}
+#navbar .notification_wrapper .notification_box .clear_notification_wrapper {
+  width: 100%;
+  text-align: end;
+  margin-bottom: 5px;
+}
+#navbar .notification_wrapper .notification_box .clear_notification {
+  padding: 0 5px;
+  transition: all 0.3s;
+}
+#navbar .notification_wrapper .notification_box .clear_notification:hover {
+  color: red;
+}
+#navbar .notification_wrapper .notification_box .clear_icon {
+  vertical-align: -0.22rem;
+}
+#navbar .notification_wrapper .notification_box .notification_list {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 10px;
+}
+#navbar .notification_wrapper .notification_box .unreaded {
+  background-color: rgb(213, 225, 255);
+}
+#navbar .notification_wrapper .notification_box .notification_user_img {
+  width: 10%;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#navbar .notification_wrapper .notification_box .notification_text {
+  width: 90%;
+  margin: 0;
+  margin-left: 10px;
+}
+#navbar .notification_wrapper .visible_notification_box {
+  width: 300px;
+  height: 200px;
+  top: 170%;
+  right: -80px;
+  padding: 10px;
+  overflow: visible;
+  transition: all 0.5s ease;
+}
+@media only screen and (max-width: 600px) {
+  #navbar .notification_wrapper .visible_notification_box {
+    top: 190%;
+  }
 }
 #navbar #profile_container {
   width: 45px;

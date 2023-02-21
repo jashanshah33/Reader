@@ -6,7 +6,6 @@ import Loader from "./Loader";
 
 const MainAside = () => {
   const auth = useAuth();
-  const [loading, setLoading] = useState(true);
   const [recentlyReadedList, setRecentlyReadedList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const [following, setFollowing] = useState([]);
@@ -14,21 +13,17 @@ const MainAside = () => {
   useEffect(() => {
     if (auth.user) {
       const recentlyReadedList = async () => {
-        setLoading(true);
         const response = await recentlyReaded(auth?.user?._id);
         if (response.success) {
           setRecentlyReadedList(response.data.recentlyReaded);
         }
-        setLoading(false);
       };
       const getAllUsers = async () => {
-        setLoading(true);
         const response = await allUser(auth?.user?._id);
         if (response.success) {
           setAllUsers(response.data.allUser);
           setFollowing(response.data.userFollow.following);
         }
-        setLoading(false);
       };
       getAllUsers();
       recentlyReadedList();
@@ -76,9 +71,7 @@ const MainAside = () => {
       return "Follow";
     }
   };
-  if (loading) {
-    return <Loader />;
-  }
+
   return (
     <div className="full_aside_conatiner">
       <div className="trending_topics">

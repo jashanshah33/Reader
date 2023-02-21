@@ -19,6 +19,7 @@ import Loader from "./Loader";
 
 export const Navbar = (props) => {
   const [loading, setLoading] = useState(true);
+  const [notification, setNotification] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [profile, setProfile] = useState(false);
   const [profileInfo, setProfileInfo] = useState({});
@@ -37,6 +38,20 @@ export const Navbar = (props) => {
     getUserInfo();
   }, [profile, auth]);
 
+  useEffect(() => {
+    function handleClick() {
+      setDropdown(false);
+      setProfile(false);
+      setNotification(false);
+    }
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
+
   const handelDropown = (e) => {
     e.stopPropagation();
     setDropdown(true);
@@ -46,11 +61,6 @@ export const Navbar = (props) => {
     setDropdown(false);
   };
 
-  window.document.addEventListener("click", function () {
-    setDropdown(false);
-    setProfile(false);
-  });
-
   const handelProfile = async (e) => {
     e.stopPropagation();
     setProfile(!profile);
@@ -59,8 +69,13 @@ export const Navbar = (props) => {
   const handelLogout = () => {
     auth.logout();
   };
+
+  const handelNotificationBox = () => {
+    setNotification(!notification);
+    console.log(notification);
+  };
   if (loading) {
-    return <Loader/>
+    return <Loader />;
   }
   return (
     <nav id="navbar">
@@ -222,7 +237,87 @@ export const Navbar = (props) => {
       <section id="right">
         {auth.user ? (
           <>
-            <FontAwesomeIcon icon={faBell} size="xl" />
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="notification_wrapper"
+            >
+              <span className="red_dot"></span>
+              <FontAwesomeIcon
+                onClick={handelNotificationBox}
+                icon={faBell}
+                size="xl"
+              />
+              <div
+                className={
+                  notification
+                    ? "notification_box visible_notification_box"
+                    : "notification_box"
+                }
+              >
+                <div className="clear_notification_wrapper">
+                  <span className="clear_notification">
+                    Clear{" "}
+                    <FontAwesomeIcon className="clear_icon" icon={faXmark} />{" "}
+                  </span>
+                </div>
+                <div className="notification_list unreaded">
+                  <div className="notification_user_img">
+                    {/* {user.avatar ? ( */}
+                    {/* <>
+                        <img
+                          alt=""
+                          width={"100%"}
+                          height="100%"
+                          src={`data:${user.avatar.type};base64,${user.avatar.img}`}
+                        />
+                      </> */}
+                    {/* ) : ( */}
+                    {/* <> */}
+                    <img
+                      alt=""
+                      width={"100%"}
+                      height="100%"
+                      src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                    />
+                    {/* </> */}
+                    {/* )} */}
+                  </div>
+                  <p className="notification_text">
+                    {" "}
+                    <b> Jashan</b> Started Following You 
+                  </p>
+                </div>
+                {/* delete */}
+                <div className="notification_list">
+                  <div className="notification_user_img">
+                    {/* {user.avatar ? ( */}
+                    {/* <>
+                        <img
+                          alt=""
+                          width={"100%"}
+                          height="100%"
+                          src={`data:${user.avatar.type};base64,${user.avatar.img}`}
+                        />
+                      </> */}
+                    {/* ) : ( */}
+                    {/* <> */}
+                    <img
+                      alt=""
+                      width={"100%"}
+                      height="100%"
+                      src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                    />
+                    {/* </> */}
+                    {/* )} */}
+                  </div>
+                  <p className="notification_text">
+                    {" "}
+                    <b> Jashan</b> Started Following You Started Foll You Started Following .
+                  </p>
+                </div>
+                {/* delete */}
+              </div>
+            </div>
             <div id="profile_container">
               {profileInfo.avatar ? (
                 <img
