@@ -9,8 +9,8 @@ export const API_URLS = {
   followList: () => `${API_ROOT}/user/followList`,
   recentlyReaded: () => `${API_ROOT}/user/recentlyReadedList`,
   allUser: () => `${API_ROOT}/user/allUser`,
-
-
+  markNotificationAsReaded: () => `${API_ROOT}/user/markNotificationASReaded`,
+  deleteNotifications: () => `${API_ROOT}/user/deleteNotifications`,
   blog: () => `${API_ROOT}/blog/allBlogs`,
   singleblog: () => `${API_ROOT}/blog/singleBlogs`,
   deleteBlog: () => `${API_ROOT}/blog/deleteBlog`,

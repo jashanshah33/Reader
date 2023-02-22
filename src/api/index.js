@@ -107,6 +107,18 @@ export const allUser = (userId) => {
   });
 };
 
+export const markNotificationAsReaded = (userId) => {
+  return custonFetch(`${API_URLS.markNotificationAsReaded()}?id=${userId}`, {
+    method: "post",
+  });
+};
+
+export const deleteNotifications = (userId) => {
+  return custonFetch(`${API_URLS.deleteNotifications()}?id=${userId}`, {
+    method: "post",
+  });
+};
+
 export const blog = () => {
   return custonFetch(`${API_URLS.blog()}`, {
     method: "get",

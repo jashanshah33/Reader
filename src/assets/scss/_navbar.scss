@@ -99,7 +99,7 @@
         content: "";
         position: absolute;
         bottom: 100%;
-        right: 75px;
+        right: 137px;
         width: 0;
         height: 0;
         border-left: 13px solid transparent;
@@ -113,7 +113,7 @@
 
       }
       .clear_notification {
-        padding: 0 5px;
+        padding: 0 10px;
         transition: all 0.3s;
         &:hover {
           color: red;
@@ -125,15 +125,19 @@
       .notification_list {
         display: flex;
         align-items: center;
-       padding: 5px;
-       border-radius: 10px;
+       padding: 5px 10px;
       }
       .unreaded{
-        background-color: rgb(213, 225, 255);
+        background-color: rgb(200, 216, 255);
+      }
+      .empty_text{
+        font-size: 1.5rem;
+        color: gray;
+        text-align: center;
       }
       .notification_user_img {
-        width: 10%;
-        height: 20px;
+        width: 15%;
+        height: 35px;
         border-radius: 50%;
         overflow: hidden;
         
@@ -146,11 +150,11 @@
       }
     }
     .visible_notification_box {
-      width: 300px;
-      height: 200px;
+      width: 310px;
+      height: auto;
       top: 170%;
-      right: -80px;
-      padding: 10px;
+      right: -140px;
+      padding: 10px 0;
       overflow: visible;
       transition: all 0.5s ease;
 

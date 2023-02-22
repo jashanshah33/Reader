@@ -14,7 +14,11 @@ import {
 import { useState } from "react";
 import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
-import { userProfile } from "../api";
+import {
+  deleteNotifications,
+  markNotificationAsReaded,
+  userProfile,
+} from "../api";
 import Loader from "./Loader";
 
 export const Navbar = (props) => {
@@ -23,14 +27,18 @@ export const Navbar = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [profile, setProfile] = useState(false);
   const [profileInfo, setProfileInfo] = useState({});
+  const [notifications, setNotifications] = useState([]);
+  const [activeNotification, setActiveNotification] = useState(false);
   const auth = useAuth();
   const { setCategory } = props;
+
   useEffect(() => {
     const getUserInfo = async () => {
       if (auth?.user?._id) {
         const response = await userProfile(auth?.user?._id);
         if (response.success) {
           setProfileInfo(response.data.userProfile);
+          setNotifications(response.data.userProfile.notifications);
         }
       }
       setLoading(false);
@@ -52,6 +60,16 @@ export const Navbar = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (notifications) {
+      for (const i of notifications) {
+        if (i.readed === false) {
+          setActiveNotification(true);
+        }
+      }
+    }
+  }, [notifications]);
+
   const handelDropown = (e) => {
     e.stopPropagation();
     setDropdown(true);
@@ -70,9 +88,25 @@ export const Navbar = (props) => {
     auth.logout();
   };
 
-  const handelNotificationBox = () => {
+  const handelNotificationBox = async () => {
+    await markNotificationAsReaded(auth?.user._id);
+
     setNotification(!notification);
-    console.log(notification);
+    setActiveNotification(false);
+
+    // if (notifications.length) {
+    //   setNotifications((notifications) => [
+    //     ...notifications,
+    //     { ...notification, readed: true }
+    //   ]);
+    // }
+  };
+
+  const handelClearNotifications = async () => {
+    const response = await deleteNotifications(auth?.user._id);
+    if (response.success) {
+      setNotifications([]);
+    }
   };
   if (loading) {
     return <Loader />;
@@ -241,7 +275,7 @@ export const Navbar = (props) => {
               onClick={(e) => e.stopPropagation()}
               className="notification_wrapper"
             >
-              <span className="red_dot"></span>
+              {activeNotification ? <span className="red_dot"></span> : null}
               <FontAwesomeIcon
                 onClick={handelNotificationBox}
                 icon={faBell}
@@ -255,67 +289,61 @@ export const Navbar = (props) => {
                 }
               >
                 <div className="clear_notification_wrapper">
-                  <span className="clear_notification">
+                  <span
+                    onClick={handelClearNotifications}
+                    className="clear_notification"
+                  >
                     Clear{" "}
                     <FontAwesomeIcon className="clear_icon" icon={faXmark} />{" "}
                   </span>
                 </div>
-                <div className="notification_list unreaded">
-                  <div className="notification_user_img">
-                    {/* {user.avatar ? ( */}
-                    {/* <>
-                        <img
-                          alt=""
-                          width={"100%"}
-                          height="100%"
-                          src={`data:${user.avatar.type};base64,${user.avatar.img}`}
-                        />
-                      </> */}
-                    {/* ) : ( */}
-                    {/* <> */}
-                    <img
-                      alt=""
-                      width={"100%"}
-                      height="100%"
-                      src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                    />
-                    {/* </> */}
-                    {/* )} */}
-                  </div>
-                  <p className="notification_text">
-                    {" "}
-                    <b> Jashan</b> Started Following You 
-                  </p>
-                </div>
-                {/* delete */}
-                <div className="notification_list">
-                  <div className="notification_user_img">
-                    {/* {user.avatar ? ( */}
-                    {/* <>
-                        <img
-                          alt=""
-                          width={"100%"}
-                          height="100%"
-                          src={`data:${user.avatar.type};base64,${user.avatar.img}`}
-                        />
-                      </> */}
-                    {/* ) : ( */}
-                    {/* <> */}
-                    <img
-                      alt=""
-                      width={"100%"}
-                      height="100%"
-                      src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                    />
-                    {/* </> */}
-                    {/* )} */}
-                  </div>
-                  <p className="notification_text">
-                    {" "}
-                    <b> Jashan</b> Started Following You Started Foll You Started Following .
-                  </p>
-                </div>
-                {/* delete */}
+                {notifications?.length ? (
+                  <>
+                    {notifications.map((notification) => (
+                      <Link
+                        key={notification._id}
+                        to={`/profile/${notification?.notificationFrom?._id}`}
+                      >
+                        <div
+                          onClick={() => setNotification(false)}
+                          className={
+                            notification.readed
+                              ? "notification_list"
+                              : "notification_list unreaded"
+                          }
+                        >
+                          <div className="notification_user_img">
+                            {notification.notificationFrom.avatar ? (
+                              <img
+                                alt=""
+                                width={"100%"}
+                                height="100%"
+                                src={`data:${notification.notificationFrom.avatar.type};base64,${notification.notificationFrom.avatar.img}`}
+                              />
+                            ) : (
+                              <img
+                                alt=""
+                                width={"100%"}
+                                height="100%"
+                                src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                              />
+                            )}
+                          </div>
+
+                          <p className="notification_text">
+                            {" "}
+                            {notification.type === "following" && (
+                              <b> {notification.notificationFrom.name} </b>
+                            )}
+                            {notification.message}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </>
+                ) : (
+                  <div className="empty_text">Empty!</div>
+                )}
               </div>
             </div>
             <div id="profile_container">
