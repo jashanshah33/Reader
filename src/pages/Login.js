@@ -26,7 +26,7 @@ const useFormInfo = (initialValue) => {
 };
 
 const Login = () => {
-  const [emailClasses, setEmailClasses] = useState("login");
+  const [emailClasses, setEmailClasses] = useState("login_wrapper");
   const [registerClasses, setRegisterClasses] = useState("register");
 
   const loginEmail = useFormInfo("");
@@ -36,29 +36,31 @@ const Login = () => {
   const email = useFormInfo("");
   const password = useFormInfo("");
   const confirmPassword = useFormInfo("");
+  const [forgetPassword, setForgetPassword] = useState(false);
+
   const auth = useAuth();
   const pathLocation = window.location.pathname;
   useEffect(() => {
     //show compoment according to pathname
     if (pathLocation === "/register") {
       setRegisterClasses("register rotate_Register_X");
-      setEmailClasses("login rotate_Login_X");
+      setEmailClasses("login_wrapper rotate_Login_X");
     } else {
       setRegisterClasses("register rotate_Register_Y");
-      setEmailClasses("login rotate_Login_Y");
+      setEmailClasses("login_wrapper rotate_Login_Y");
     }
   }, [pathLocation]);
 
   //navigate to login
   const handelLogin = () => {
     setRegisterClasses("register rotate_Register_Y");
-    setEmailClasses("login rotate_Login_Y");
+    setEmailClasses("login_wrapper rotate_Login_Y");
   };
 
   //navigate to register
   const handelRegister = () => {
     setRegisterClasses("register rotate_Register_X");
-    setEmailClasses("login rotate_Login_X");
+    setEmailClasses("login_wrapper rotate_Login_X");
   };
 
   const isValidEmail = (email) => {
@@ -110,7 +112,7 @@ const Login = () => {
       }
       //calling registerInputValueNull to make input values null
       registerInputValueNull();
-    }else{
+    } else {
       toast.error(response.message);
     }
     //calling registerInputValueNull to make input values null
@@ -138,10 +140,17 @@ const Login = () => {
     if (response.success) {
       toast.success(response.message);
       loginInputValueNull();
-    }else{
+    } else {
       toast.error(response.message);
     }
     loginInputValueNull();
+  };
+
+  const handelForgotPassword = () => {
+    setForgetPassword(true);
+  };
+  const handelBackToLogin = () => {
+    setForgetPassword(false);
   };
 
   //if user loged In redirect to home page
@@ -151,52 +160,95 @@ const Login = () => {
 
   return (
     <div className="login_Register">
-      <div className={emailClasses}>
-        <form action="">
-          <div>
-            <h2>Login : </h2>
-          </div>
-          <div>
-            <label htmlFor="loginEmail">Email*</label>
-            <input
-              id="loginEmail"
-              required
-              type="email"
-              placeholder="example@gmail.com"
-              value={loginEmail.value}
-              onChange={loginEmail.onChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="loginPassword">Password*</label>
-            <input
-              id="loginPassword"
-              required
-              type={"password"}
-              placeholder="Password"
-              value={loginPassword.value}
-              onChange={loginPassword.onChange}
-            />
+
+
+
+
+
+<div className={emailClasses}>
+        <div className={forgetPassword ? "card flipped" : "card"}>
+          <div className="front_face_login card__face ">
+            <form action="">
+              <div>
+                <h2>Login : </h2>
+              </div>
+              <div>
+                <label htmlFor="loginEmail">Email*</label>
+                <input
+                  id="loginEmail"
+                  required
+                  type="email"
+                  placeholder="example@gmail.com"
+                  value={loginEmail.value}
+                  onChange={loginEmail.onChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="loginPassword">Password*</label>
+                <input
+                  id="loginPassword"
+                  required
+                  type={"password"}
+                  placeholder="Password"
+                  value={loginPassword.value}
+                  onChange={loginPassword.onChange}
+                />
+              </div>
+
+              <div></div>
+
+              <button className="login_btn" type="submit">
+                Login
+              </button>
+              <button
+                onClick={handelRegister}
+                className="navigantion_btn"
+                type="button"
+              >
+                Register
+                <FontAwesomeIcon icon={faRightLong} size="xl" />
+
+              </button>
+            </form>
+            <div onClick={handelForgotPassword} className="forgotPassword" href="/">
+          Forgot Password
+        </div>
           </div>
 
-          <div></div>
-          <button onClick={login} className="login_btn" type="submit">
-            Login
-          </button>
-          <button
-            onClick={handelRegister}
-            className="navigantion_btn"
-            type="button"
-          >
-            Register
-            <FontAwesomeIcon icon={faRightLong} size="xl" />
-          </button>
-        </form>
+          <div className="back_face_register card__face">
+            <form className="forgotPassword_form" >
+              <div>
+                <h2>Forgot Password : </h2>
+              </div>
+              <div>
+                <label htmlFor="loginEmail">Email*</label>
+                <input
+                  id="loginEmail"
+                  required
+                  type="email"
+                  placeholder="example@gmail.com"
+                  value={loginEmail.value}
+                  onChange={loginEmail.onChange}
+                />
+              </div>
+
+              <button className="login_btn" type="submit">
+                Submit
+              </button>
+              <button onClick={handelBackToLogin} type="button">
+                Back to Login
+              </button>
+            </form>
+   
+          </div>
+        </div>
       </div>
       {/* second */}
 
+
+
       <div className={registerClasses}>
-        <form action="">
+        <form className="registerPassword_form" action="">
           <div>
             <h2>Register : </h2>
           </div>

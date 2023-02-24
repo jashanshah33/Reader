@@ -48,6 +48,32 @@
       }
     }
   }
+  .forgotPassword_form {
+    height: 40%;
+    @media only screen and (max-width: 992px) {
+      width: 60%;
+    }
+    @media only screen and (max-width: 600px) {
+      min-height: 40%;
+      width: 60%;
+    }
+    @media only screen and (max-width: 400px) {
+      min-height: 50%;
+      width: 50%;
+    }
+  }
+  .registerPassword_form{
+    height: 65%;
+    width: 50%;
+    @media only screen and (max-width: 600px) {
+      min-height: 75%;
+      width: 80%;
+    }
+    @media only screen and (max-width: 400px) {
+      min-height: 80%;
+      width: 90%;
+    }
+  }
   button {
     padding: 10px 5px;
     border-radius: 10px;
@@ -68,11 +94,13 @@
   }
 }
 
-.login {
-  background-color: orange;
+.login_wrapper {
   height: 80%;
   width: 35%;
   position: absolute;
+  perspective: 600px;
+  border-radius: 20px;
+
   @media only screen and (max-width: 1200px) {
     height: 80%;
     width: 45%;
@@ -97,17 +125,63 @@
     width: 80%;
     margin-right: 50px;
   }
+  .card {
+    border-radius: 20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform-origin: center right;
+    transition: transform 1s;
+  }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
+  .forgotPassword {
+    text-align: end;
+    margin: 10px 10px 0 0;
+    text-align: end;
+    align-self: flex-end;
+    color: inherit;
+    text-decoration: underline;
+    font-size: 1.1rem;
+    cursor: pointer;
+    &:hover {
+      color: blue;
+    }
+  }
+  .card__face {
+    border-radius: 20px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .front_face_login {
+    background-color: orange;
+    display: flex;
+    flex-direction: column;
+  }
+  .back_face_register {
+    background: orange;
+    transform: rotateY(180deg);
+  }
+
+  .flipped {
+    transform: translateX(-100%) rotateY(-180deg);
+  }
 }
 .register {
   background-color: orange;
   height: 80%;
   width: 35%;
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
 
   @media only screen and (max-width: 1200px) {
     height: 80%;
@@ -133,17 +207,13 @@
     width: 80%;
     margin-left: 50px;
   }
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
 
-  form {
-    height: 70%;
-    @media only screen and (max-width: 768px) {
-      height: 80%;
-    }
-  }
+  // form {
+  //   height: 70%;
+  //   @media only screen and (max-width: 768px) {
+  //     height: 80%;
+  //   }
+  // }
 
   #register_password {
     position: relative;
@@ -237,14 +307,13 @@
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform: perspective(100px) translate3d(20vw, 0px, 0px) ;
+    transform: perspective(100px) translate3d(20vw, 0px, 0px);
     opacity: 0.5;
   }
   100% {
     transform: perspective(100px) translate3d(10vw, 0px, -4vh);
     opacity: 0.5;
     z-index: 0;
-
   }
 }
 
@@ -259,7 +328,7 @@
 
     50% {
       box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-      transform: perspective(100px) translate3d(11vw, 0px, 0px) ;
+      transform: perspective(100px) translate3d(11vw, 0px, 0px);
       opacity: 0.5;
     }
 
@@ -267,7 +336,6 @@
       transform: perspective(100px) translate3d(10vw, 0px, -4vh);
       opacity: 0.5;
       z-index: 0;
-
     }
   }
 }
@@ -277,19 +345,16 @@
     transform: translate3d(-10vw, 0px, 0px);
     opacity: 1;
     z-index: 1;
-
   }
   50% {
     transform: perspective(100px) translate3d(-20vw, 0px, 0px);
     opacity: 0.5;
     z-index: 0;
-
   }
   100% {
     opacity: 0.5;
     transform: perspective(100px) translate3d(-10vw, 0px, -4vh);
     z-index: 0;
-
   }
 }
 
@@ -300,14 +365,12 @@
       transform: perspective(100px) translate3d(-10vw, 0px, 0px);
       opacity: 1;
       z-index: 1;
-
     }
 
     50% {
       transform: perspective(100px) translate3d(-11vw, 0px, 0px);
       opacity: 0.5;
       z-index: 0;
-
     }
 
     100% {
@@ -323,11 +386,10 @@
     transform: perspective(100px) translate3d(10vw, 0px, -4vh);
     opacity: 0.5;
     z-index: 0;
-
   }
   50% {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-    transform:perspective(100px) translate3d(20vw, 0px, -4vh) ;
+    transform: perspective(100px) translate3d(20vw, 0px, -4vh);
     opacity: 0.5;
     z-index: 1;
   }
@@ -344,19 +406,18 @@
       transform: perspective(100px) translate3d(-1vw, 0px, -4vh);
       opacity: 0.5;
       z-index: 0;
-
     }
 
     50% {
       box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
-      transform: perspective(100px) translate3d(0vw, 0px, -4vh) ;
+      transform: perspective(100px) translate3d(0vw, 0px, -4vh);
       opacity: 0.5;
       z-index: 1;
     }
 
     100% {
       opacity: 1;
-      transform: perspective(100px) translate3d(-1vw, 0px, 0px) ;
+      transform: perspective(100px) translate3d(-1vw, 0px, 0px);
       box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
       z-index: 1;
     }
