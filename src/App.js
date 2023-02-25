@@ -11,6 +11,7 @@ import ReadBlog from "./pages/ReadBlog";
 import FollowList from "./pages/FollowList";
 import { useState } from "react";
 import Contact from "./pages/Contact";
+import ResetPassword from "./pages/ResetPassword";
 
 const PageNotFound = () => {
   return <h1>404</h1>;
@@ -51,6 +52,9 @@ function App() {
           </Route>
           <Route exact path="/followList/:list">
             {auth.user ? <FollowList /> : <Login />}
+          </Route>
+          <Route exact path="/resetUserPassword/:id">
+            <ResetPassword />
           </Route>
           <Route>
             <PageNotFound />

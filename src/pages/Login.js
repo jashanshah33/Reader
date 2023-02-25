@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faRightLong, faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../hooks";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import { forgetPasswordCall } from "../api";
 // custom hook for forms
 const useFormInfo = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -36,8 +35,11 @@ const Login = () => {
   const email = useFormInfo("");
   const password = useFormInfo("");
   const confirmPassword = useFormInfo("");
+
+  const forgetPasswordEmail = useFormInfo("");
   const [forgetPassword, setForgetPassword] = useState(false);
 
+  const history = useHistory();
   const auth = useAuth();
   const pathLocation = window.location.pathname;
   useEffect(() => {
@@ -83,7 +85,12 @@ const Login = () => {
     }
 
     //to check all the feilds are filled
-    if ((!name.value, !email.value, !password.value, !confirmPassword.value)) {
+    if (
+      !name.value ||
+      !email.value ||
+      !password.value ||
+      !confirmPassword.value
+    ) {
       return toast.error("Please Fill All The Feilds");
     }
 
@@ -140,10 +147,24 @@ const Login = () => {
     if (response.success) {
       toast.success(response.message);
       loginInputValueNull();
+      history.push("/");
     } else {
       toast.error(response.message);
     }
     loginInputValueNull();
+  };
+
+  const handelForgotPasswordSubmition = async () => {
+    if (!forgetPasswordEmail.value) {
+      return toast.success("Please fill the email");
+    }
+    const response = await forgetPasswordCall(forgetPasswordEmail.value);
+    if (response.success) {
+      setForgetPassword(false);
+      return toast.success(response.message);
+    } else {
+      return toast.error(response.message);
+    }
   };
 
   const handelForgotPassword = () => {
@@ -160,12 +181,7 @@ const Login = () => {
 
   return (
     <div className="login_Register">
-
-
-
-
-
-<div className={emailClasses}>
+      <div className={emailClasses}>
         <div className={forgetPassword ? "card flipped" : "card"}>
           <div className="front_face_login card__face ">
             <form action="">
@@ -197,7 +213,7 @@ const Login = () => {
 
               <div></div>
 
-              <button className="login_btn" type="submit">
+              <button onClick={login} className="login_btn" type="submit">
                 Login
               </button>
               <button
@@ -207,45 +223,53 @@ const Login = () => {
               >
                 Register
                 <FontAwesomeIcon icon={faRightLong} size="xl" />
-
               </button>
             </form>
-            <div onClick={handelForgotPassword} className="forgotPassword" href="/">
-          Forgot Password
-        </div>
+            <div
+              onClick={handelForgotPassword}
+              className="forgotPassword"
+              href="/"
+            >
+              Forgot Password
+            </div>
           </div>
 
           <div className="back_face_register card__face">
-            <form className="forgotPassword_form" >
+            <form className="forgotPassword_form">
               <div>
                 <h2>Forgot Password : </h2>
               </div>
               <div>
-                <label htmlFor="loginEmail">Email*</label>
+                <label htmlFor="forgotPasswordEmail">Email*</label>
                 <input
-                  id="loginEmail"
+                  id="forgotPasswordEmail"
                   required
                   type="email"
                   placeholder="example@gmail.com"
-                  value={loginEmail.value}
-                  onChange={loginEmail.onChange}
+                  value={forgetPasswordEmail.value}
+                  onChange={forgetPasswordEmail.onChange}
                 />
               </div>
 
-              <button className="login_btn" type="submit">
+              <button
+                className="login_btn"
+                type="button"
+                onClick={handelForgotPasswordSubmition}
+              >
                 Submit
               </button>
-              <button onClick={handelBackToLogin} type="button">
+              <button
+                className="login_btn"
+                onClick={handelBackToLogin}
+                type="button"
+              >
                 Back to Login
               </button>
             </form>
-   
           </div>
         </div>
       </div>
       {/* second */}
-
-
 
       <div className={registerClasses}>
         <form className="registerPassword_form" action="">

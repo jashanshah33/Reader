@@ -119,6 +119,19 @@ export const deleteNotifications = (userId) => {
   });
 };
 
+export const forgetPasswordCall = (email) => {
+  return custonFetch(`${API_URLS.forgetPassword()}`, {
+    method: "post",
+    body: { email },
+  });
+};
+
+export const updatePassword = (accessToken, password) => {
+  return custonFetch(`${API_URLS.updatePassword()}`, {
+    method: "post",
+    body: { accessToken, password },
+  });
+};
 export const blog = () => {
   return custonFetch(`${API_URLS.blog()}`, {
     method: "get",

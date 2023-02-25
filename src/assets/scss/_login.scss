@@ -22,6 +22,10 @@
     justify-content: space-around;
     height: 50%;
     width: 50%;
+    @media only screen and (max-width: 700px) {
+      min-height: 60%;
+      width: 70%;
+    }
     @media only screen and (max-width: 600px) {
       min-height: 60%;
       width: 80%;
@@ -52,19 +56,25 @@
     height: 40%;
     @media only screen and (max-width: 992px) {
       width: 60%;
+      min-height: 40%;
+
     }
     @media only screen and (max-width: 600px) {
-      min-height: 40%;
-      width: 60%;
+      min-height: 45%;
+      width: 70%;
     }
     @media only screen and (max-width: 400px) {
       min-height: 50%;
-      width: 50%;
+      width: 80%;
     }
   }
   .registerPassword_form{
     height: 65%;
     width: 50%;
+    @media only screen and (max-width: 700px) {
+      min-height: 60%;
+      width: 70%;
+    }
     @media only screen and (max-width: 600px) {
       min-height: 75%;
       width: 80%;

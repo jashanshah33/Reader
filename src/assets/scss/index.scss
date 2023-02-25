@@ -1,6 +1,6 @@
 html {
   @media only screen and (max-width: 600px) {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 body {
@@ -27,4 +27,5 @@ code {
 @import "./profileSetting";
 @import "./writeBlog";
 @import './followList.scss';
-@import './contact.scss'
+@import './contact.scss';
+@import './resetPassword'
