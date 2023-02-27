@@ -30,7 +30,7 @@ const Profile = () => {
         setUserProfile(profile);
 
         for (const i of profile.followers) {
-          if (i == auth?.user._id) {
+          if (i === auth?.user._id) {
             setFollow(true);
           }
         }
@@ -230,6 +230,7 @@ const Profile = () => {
                 {/* </div> */}
               </Link>
             ))}
+            <hr />
           </div>
         </>
       ) : (

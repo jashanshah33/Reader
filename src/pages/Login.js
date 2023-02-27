@@ -228,9 +228,9 @@ const Login = () => {
             <div
               onClick={handelForgotPassword}
               className="forgotPassword"
-              href="/"
+            
             >
-              Forgot Password
+             I forgot my password
             </div>
           </div>
 

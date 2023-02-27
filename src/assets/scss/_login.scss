@@ -149,14 +149,12 @@
   .forgotPassword {
     text-align: end;
     margin: 10px 10px 0 0;
-    text-align: end;
-    align-self: flex-end;
-    color: inherit;
-    text-decoration: underline;
+    color: blue;
     font-size: 1.1rem;
     cursor: pointer;
     &:hover {
-      color: blue;
+      text-decoration: underline;
+
     }
   }
   .card__face {

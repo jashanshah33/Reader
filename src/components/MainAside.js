@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { allUser, recentlyReaded, toggleFollow } from "../api";
 import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
-import Loader from "./Loader";
 
 const MainAside = () => {
   const auth = useAuth();
@@ -164,7 +163,11 @@ const MainAside = () => {
                   </div>
                   <div className="readed_blog_details">
                     <h4>{blog.title} </h4>
-                    <p>{blog.description.slice(0, 100)}...</p>
+                    {blog.description.length < 100 ? (
+                      <p>{blog.description}</p>
+                    ) : (
+                      <p>{blog.description.slice(0, 100)}...</p>
+                    )}
                   </div>
                 </div>
               </Link>

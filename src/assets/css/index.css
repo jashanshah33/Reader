@@ -577,10 +577,10 @@ code {
   align-self: flex-end;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 25px;
 }
 .single_blog_fullContainer .blog_descriptions {
-  height: 17vh;
-  overflow: hidden;
+  margin-bottom: 20px;
 }
 .single_blog_fullContainer .blog_header {
   margin-top: 5px;
@@ -858,15 +858,12 @@ code {
 .login_wrapper .forgotPassword {
   text-align: end;
   margin: 10px 10px 0 0;
-  text-align: end;
-  align-self: flex-end;
-  color: inherit;
-  text-decoration: underline;
+  color: blue;
   font-size: 1.1rem;
   cursor: pointer;
 }
 .login_wrapper .forgotPassword:hover {
-  color: blue;
+  text-decoration: underline;
 }
 .login_wrapper .card__face {
   border-radius: 20px;
@@ -1185,6 +1182,21 @@ code {
     height: 250%;
   }
 }
+@media only screen and (max-width: 400px) {
+  .profile_outer_container .profile {
+    height: 240%;
+  }
+}
+@media only screen and (max-height: 700px) {
+  .profile_outer_container .profile {
+    height: 190%;
+  }
+}
+@media only screen and (max-height: 800px) {
+  .profile_outer_container .profile {
+    height: 210%;
+  }
+}
 .profile_outer_container .profile_img {
   box-sizing: border-box;
   background-color: white;
@@ -1473,6 +1485,15 @@ code {
   background-color: rgb(184, 184, 184);
   color: rgb(0, 0, 0);
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.253);
+}
+.writeBlog .despriction_wrapper {
+  position: relative;
+}
+.writeBlog .despriction_counter {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  color: grey;
 }
 
 .followList_container {

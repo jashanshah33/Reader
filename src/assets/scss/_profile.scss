@@ -67,6 +67,18 @@
       height: 250%;
 
     }
+    @media only screen and (max-width: 400px) {
+      height: 240%;
+
+    }
+    @media only screen and (max-height: 700px) {
+      height: 190%;
+
+    }
+    @media only screen and (max-height: 800px) {
+      height: 210%;
+
+    }
   }
   .profile_img {
     box-sizing: border-box;

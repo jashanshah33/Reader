@@ -11,7 +11,7 @@ const PostBlog = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [redirect, setRedirect] = useState(false);
-
+  const [descriptionWorldLimit, setDescriptionWorldLimit] = useState(0);
   const { blogContent } = props;
 
   const auth = useAuth();
@@ -20,6 +20,16 @@ const PostBlog = (props) => {
     setFile(file);
   };
 
+  const handelDecripction = async (e) => {
+    if (e.target.value.length > 150) {
+      await toast.remove("prevToastId");
+      await toast.error("Word limit exceeded", { id: "prevToastId" });
+      return;
+    }
+console.log(description);
+    setDescription(e.target.value);
+    setDescriptionWorldLimit(e.target.value.length);
+  };
   const submitBlog = async (e) => {
     e.preventDefault();
 
@@ -58,7 +68,7 @@ const PostBlog = (props) => {
       } catch (error) {
         console.error(error);
       }
-    } 
+    }
   };
   if (redirect) {
     return <Redirect to="/" />;
@@ -93,13 +103,14 @@ const PostBlog = (props) => {
           <option>Other</option>
         </select>
       </div>
-      <div>
+      <div className="despriction_wrapper">
         <textarea
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={handelDecripction}
           placeholder="Write a small blog description..."
           rows={4}
           cols={40}
         />
+        <span className="despriction_counter">{descriptionWorldLimit}/150</span>
       </div>
       <div>
         <button onClick={submitBlog}>Submitt</button>
