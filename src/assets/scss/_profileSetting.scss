@@ -41,7 +41,11 @@
   .edit_btn_container {
     margin: 0 0 5px 0;
     box-sizing: border-box;
-
+    text-align: center;
+    p {
+      color: red;
+      margin: 5px 0 0 0;
+    }
     label {
       box-sizing: border-box;
       background-color: rgb(31, 169, 127);
@@ -77,7 +81,7 @@
       @media only screen and (max-width: 485px) {
         flex-direction: column;
         margin-top: 10px;
-    }
+      }
       label {
         font-size: 17px;
         width: 45%;

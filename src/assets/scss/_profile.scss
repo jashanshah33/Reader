@@ -151,7 +151,6 @@
     align-items: center ;
     height: 100vh;
     width: 100%;
-    // box-sizing: border-box;
   }
   .single_blog_fullContainer{
     width: 80%;
@@ -159,9 +158,21 @@
       width: 85vw;
     }
   }
+  .blog_container {
+    width: 65%;
+    @media only screen and (max-width: 992px) {
+      width: 58%;
+    }  }
   .blog_content{
     P{
     text-align: start;
+    }
+  }
+
+  .blog_img_container{
+    width: 30%;
+    @media only screen and (max-width: 992px) {
+      width: 38%;
     }
   }
   .No_blogs{

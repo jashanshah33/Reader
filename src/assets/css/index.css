@@ -1278,8 +1278,24 @@ code {
     width: 85vw;
   }
 }
+.profile_outer_container .blog_container {
+  width: 65%;
+}
+@media only screen and (max-width: 992px) {
+  .profile_outer_container .blog_container {
+    width: 58%;
+  }
+}
 .profile_outer_container .blog_content P {
   text-align: start;
+}
+.profile_outer_container .blog_img_container {
+  width: 30%;
+}
+@media only screen and (max-width: 992px) {
+  .profile_outer_container .blog_img_container {
+    width: 38%;
+  }
 }
 .profile_outer_container .No_blogs {
   height: 100vh;
@@ -1336,6 +1352,11 @@ code {
 #profile_full_Container .edit_btn_container {
   margin: 0 0 5px 0;
   box-sizing: border-box;
+  text-align: center;
+}
+#profile_full_Container .edit_btn_container p {
+  color: red;
+  margin: 5px 0 0 0;
 }
 #profile_full_Container .edit_btn_container label {
   box-sizing: border-box;

@@ -201,7 +201,7 @@ const Profile = () => {
                       <h2>{blog.title}</h2>
                     </div>
                     <div className="blog_content">
-                      <p>{blog.description.slice(0, 200)}</p>
+                      <p>{blog.description}</p>
                     </div>
                   </div>
                   {blog.user === auth.user._id && (

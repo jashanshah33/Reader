@@ -1,4 +1,4 @@
-const API_ROOT = "http://localhost:8000/api/v1";
+const API_ROOT = "http://35.183.179.93/api/v1";
 
 export const API_URLS = {
   signup: () => `${API_ROOT}/user/signup`,

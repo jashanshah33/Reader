@@ -61,7 +61,7 @@ const ProfileSetting = () => {
     if (userId && token) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/user/update?id=${userId}`,
+          `http://35.183.179.93/api/v1/user/update?id=${userId}`,
           {
             method: "POST",
             headers: {
@@ -90,7 +90,7 @@ const ProfileSetting = () => {
     return <Redirect to={`/profile/${auth?.user._id}`} />;
   }
   if (loading) {
-    return <Loader/>
+    return <Loader />;
   }
   return (
     <div id="profile_full_Container">
@@ -131,6 +131,7 @@ const ProfileSetting = () => {
                 type={"file"}
                 onChange={(e) => setFile(e.target.files[0])}
               />
+              {file && <p>*{file.name}</p>}
             </div>
           </div>
           <div className="acccount_info_heading">
