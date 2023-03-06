@@ -61,7 +61,7 @@ const ProfileSetting = () => {
     if (userId && token) {
       try {
         const response = await fetch(
-          `http://35.183.179.93/api/v1/user/update?id=${userId}`,
+          `https://35.183.179.93/api/v1/user/update?id=${userId}`,
           {
             method: "POST",
             headers: {

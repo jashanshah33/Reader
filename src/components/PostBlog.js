@@ -50,7 +50,7 @@ console.log(description);
     if (userId && token) {
       try {
         const response = await fetch(
-          `http://35.183.179.93/api/v1/blog/create?id=${userId}`,
+          `https://35.183.179.93/api/v1/blog/create?id=${userId}`,
           {
             method: "POST",
             headers: {
