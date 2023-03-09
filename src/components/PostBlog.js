@@ -26,7 +26,6 @@ const PostBlog = (props) => {
       await toast.error("Word limit exceeded", { id: "prevToastId" });
       return;
     }
-console.log(description);
     setDescription(e.target.value);
     setDescriptionWorldLimit(e.target.value.length);
   };

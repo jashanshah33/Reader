@@ -4,16 +4,21 @@
     to bottom,
     #000000 0vh,
     #000000 40vh,
-    rgb(238, 238, 238) 40vh,
-    rgb(238, 238, 238) 100vh
+    rgb(255, 255, 255) 40vh,
+    rgb(255, 255, 255) 100vh
   );
   height: calc(100vh - 60px);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: scroll;
+  &::-webkit-scrollbar{
+    display: none;
+  }
+  margin-top: 60px;
 
   .contact_heading {
     box-sizing: border-box;
     color: white;
-    height: 40vh;
+    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,36 +32,41 @@
 }
 
 .contact_form_wrapper {
+  // height:60% ;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 4vh;
-  p {
-    margin: 0;
-  }
+  background-color: white;
+  padding: 50px 0;
   @media only screen and (max-width: 600px) {
-    margin-top: 2vh;
+    padding: 30px 0;
+
   }
+  p {
+    margin: 0 0 20px 0;
+  }
+
   .form {
     display: flex;
     flex-direction: column;
     width: 60%;
     @media only screen and (max-width: 992px) {
-        width: 80%;
-      }
+      width: 80%;
+    }
     @media only screen and (max-width: 400px) {
       width: 90%;
     }
   }
   .form_inputs_wrapper {
-    margin-top: 4vh;
+    box-sizing: border-box;
+    //  padding: 20px 0;
     display: flex;
     justify-content: space-between;
     @media only screen and (max-width: 600px) {
       flex-direction: column;
-      margin-top: 2vh;
+      // margin-top: 2vh;
     }
     .name_input {
       background: url("https://cdn-icons-png.flaticon.com/512/1077/1077114.png")
@@ -109,6 +119,9 @@
     }
     @media only screen and (max-width: 600px) {
       margin-top: 1vh;
+    }
+    @media only screen and (max-height: 650px) {
+      height: 55px;
     }
   }
   button {

@@ -24,11 +24,20 @@ const ReadBlog = () => {
     };
     getBlog();
   }, [params]);
-if (loading) {
-  return <Loader/>
-}
+  if (loading) {
+    return <Loader />;
+  }
   return (
-    <div style={{ padding: "10px 20px" }}>
+    <div
+      style={{
+        padding: "10px 20px",
+        height: "calc(100vh - 60px)",
+        overflow: "scroll",
+        marginTop: " 60px",
+        paddingBlock: "20px",
+        boxSizing: "border-box",
+      }}
+    >
       {" "}
       <Markup content={blog} />
     </div>
