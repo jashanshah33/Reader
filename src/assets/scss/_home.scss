@@ -19,14 +19,15 @@
     justify-content: center;
     border-left: 2px solid rgb(203, 203, 203);
     height: calc(100vh - 60px);
-
+    overflow-x: scroll;
+    &::-webkit-scrollbar{
+      display: none;
+    }
     @media only screen and (max-width: 1200px) {
       display: none;
     }
   }
 }
-
-
 
 @import "./mainArtical";
 @import "./mainAside";

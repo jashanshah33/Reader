@@ -365,6 +365,10 @@ code {
   justify-content: center;
   border-left: 2px solid rgb(203, 203, 203);
   height: calc(100vh - 60px);
+  overflow-x: scroll;
+}
+#home aside::-webkit-scrollbar {
+  display: none;
 }
 @media only screen and (max-width: 1200px) {
   #home aside {
@@ -526,11 +530,11 @@ code {
   display: flex;
   justify-content: space-between;
   border-top: 2px solid rgb(177, 176, 176);
-  margin-top: 25px;
+  margin-top: 20px;
 }
 .single_blog_fullContainer .blog_container {
   width: 58%;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 .single_blog_fullContainer .blog_profile_details {
   display: flex;
@@ -577,11 +581,31 @@ code {
 }
 .single_blog_fullContainer .blog_img_container {
   width: 38%;
-  height: 23vh;
+  height: 20vh;
   align-self: flex-end;
   border-radius: 10px;
   overflow: hidden;
   margin-top: 25px;
+}
+@media only screen and (max-height: 800px) {
+  .single_blog_fullContainer .blog_img_container {
+    height: 25vh;
+  }
+}
+@media only screen and (max-height: 700px) {
+  .single_blog_fullContainer .blog_img_container {
+    height: 30vh;
+  }
+}
+@media only screen and (max-height: 550px) {
+  .single_blog_fullContainer .blog_img_container {
+    height: 35vh;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .single_blog_fullContainer .blog_img_container {
+    height: auto;
+  }
 }
 .single_blog_fullContainer .blog_descriptions {
   margin-bottom: 20px;
@@ -606,9 +630,6 @@ code {
 .full_aside_conatiner .trending_topics ol {
   padding: 0 0 0 30px;
   margin: 10px 0 0 0;
-}
-.full_aside_conatiner .intrested_people {
-  margin-top: 3vh;
 }
 .full_aside_conatiner .intrested_people_profile {
   display: flex;
@@ -642,7 +663,8 @@ code {
   width: 75%;
 }
 .full_aside_conatiner .intrested_people_btn {
-  width: 20%;
+  width: 30%;
+  text-align: end;
 }
 .full_aside_conatiner .intrested_people_btn button {
   border-radius: 10px;
@@ -661,13 +683,14 @@ code {
 }
 
 .recently_readed {
-  margin-top: 3vh;
+  padding: 0 0 10px 0;
 }
 
 .readed_blog {
   display: flex;
   margin-bottom: 20px;
-  height: 11vh;
+  height: 95px;
+  overflow: hidden;
 }
 .readed_blog .readed_blog_img {
   width: 40%;

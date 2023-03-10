@@ -148,10 +148,10 @@
   display: flex;
   justify-content: space-between;
   border-top: 2px solid rgb(177, 176, 176);
-  margin-top: 25px;
+  margin-top: 20px;
   .blog_container {
     width: 58%;
-    margin-top: 25px;
+    margin-top: 20px;
   }
   .blog_profile_details {
     display: flex;
@@ -199,7 +199,19 @@
   }
   .blog_img_container {
     width: 38%;
-    height: 23vh;
+    height: 20vh;
+    @media only screen and (max-height: 800px) {
+      height: 25vh;
+    }  
+     @media only screen and (max-height: 700px) {
+      height: 30vh;
+    }
+    @media only screen and (max-height: 550px) {
+      height: 35vh;
+    }
+    @media only screen and (max-width: 600px) {
+      height: auto;
+    }
     align-self: flex-end;
     border-radius: 10px;
     overflow: hidden;
