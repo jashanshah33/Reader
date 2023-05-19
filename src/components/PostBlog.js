@@ -49,7 +49,7 @@ const PostBlog = (props) => {
     if (userId && token) {
       try {
         const response = await fetch(
-          `https://35.183.179.93/api/v1/blog/create?id=${userId}`,
+          `http://35.183.238.115/api/v1/blog/create?id=${userId}`,
           {
             method: "POST",
             headers: {

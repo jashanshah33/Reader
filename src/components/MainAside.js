@@ -8,7 +8,11 @@ const MainAside = () => {
   const [recentlyReadedList, setRecentlyReadedList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [follow, setFollow] = useState(false);
+  const [follow, setFollow] = useState({
+    first: false,
+    second: false,
+    third: false,
+  });
   useEffect(() => {
     if (auth.user) {
       const recentlyReadedList = async () => {
@@ -45,18 +49,33 @@ const MainAside = () => {
     }
   };
 
-  const handelToggleFollow = async (user) => {
+  const handelToggleFollow = async (user, index) => {
+    let value;
+    if (index === 0) {
+      value = "first";
+    } else if (index === 1) {
+      value = "second";
+    } else if (index === 2) {
+      value = "third";
+    }
+
     const response = await toggleFollow(auth?.user._id, user._id);
     if (response.success) {
-      if (follow) {
+      if (follow[value] === true) {
         setFollowing((prevFollowing) =>
           prevFollowing.filter((presendUser) => presendUser._id !== user._id)
         );
 
-        return setFollow(false);
+        return setFollow({
+          ...follow,
+          [value]: false,
+        });
       }
       setFollowing((prevFollowing) => [...prevFollowing, user]);
-      return setFollow(true);
+      return setFollow({
+        ...follow,
+        [value]: true,
+      });
     }
   };
 
@@ -88,7 +107,7 @@ const MainAside = () => {
 
         {allUsers?.length ? (
           <>
-            {allUsers?.slice(0, 3).map((user) => (
+            {allUsers?.slice(0, 3).map((user, index) => (
               <div
                 key={user._id}
                 onLoad={() => removeUsers(user)}
@@ -128,7 +147,7 @@ const MainAside = () => {
                 </Link>
 
                 <div className="intrested_people_btn">
-                  <button onClick={() => handelToggleFollow(user)}>
+                  <button onClick={() => handelToggleFollow(user, index)}>
                     {" "}
                     {handelCheckFollowing(user._id)}
                   </button>
